@@ -8,5 +8,8 @@ generate: openapi.json
 	    -i openapi.json \
 	    -g typescript-fetch \
 	    -p npmName=bmlt-root-server-client \
-	    -p npmVersion=1.0.1 \
+	    -p npmVersion=1.0.2 \
 	    -o .
+
+clean:
+	rm -f openapi.json

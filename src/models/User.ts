@@ -24,43 +24,43 @@ export interface User {
      * @type {string}
      * @memberof User
      */
-    username?: string;
+    username: string;
     /**
      * 
      * @type {string}
      * @memberof User
      */
-    type?: string;
+    type: string;
     /**
      * 
      * @type {string}
      * @memberof User
      */
-    displayName?: string;
+    displayName: string;
     /**
      * 
      * @type {string}
      * @memberof User
      */
-    description?: string;
+    description: string;
     /**
      * 
      * @type {string}
      * @memberof User
      */
-    email?: string;
+    email: string;
     /**
      * 
      * @type {string}
      * @memberof User
      */
-    ownerId?: string;
+    ownerId: string;
     /**
      * 
      * @type {number}
      * @memberof User
      */
-    id?: number;
+    id: number;
 }
 
 /**
@@ -68,6 +68,13 @@ export interface User {
  */
 export function instanceOfUser(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "username" in value;
+    isInstance = isInstance && "type" in value;
+    isInstance = isInstance && "displayName" in value;
+    isInstance = isInstance && "description" in value;
+    isInstance = isInstance && "email" in value;
+    isInstance = isInstance && "ownerId" in value;
+    isInstance = isInstance && "id" in value;
 
     return isInstance;
 }
@@ -82,13 +89,13 @@ export function UserFromJSONTyped(json: any, ignoreDiscriminator: boolean): User
     }
     return {
         
-        'username': !exists(json, 'username') ? undefined : json['username'],
-        'type': !exists(json, 'type') ? undefined : json['type'],
-        'displayName': !exists(json, 'displayName') ? undefined : json['displayName'],
-        'description': !exists(json, 'description') ? undefined : json['description'],
-        'email': !exists(json, 'email') ? undefined : json['email'],
-        'ownerId': !exists(json, 'ownerId') ? undefined : json['ownerId'],
-        'id': !exists(json, 'id') ? undefined : json['id'],
+        'username': json['username'],
+        'type': json['type'],
+        'displayName': json['displayName'],
+        'description': json['description'],
+        'email': json['email'],
+        'ownerId': json['ownerId'],
+        'id': json['id'],
     };
 }
 

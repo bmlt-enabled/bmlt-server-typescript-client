@@ -24,85 +24,85 @@ export interface Meeting {
      * @type {number}
      * @memberof Meeting
      */
-    serviceBodyId?: number;
+    serviceBodyId: number;
     /**
      * 
      * @type {Array<number>}
      * @memberof Meeting
      */
-    formatIds?: Array<number>;
+    formatIds: Array<number>;
     /**
      * 
      * @type {number}
      * @memberof Meeting
      */
-    venueType?: number;
+    venueType: number;
     /**
      * 
      * @type {boolean}
      * @memberof Meeting
      */
-    temporarilyVirtual?: boolean;
+    temporarilyVirtual: boolean;
     /**
      * 
      * @type {number}
      * @memberof Meeting
      */
-    day?: number;
+    day: number;
     /**
      * 
      * @type {string}
      * @memberof Meeting
      */
-    startTime?: string;
+    startTime: string;
     /**
      * 
      * @type {string}
      * @memberof Meeting
      */
-    duration?: string;
+    duration: string;
     /**
      * 
      * @type {string}
      * @memberof Meeting
      */
-    timeZone?: string;
+    timeZone: string;
     /**
      * 
      * @type {number}
      * @memberof Meeting
      */
-    latitude?: number;
+    latitude: number;
     /**
      * 
      * @type {number}
      * @memberof Meeting
      */
-    longitude?: number;
+    longitude: number;
     /**
      * 
      * @type {boolean}
      * @memberof Meeting
      */
-    published?: boolean;
+    published: boolean;
     /**
      * 
      * @type {string}
      * @memberof Meeting
      */
-    email?: string;
+    email: string;
     /**
      * 
      * @type {string}
      * @memberof Meeting
      */
-    worldId?: string;
+    worldId: string;
     /**
      * 
      * @type {string}
      * @memberof Meeting
      */
-    name?: string;
+    name: string;
     /**
      * 
      * @type {string}
@@ -240,7 +240,7 @@ export interface Meeting {
      * @type {number}
      * @memberof Meeting
      */
-    id?: number;
+    id: number;
 }
 
 /**
@@ -248,6 +248,21 @@ export interface Meeting {
  */
 export function instanceOfMeeting(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "serviceBodyId" in value;
+    isInstance = isInstance && "formatIds" in value;
+    isInstance = isInstance && "venueType" in value;
+    isInstance = isInstance && "temporarilyVirtual" in value;
+    isInstance = isInstance && "day" in value;
+    isInstance = isInstance && "startTime" in value;
+    isInstance = isInstance && "duration" in value;
+    isInstance = isInstance && "timeZone" in value;
+    isInstance = isInstance && "latitude" in value;
+    isInstance = isInstance && "longitude" in value;
+    isInstance = isInstance && "published" in value;
+    isInstance = isInstance && "email" in value;
+    isInstance = isInstance && "worldId" in value;
+    isInstance = isInstance && "name" in value;
+    isInstance = isInstance && "id" in value;
 
     return isInstance;
 }
@@ -262,20 +277,20 @@ export function MeetingFromJSONTyped(json: any, ignoreDiscriminator: boolean): M
     }
     return {
         
-        'serviceBodyId': !exists(json, 'serviceBodyId') ? undefined : json['serviceBodyId'],
-        'formatIds': !exists(json, 'formatIds') ? undefined : json['formatIds'],
-        'venueType': !exists(json, 'venueType') ? undefined : json['venueType'],
-        'temporarilyVirtual': !exists(json, 'temporarilyVirtual') ? undefined : json['temporarilyVirtual'],
-        'day': !exists(json, 'day') ? undefined : json['day'],
-        'startTime': !exists(json, 'startTime') ? undefined : json['startTime'],
-        'duration': !exists(json, 'duration') ? undefined : json['duration'],
-        'timeZone': !exists(json, 'timeZone') ? undefined : json['timeZone'],
-        'latitude': !exists(json, 'latitude') ? undefined : json['latitude'],
-        'longitude': !exists(json, 'longitude') ? undefined : json['longitude'],
-        'published': !exists(json, 'published') ? undefined : json['published'],
-        'email': !exists(json, 'email') ? undefined : json['email'],
-        'worldId': !exists(json, 'worldId') ? undefined : json['worldId'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
+        'serviceBodyId': json['serviceBodyId'],
+        'formatIds': json['formatIds'],
+        'venueType': json['venueType'],
+        'temporarilyVirtual': json['temporarilyVirtual'],
+        'day': json['day'],
+        'startTime': json['startTime'],
+        'duration': json['duration'],
+        'timeZone': json['timeZone'],
+        'latitude': json['latitude'],
+        'longitude': json['longitude'],
+        'published': json['published'],
+        'email': json['email'],
+        'worldId': json['worldId'],
+        'name': json['name'],
         'locationText': !exists(json, 'location_text') ? undefined : json['location_text'],
         'locationInfo': !exists(json, 'location_info') ? undefined : json['location_info'],
         'locationStreet': !exists(json, 'location_street') ? undefined : json['location_street'],
@@ -298,7 +313,7 @@ export function MeetingFromJSONTyped(json: any, ignoreDiscriminator: boolean): M
         'busLines': !exists(json, 'bus_lines') ? undefined : json['bus_lines'],
         'trainLine': !exists(json, 'train_line') ? undefined : json['train_line'],
         'comments': !exists(json, 'comments') ? undefined : json['comments'],
-        'id': !exists(json, 'id') ? undefined : json['id'],
+        'id': json['id'],
     };
 }
 

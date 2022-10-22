@@ -24,67 +24,67 @@ export interface ServiceBody {
      * @type {number}
      * @memberof ServiceBody
      */
-    parentId?: number;
+    parentId: number;
     /**
      * 
      * @type {string}
      * @memberof ServiceBody
      */
-    name?: string;
+    name: string;
     /**
      * 
      * @type {string}
      * @memberof ServiceBody
      */
-    description?: string;
+    description: string;
     /**
      * 
      * @type {string}
      * @memberof ServiceBody
      */
-    type?: string;
+    type: string;
     /**
      * 
      * @type {number}
      * @memberof ServiceBody
      */
-    adminUserId?: number;
+    adminUserId: number;
     /**
      * 
      * @type {Array<number>}
      * @memberof ServiceBody
      */
-    assignedUserIds?: Array<number>;
+    assignedUserIds: Array<number>;
     /**
      * 
      * @type {string}
      * @memberof ServiceBody
      */
-    url?: string;
+    url: string;
     /**
      * 
      * @type {string}
      * @memberof ServiceBody
      */
-    helpline?: string;
+    helpline: string;
     /**
      * 
      * @type {string}
      * @memberof ServiceBody
      */
-    email?: string;
+    email: string;
     /**
      * 
      * @type {string}
      * @memberof ServiceBody
      */
-    worldId?: string;
+    worldId: string;
     /**
      * 
      * @type {number}
      * @memberof ServiceBody
      */
-    id?: number;
+    id: number;
 }
 
 /**
@@ -92,6 +92,17 @@ export interface ServiceBody {
  */
 export function instanceOfServiceBody(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "parentId" in value;
+    isInstance = isInstance && "name" in value;
+    isInstance = isInstance && "description" in value;
+    isInstance = isInstance && "type" in value;
+    isInstance = isInstance && "adminUserId" in value;
+    isInstance = isInstance && "assignedUserIds" in value;
+    isInstance = isInstance && "url" in value;
+    isInstance = isInstance && "helpline" in value;
+    isInstance = isInstance && "email" in value;
+    isInstance = isInstance && "worldId" in value;
+    isInstance = isInstance && "id" in value;
 
     return isInstance;
 }
@@ -106,17 +117,17 @@ export function ServiceBodyFromJSONTyped(json: any, ignoreDiscriminator: boolean
     }
     return {
         
-        'parentId': !exists(json, 'parentId') ? undefined : json['parentId'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'description': !exists(json, 'description') ? undefined : json['description'],
-        'type': !exists(json, 'type') ? undefined : json['type'],
-        'adminUserId': !exists(json, 'adminUserId') ? undefined : json['adminUserId'],
-        'assignedUserIds': !exists(json, 'assignedUserIds') ? undefined : json['assignedUserIds'],
-        'url': !exists(json, 'url') ? undefined : json['url'],
-        'helpline': !exists(json, 'helpline') ? undefined : json['helpline'],
-        'email': !exists(json, 'email') ? undefined : json['email'],
-        'worldId': !exists(json, 'worldId') ? undefined : json['worldId'],
-        'id': !exists(json, 'id') ? undefined : json['id'],
+        'parentId': json['parentId'],
+        'name': json['name'],
+        'description': json['description'],
+        'type': json['type'],
+        'adminUserId': json['adminUserId'],
+        'assignedUserIds': json['assignedUserIds'],
+        'url': json['url'],
+        'helpline': json['helpline'],
+        'email': json['email'],
+        'worldId': json['worldId'],
+        'id': json['id'],
     };
 }
 

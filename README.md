@@ -1,4 +1,4 @@
-## bmlt-root-server-client@1.0.1
+## bmlt-root-server-client@1.0.2
 
 This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
 
@@ -36,11 +36,10 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install bmlt-root-server-client@1.0.1 --save
+npm install bmlt-root-server-client@1.0.2 --save
 ```
 
 _unPublished (not recommended):_
 
 ```
 npm install PATH_TO_GENERATED_PACKAGE --save
-# bmlt-root-server-typescript-client

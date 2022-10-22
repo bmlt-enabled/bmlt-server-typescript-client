@@ -31,25 +31,25 @@ export interface Format {
      * @type {string}
      * @memberof Format
      */
-    worldId?: string;
+    worldId: string;
     /**
      * 
      * @type {string}
      * @memberof Format
      */
-    type?: string;
+    type: string;
     /**
      * 
      * @type {Array<FormatTranslation>}
      * @memberof Format
      */
-    translations?: Array<FormatTranslation>;
+    translations: Array<FormatTranslation>;
     /**
      * 
      * @type {number}
      * @memberof Format
      */
-    id?: number;
+    id: number;
 }
 
 /**
@@ -57,6 +57,10 @@ export interface Format {
  */
 export function instanceOfFormat(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "worldId" in value;
+    isInstance = isInstance && "type" in value;
+    isInstance = isInstance && "translations" in value;
+    isInstance = isInstance && "id" in value;
 
     return isInstance;
 }
@@ -71,10 +75,10 @@ export function FormatFromJSONTyped(json: any, ignoreDiscriminator: boolean): Fo
     }
     return {
         
-        'worldId': !exists(json, 'worldId') ? undefined : json['worldId'],
-        'type': !exists(json, 'type') ? undefined : json['type'],
-        'translations': !exists(json, 'translations') ? undefined : ((json['translations'] as Array<any>).map(FormatTranslationFromJSON)),
-        'id': !exists(json, 'id') ? undefined : json['id'],
+        'worldId': json['worldId'],
+        'type': json['type'],
+        'translations': ((json['translations'] as Array<any>).map(FormatTranslationFromJSON)),
+        'id': json['id'],
     };
 }
 
@@ -89,7 +93,7 @@ export function FormatToJSON(value?: Format | null): any {
         
         'worldId': value.worldId,
         'type': value.type,
-        'translations': value.translations === undefined ? undefined : ((value.translations as Array<any>).map(FormatTranslationToJSON)),
+        'translations': ((value.translations as Array<any>).map(FormatTranslationToJSON)),
         'id': value.id,
     };
 }
