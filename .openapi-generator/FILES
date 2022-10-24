@@ -7,6 +7,7 @@ src/apis/index.ts
 src/index.ts
 src/models/AuthenticationError.ts
 src/models/AuthorizationError.ts
+src/models/ErrorTest.ts
 src/models/Format.ts
 src/models/FormatAllOf.ts
 src/models/FormatBase.ts
@@ -20,6 +21,7 @@ src/models/MeetingCreate.ts
 src/models/MeetingPartialUpdate.ts
 src/models/MeetingUpdate.ts
 src/models/NotFoundError.ts
+src/models/ServerError.ts
 src/models/ServiceBody.ts
 src/models/ServiceBodyBase.ts
 src/models/ServiceBodyCreate.ts

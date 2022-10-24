@@ -15,3 +15,4 @@ generate: openapi.json
 
 clean:
 	rm -f openapi.json
+	rm -rf src

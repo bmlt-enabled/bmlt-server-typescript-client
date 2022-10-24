@@ -2,6 +2,7 @@
 /* eslint-disable */
 export * from './AuthenticationError';
 export * from './AuthorizationError';
+export * from './ErrorTest';
 export * from './Format';
 export * from './FormatAllOf';
 export * from './FormatBase';
@@ -15,6 +16,7 @@ export * from './MeetingCreate';
 export * from './MeetingPartialUpdate';
 export * from './MeetingUpdate';
 export * from './NotFoundError';
+export * from './ServerError';
 export * from './ServiceBody';
 export * from './ServiceBodyBase';
 export * from './ServiceBodyCreate';
