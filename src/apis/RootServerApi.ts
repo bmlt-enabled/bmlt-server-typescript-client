@@ -17,6 +17,7 @@ import * as runtime from '../runtime';
 import type {
   AuthenticationError,
   AuthorizationError,
+  ErrorTest,
   Format,
   FormatCreate,
   FormatPartialUpdate,
@@ -26,6 +27,7 @@ import type {
   MeetingPartialUpdate,
   MeetingUpdate,
   NotFoundError,
+  ServerError,
   ServiceBody,
   ServiceBodyCreate,
   ServiceBodyPartialUpdate,
@@ -43,6 +45,8 @@ import {
     AuthenticationErrorToJSON,
     AuthorizationErrorFromJSON,
     AuthorizationErrorToJSON,
+    ErrorTestFromJSON,
+    ErrorTestToJSON,
     FormatFromJSON,
     FormatToJSON,
     FormatCreateFromJSON,
@@ -61,6 +65,8 @@ import {
     MeetingUpdateToJSON,
     NotFoundErrorFromJSON,
     NotFoundErrorToJSON,
+    ServerErrorFromJSON,
+    ServerErrorToJSON,
     ServiceBodyFromJSON,
     ServiceBodyToJSON,
     ServiceBodyCreateFromJSON,
@@ -87,6 +93,10 @@ import {
 
 export interface AuthTokenRequest {
     tokenCredentials: TokenCredentials;
+}
+
+export interface CreateErrorTestRequest {
+    errorTest: ErrorTest;
 }
 
 export interface CreateFormatRequest {
@@ -286,6 +296,46 @@ export class RootServerApi extends runtime.BaseAPI {
      */
     async authToken(requestParameters: AuthTokenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Token> {
         const response = await this.authTokenRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Tests some errors.
+     * Tests some errors
+     */
+    async createErrorTestRaw(requestParameters: CreateErrorTestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ErrorTest>> {
+        if (requestParameters.errorTest === null || requestParameters.errorTest === undefined) {
+            throw new runtime.RequiredError('errorTest','Required parameter requestParameters.errorTest was null or undefined when calling createErrorTest.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("bmltToken", []);
+        }
+
+        const response = await this.request({
+            path: `/api/v1/errortest`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ErrorTestToJSON(requestParameters.errorTest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ErrorTestFromJSON(jsonValue));
+    }
+
+    /**
+     * Tests some errors.
+     * Tests some errors
+     */
+    async createErrorTest(requestParameters: CreateErrorTestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ErrorTest> {
+        const response = await this.createErrorTestRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

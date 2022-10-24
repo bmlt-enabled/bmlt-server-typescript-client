@@ -14,43 +14,44 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * Returns when no format exists.
+ * 
  * @export
- * @interface NoFormatExists
+ * @interface ServerError
  */
-export interface NoFormatExists {
+export interface ServerError {
     /**
      * 
      * @type {string}
-     * @memberof NoFormatExists
+     * @memberof ServerError
      */
-    message?: string;
+    message: string;
 }
 
 /**
- * Check if a given object implements the NoFormatExists interface.
+ * Check if a given object implements the ServerError interface.
  */
-export function instanceOfNoFormatExists(value: object): boolean {
+export function instanceOfServerError(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "message" in value;
 
     return isInstance;
 }
 
-export function NoFormatExistsFromJSON(json: any): NoFormatExists {
-    return NoFormatExistsFromJSONTyped(json, false);
+export function ServerErrorFromJSON(json: any): ServerError {
+    return ServerErrorFromJSONTyped(json, false);
 }
 
-export function NoFormatExistsFromJSONTyped(json: any, ignoreDiscriminator: boolean): NoFormatExists {
+export function ServerErrorFromJSONTyped(json: any, ignoreDiscriminator: boolean): ServerError {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'message': !exists(json, 'message') ? undefined : json['message'],
+        'message': json['message'],
     };
 }
 
-export function NoFormatExistsToJSON(value?: NoFormatExists | null): any {
+export function ServerErrorToJSON(value?: ServerError | null): any {
     if (value === undefined) {
         return undefined;
     }
