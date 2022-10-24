@@ -16,50 +16,42 @@ import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface ValidationError
+ * @interface AuthenticationError
  */
-export interface ValidationError {
+export interface AuthenticationError {
     /**
      * 
      * @type {string}
-     * @memberof ValidationError
+     * @memberof AuthenticationError
      */
     message: string;
-    /**
-     * 
-     * @type {{ [key: string]: Array<string>; }}
-     * @memberof ValidationError
-     */
-    errors: { [key: string]: Array<string>; };
 }
 
 /**
- * Check if a given object implements the ValidationError interface.
+ * Check if a given object implements the AuthenticationError interface.
  */
-export function instanceOfValidationError(value: object): boolean {
+export function instanceOfAuthenticationError(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "message" in value;
-    isInstance = isInstance && "errors" in value;
 
     return isInstance;
 }
 
-export function ValidationErrorFromJSON(json: any): ValidationError {
-    return ValidationErrorFromJSONTyped(json, false);
+export function AuthenticationErrorFromJSON(json: any): AuthenticationError {
+    return AuthenticationErrorFromJSONTyped(json, false);
 }
 
-export function ValidationErrorFromJSONTyped(json: any, ignoreDiscriminator: boolean): ValidationError {
+export function AuthenticationErrorFromJSONTyped(json: any, ignoreDiscriminator: boolean): AuthenticationError {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
         'message': json['message'],
-        'errors': json['errors'],
     };
 }
 
-export function ValidationErrorToJSON(value?: ValidationError | null): any {
+export function AuthenticationErrorToJSON(value?: AuthenticationError | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -69,7 +61,6 @@ export function ValidationErrorToJSON(value?: ValidationError | null): any {
     return {
         
         'message': value.message,
-        'errors': value.errors,
     };
 }
 

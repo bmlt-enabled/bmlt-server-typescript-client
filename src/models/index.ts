@@ -1,8 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
-export * from './ErrorIncorrectCredentials';
-export * from './ErrorUnauthenticated';
-export * from './ErrorUnauthorized';
+export * from './AuthenticationError';
+export * from './AuthorizationError';
 export * from './Format';
 export * from './FormatAllOf';
 export * from './FormatBase';
@@ -15,10 +14,7 @@ export * from './MeetingBase';
 export * from './MeetingCreate';
 export * from './MeetingPartialUpdate';
 export * from './MeetingUpdate';
-export * from './NoFormatExists';
-export * from './NoMeetingExists';
-export * from './NoServiceBodyExists';
-export * from './NoUserExists';
+export * from './NotFoundError';
 export * from './ServiceBody';
 export * from './ServiceBodyBase';
 export * from './ServiceBodyCreate';

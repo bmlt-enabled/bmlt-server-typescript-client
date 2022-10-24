@@ -5,9 +5,8 @@ package.json
 src/apis/RootServerApi.ts
 src/apis/index.ts
 src/index.ts
-src/models/ErrorIncorrectCredentials.ts
-src/models/ErrorUnauthenticated.ts
-src/models/ErrorUnauthorized.ts
+src/models/AuthenticationError.ts
+src/models/AuthorizationError.ts
 src/models/Format.ts
 src/models/FormatAllOf.ts
 src/models/FormatBase.ts
@@ -20,10 +19,7 @@ src/models/MeetingBase.ts
 src/models/MeetingCreate.ts
 src/models/MeetingPartialUpdate.ts
 src/models/MeetingUpdate.ts
-src/models/NoFormatExists.ts
-src/models/NoMeetingExists.ts
-src/models/NoServiceBodyExists.ts
-src/models/NoUserExists.ts
+src/models/NotFoundError.ts
 src/models/ServiceBody.ts
 src/models/ServiceBodyBase.ts
 src/models/ServiceBodyCreate.ts
