@@ -7,6 +7,7 @@ src/apis/index.ts
 src/index.ts
 src/models/AuthenticationError.ts
 src/models/AuthorizationError.ts
+src/models/ConflictError.ts
 src/models/ErrorTest.ts
 src/models/Format.ts
 src/models/FormatAllOf.ts
