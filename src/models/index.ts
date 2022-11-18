@@ -2,6 +2,7 @@
 /* eslint-disable */
 export * from './AuthenticationError';
 export * from './AuthorizationError';
+export * from './ConflictError';
 export * from './ErrorTest';
 export * from './Format';
 export * from './FormatAllOf';

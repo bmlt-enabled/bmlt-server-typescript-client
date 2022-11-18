@@ -17,6 +17,7 @@ import * as runtime from '../runtime';
 import type {
   AuthenticationError,
   AuthorizationError,
+  ConflictError,
   ErrorTest,
   Format,
   FormatCreate,
@@ -45,6 +46,8 @@ import {
     AuthenticationErrorToJSON,
     AuthorizationErrorFromJSON,
     AuthorizationErrorToJSON,
+    ConflictErrorFromJSON,
+    ConflictErrorToJSON,
     ErrorTestFromJSON,
     ErrorTestToJSON,
     FormatFromJSON,
