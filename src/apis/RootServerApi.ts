@@ -15,9 +15,10 @@
 
 import * as runtime from '../runtime';
 import type {
-  ErrorIncorrectCredentials,
-  ErrorUnauthenticated,
-  ErrorUnauthorized,
+  AuthenticationError,
+  AuthorizationError,
+  ConflictError,
+  ErrorTest,
   Format,
   FormatCreate,
   FormatPartialUpdate,
@@ -26,10 +27,9 @@ import type {
   MeetingCreate,
   MeetingPartialUpdate,
   MeetingUpdate,
-  NoFormatExists,
-  NoMeetingExists,
-  NoServiceBodyExists,
-  NoUserExists,
+  NotFoundError,
+  RootServer,
+  ServerError,
   ServiceBody,
   ServiceBodyCreate,
   ServiceBodyPartialUpdate,
@@ -41,14 +41,16 @@ import type {
   UserPartialUpdate,
   UserUpdate,
   ValidationError,
-} from '../models';
+} from '../models/index';
 import {
-    ErrorIncorrectCredentialsFromJSON,
-    ErrorIncorrectCredentialsToJSON,
-    ErrorUnauthenticatedFromJSON,
-    ErrorUnauthenticatedToJSON,
-    ErrorUnauthorizedFromJSON,
-    ErrorUnauthorizedToJSON,
+    AuthenticationErrorFromJSON,
+    AuthenticationErrorToJSON,
+    AuthorizationErrorFromJSON,
+    AuthorizationErrorToJSON,
+    ConflictErrorFromJSON,
+    ConflictErrorToJSON,
+    ErrorTestFromJSON,
+    ErrorTestToJSON,
     FormatFromJSON,
     FormatToJSON,
     FormatCreateFromJSON,
@@ -65,14 +67,12 @@ import {
     MeetingPartialUpdateToJSON,
     MeetingUpdateFromJSON,
     MeetingUpdateToJSON,
-    NoFormatExistsFromJSON,
-    NoFormatExistsToJSON,
-    NoMeetingExistsFromJSON,
-    NoMeetingExistsToJSON,
-    NoServiceBodyExistsFromJSON,
-    NoServiceBodyExistsToJSON,
-    NoUserExistsFromJSON,
-    NoUserExistsToJSON,
+    NotFoundErrorFromJSON,
+    NotFoundErrorToJSON,
+    RootServerFromJSON,
+    RootServerToJSON,
+    ServerErrorFromJSON,
+    ServerErrorToJSON,
     ServiceBodyFromJSON,
     ServiceBodyToJSON,
     ServiceBodyCreateFromJSON,
@@ -95,10 +95,14 @@ import {
     UserUpdateToJSON,
     ValidationErrorFromJSON,
     ValidationErrorToJSON,
-} from '../models';
+} from '../models/index';
 
 export interface AuthTokenRequest {
     tokenCredentials: TokenCredentials;
+}
+
+export interface CreateErrorTestRequest {
+    errorTest: ErrorTest;
 }
 
 export interface CreateFormatRequest {
@@ -146,6 +150,10 @@ export interface GetMeetingsRequest {
     days?: string;
     serviceBodyIds?: string;
     searchString?: string;
+}
+
+export interface GetRootServerRequest {
+    rootServerId: number;
 }
 
 export interface GetServiceBodyRequest {
@@ -298,6 +306,46 @@ export class RootServerApi extends runtime.BaseAPI {
      */
     async authToken(requestParameters: AuthTokenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Token> {
         const response = await this.authTokenRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Tests some errors.
+     * Tests some errors
+     */
+    async createErrorTestRaw(requestParameters: CreateErrorTestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ErrorTest>> {
+        if (requestParameters.errorTest === null || requestParameters.errorTest === undefined) {
+            throw new runtime.RequiredError('errorTest','Required parameter requestParameters.errorTest was null or undefined when calling createErrorTest.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("bmltToken", []);
+        }
+
+        const response = await this.request({
+            path: `/api/v1/errortest`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ErrorTestToJSON(requestParameters.errorTest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ErrorTestFromJSON(jsonValue));
+    }
+
+    /**
+     * Tests some errors.
+     * Tests some errors
+     */
+    async createErrorTest(requestParameters: CreateErrorTestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ErrorTest> {
+        const response = await this.createErrorTestRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -758,6 +806,71 @@ export class RootServerApi extends runtime.BaseAPI {
      */
     async getMeetings(requestParameters: GetMeetingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Meeting>> {
         const response = await this.getMeetingsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieve a single root server id.
+     * Retrieves a root server
+     */
+    async getRootServerRaw(requestParameters: GetRootServerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RootServer>> {
+        if (requestParameters.rootServerId === null || requestParameters.rootServerId === undefined) {
+            throw new runtime.RequiredError('rootServerId','Required parameter requestParameters.rootServerId was null or undefined when calling getRootServer.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/api/v1/rootservers/{rootServerId}`.replace(`{${"rootServerId"}}`, encodeURIComponent(String(requestParameters.rootServerId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => RootServerFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve a single root server id.
+     * Retrieves a root server
+     */
+    async getRootServer(requestParameters: GetRootServerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RootServer> {
+        const response = await this.getRootServerRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieve root servers.
+     * Retrieves root servers
+     */
+    async getRootServersRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<RootServer>>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("bmltToken", []);
+        }
+
+        const response = await this.request({
+            path: `/api/v1/rootservers`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(RootServerFromJSON));
+    }
+
+    /**
+     * Retrieve root servers.
+     * Retrieves root servers
+     */
+    async getRootServers(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<RootServer>> {
+        const response = await this.getRootServersRaw(initOverrides);
         return await response.value();
     }
 
