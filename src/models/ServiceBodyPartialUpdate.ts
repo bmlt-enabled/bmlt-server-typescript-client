@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -84,10 +84,8 @@ export interface ServiceBodyPartialUpdate {
 /**
  * Check if a given object implements the ServiceBodyPartialUpdate interface.
  */
-export function instanceOfServiceBodyPartialUpdate(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+export function instanceOfServiceBodyPartialUpdate(value: object): value is ServiceBodyPartialUpdate {
+    return true;
 }
 
 export function ServiceBodyPartialUpdateFromJSON(json: any): ServiceBodyPartialUpdate {
@@ -95,43 +93,40 @@ export function ServiceBodyPartialUpdateFromJSON(json: any): ServiceBodyPartialU
 }
 
 export function ServiceBodyPartialUpdateFromJSONTyped(json: any, ignoreDiscriminator: boolean): ServiceBodyPartialUpdate {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'parentId': !exists(json, 'parentId') ? undefined : json['parentId'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'description': !exists(json, 'description') ? undefined : json['description'],
-        'type': !exists(json, 'type') ? undefined : json['type'],
-        'adminUserId': !exists(json, 'adminUserId') ? undefined : json['adminUserId'],
-        'assignedUserIds': !exists(json, 'assignedUserIds') ? undefined : json['assignedUserIds'],
-        'url': !exists(json, 'url') ? undefined : json['url'],
-        'helpline': !exists(json, 'helpline') ? undefined : json['helpline'],
-        'email': !exists(json, 'email') ? undefined : json['email'],
-        'worldId': !exists(json, 'worldId') ? undefined : json['worldId'],
+        'parentId': json['parentId'] == null ? undefined : json['parentId'],
+        'name': json['name'] == null ? undefined : json['name'],
+        'description': json['description'] == null ? undefined : json['description'],
+        'type': json['type'] == null ? undefined : json['type'],
+        'adminUserId': json['adminUserId'] == null ? undefined : json['adminUserId'],
+        'assignedUserIds': json['assignedUserIds'] == null ? undefined : json['assignedUserIds'],
+        'url': json['url'] == null ? undefined : json['url'],
+        'helpline': json['helpline'] == null ? undefined : json['helpline'],
+        'email': json['email'] == null ? undefined : json['email'],
+        'worldId': json['worldId'] == null ? undefined : json['worldId'],
     };
 }
 
 export function ServiceBodyPartialUpdateToJSON(value?: ServiceBodyPartialUpdate | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'parentId': value.parentId,
-        'name': value.name,
-        'description': value.description,
-        'type': value.type,
-        'adminUserId': value.adminUserId,
-        'assignedUserIds': value.assignedUserIds,
-        'url': value.url,
-        'helpline': value.helpline,
-        'email': value.email,
-        'worldId': value.worldId,
+        'parentId': value['parentId'],
+        'name': value['name'],
+        'description': value['description'],
+        'type': value['type'],
+        'adminUserId': value['adminUserId'],
+        'assignedUserIds': value['assignedUserIds'],
+        'url': value['url'],
+        'helpline': value['helpline'],
+        'email': value['email'],
+        'worldId': value['worldId'],
     };
 }
 

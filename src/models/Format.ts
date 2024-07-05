@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { FormatTranslation } from './FormatTranslation';
 import {
     FormatTranslationFromJSON,
@@ -55,14 +55,12 @@ export interface Format {
 /**
  * Check if a given object implements the Format interface.
  */
-export function instanceOfFormat(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "worldId" in value;
-    isInstance = isInstance && "type" in value;
-    isInstance = isInstance && "translations" in value;
-    isInstance = isInstance && "id" in value;
-
-    return isInstance;
+export function instanceOfFormat(value: object): value is Format {
+    if (!('worldId' in value) || value['worldId'] === undefined) return false;
+    if (!('type' in value) || value['type'] === undefined) return false;
+    if (!('translations' in value) || value['translations'] === undefined) return false;
+    if (!('id' in value) || value['id'] === undefined) return false;
+    return true;
 }
 
 export function FormatFromJSON(json: any): Format {
@@ -70,7 +68,7 @@ export function FormatFromJSON(json: any): Format {
 }
 
 export function FormatFromJSONTyped(json: any, ignoreDiscriminator: boolean): Format {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -83,18 +81,15 @@ export function FormatFromJSONTyped(json: any, ignoreDiscriminator: boolean): Fo
 }
 
 export function FormatToJSON(value?: Format | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'worldId': value.worldId,
-        'type': value.type,
-        'translations': ((value.translations as Array<any>).map(FormatTranslationToJSON)),
-        'id': value.id,
+        'worldId': value['worldId'],
+        'type': value['type'],
+        'translations': ((value['translations'] as Array<any>).map(FormatTranslationToJSON)),
+        'id': value['id'],
     };
 }
 

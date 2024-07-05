@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -48,14 +48,12 @@ export interface Token {
 /**
  * Check if a given object implements the Token interface.
  */
-export function instanceOfToken(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "accessToken" in value;
-    isInstance = isInstance && "expiresAt" in value;
-    isInstance = isInstance && "tokenType" in value;
-    isInstance = isInstance && "userId" in value;
-
-    return isInstance;
+export function instanceOfToken(value: object): value is Token {
+    if (!('accessToken' in value) || value['accessToken'] === undefined) return false;
+    if (!('expiresAt' in value) || value['expiresAt'] === undefined) return false;
+    if (!('tokenType' in value) || value['tokenType'] === undefined) return false;
+    if (!('userId' in value) || value['userId'] === undefined) return false;
+    return true;
 }
 
 export function TokenFromJSON(json: any): Token {
@@ -63,7 +61,7 @@ export function TokenFromJSON(json: any): Token {
 }
 
 export function TokenFromJSONTyped(json: any, ignoreDiscriminator: boolean): Token {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -76,18 +74,15 @@ export function TokenFromJSONTyped(json: any, ignoreDiscriminator: boolean): Tok
 }
 
 export function TokenToJSON(value?: Token | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'access_token': value.accessToken,
-        'expires_at': value.expiresAt,
-        'token_type': value.tokenType,
-        'user_id': value.userId,
+        'access_token': value['accessToken'],
+        'expires_at': value['expiresAt'],
+        'token_type': value['tokenType'],
+        'user_id': value['userId'],
     };
 }
 

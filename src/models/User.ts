@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -51,10 +51,10 @@ export interface User {
     email: string;
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof User
      */
-    ownerId: string;
+    ownerId: number;
     /**
      * 
      * @type {number}
@@ -66,17 +66,15 @@ export interface User {
 /**
  * Check if a given object implements the User interface.
  */
-export function instanceOfUser(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "username" in value;
-    isInstance = isInstance && "type" in value;
-    isInstance = isInstance && "displayName" in value;
-    isInstance = isInstance && "description" in value;
-    isInstance = isInstance && "email" in value;
-    isInstance = isInstance && "ownerId" in value;
-    isInstance = isInstance && "id" in value;
-
-    return isInstance;
+export function instanceOfUser(value: object): value is User {
+    if (!('username' in value) || value['username'] === undefined) return false;
+    if (!('type' in value) || value['type'] === undefined) return false;
+    if (!('displayName' in value) || value['displayName'] === undefined) return false;
+    if (!('description' in value) || value['description'] === undefined) return false;
+    if (!('email' in value) || value['email'] === undefined) return false;
+    if (!('ownerId' in value) || value['ownerId'] === undefined) return false;
+    if (!('id' in value) || value['id'] === undefined) return false;
+    return true;
 }
 
 export function UserFromJSON(json: any): User {
@@ -84,7 +82,7 @@ export function UserFromJSON(json: any): User {
 }
 
 export function UserFromJSONTyped(json: any, ignoreDiscriminator: boolean): User {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -100,21 +98,18 @@ export function UserFromJSONTyped(json: any, ignoreDiscriminator: boolean): User
 }
 
 export function UserToJSON(value?: User | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'username': value.username,
-        'type': value.type,
-        'displayName': value.displayName,
-        'description': value.description,
-        'email': value.email,
-        'ownerId': value.ownerId,
-        'id': value.id,
+        'username': value['username'],
+        'type': value['type'],
+        'displayName': value['displayName'],
+        'description': value['description'],
+        'email': value['email'],
+        'ownerId': value['ownerId'],
+        'id': value['id'],
     };
 }
 

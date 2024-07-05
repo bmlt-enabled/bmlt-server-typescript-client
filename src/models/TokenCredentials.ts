@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -36,12 +36,10 @@ export interface TokenCredentials {
 /**
  * Check if a given object implements the TokenCredentials interface.
  */
-export function instanceOfTokenCredentials(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "password" in value;
-    isInstance = isInstance && "username" in value;
-
-    return isInstance;
+export function instanceOfTokenCredentials(value: object): value is TokenCredentials {
+    if (!('password' in value) || value['password'] === undefined) return false;
+    if (!('username' in value) || value['username'] === undefined) return false;
+    return true;
 }
 
 export function TokenCredentialsFromJSON(json: any): TokenCredentials {
@@ -49,7 +47,7 @@ export function TokenCredentialsFromJSON(json: any): TokenCredentials {
 }
 
 export function TokenCredentialsFromJSONTyped(json: any, ignoreDiscriminator: boolean): TokenCredentials {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -60,16 +58,13 @@ export function TokenCredentialsFromJSONTyped(json: any, ignoreDiscriminator: bo
 }
 
 export function TokenCredentialsToJSON(value?: TokenCredentials | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'password': value.password,
-        'username': value.username,
+        'password': value['password'],
+        'username': value['username'],
     };
 }
 

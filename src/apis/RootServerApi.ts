@@ -28,6 +28,7 @@ import type {
   MeetingPartialUpdate,
   MeetingUpdate,
   NotFoundError,
+  RootServer,
   ServerError,
   ServiceBody,
   ServiceBodyCreate,
@@ -40,7 +41,7 @@ import type {
   UserPartialUpdate,
   UserUpdate,
   ValidationError,
-} from '../models';
+} from '../models/index';
 import {
     AuthenticationErrorFromJSON,
     AuthenticationErrorToJSON,
@@ -68,6 +69,8 @@ import {
     MeetingUpdateToJSON,
     NotFoundErrorFromJSON,
     NotFoundErrorToJSON,
+    RootServerFromJSON,
+    RootServerToJSON,
     ServerErrorFromJSON,
     ServerErrorToJSON,
     ServiceBodyFromJSON,
@@ -92,7 +95,7 @@ import {
     UserUpdateToJSON,
     ValidationErrorFromJSON,
     ValidationErrorToJSON,
-} from '../models';
+} from '../models/index';
 
 export interface AuthTokenRequest {
     tokenCredentials: TokenCredentials;
@@ -147,6 +150,10 @@ export interface GetMeetingsRequest {
     days?: string;
     serviceBodyIds?: string;
     searchString?: string;
+}
+
+export interface GetRootServerRequest {
+    rootServerId: number;
 }
 
 export interface GetServiceBodyRequest {
@@ -272,8 +279,11 @@ export class RootServerApi extends runtime.BaseAPI {
      * Creates a token
      */
     async authTokenRaw(requestParameters: AuthTokenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Token>> {
-        if (requestParameters.tokenCredentials === null || requestParameters.tokenCredentials === undefined) {
-            throw new runtime.RequiredError('tokenCredentials','Required parameter requestParameters.tokenCredentials was null or undefined when calling authToken.');
+        if (requestParameters['tokenCredentials'] == null) {
+            throw new runtime.RequiredError(
+                'tokenCredentials',
+                'Required parameter "tokenCredentials" was null or undefined when calling authToken().'
+            );
         }
 
         const queryParameters: any = {};
@@ -287,7 +297,7 @@ export class RootServerApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: TokenCredentialsToJSON(requestParameters.tokenCredentials),
+            body: TokenCredentialsToJSON(requestParameters['tokenCredentials']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => TokenFromJSON(jsonValue));
@@ -307,8 +317,11 @@ export class RootServerApi extends runtime.BaseAPI {
      * Tests some errors
      */
     async createErrorTestRaw(requestParameters: CreateErrorTestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ErrorTest>> {
-        if (requestParameters.errorTest === null || requestParameters.errorTest === undefined) {
-            throw new runtime.RequiredError('errorTest','Required parameter requestParameters.errorTest was null or undefined when calling createErrorTest.');
+        if (requestParameters['errorTest'] == null) {
+            throw new runtime.RequiredError(
+                'errorTest',
+                'Required parameter "errorTest" was null or undefined when calling createErrorTest().'
+            );
         }
 
         const queryParameters: any = {};
@@ -327,7 +340,7 @@ export class RootServerApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: ErrorTestToJSON(requestParameters.errorTest),
+            body: ErrorTestToJSON(requestParameters['errorTest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ErrorTestFromJSON(jsonValue));
@@ -347,8 +360,11 @@ export class RootServerApi extends runtime.BaseAPI {
      * Creates a format
      */
     async createFormatRaw(requestParameters: CreateFormatRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Format>> {
-        if (requestParameters.formatCreate === null || requestParameters.formatCreate === undefined) {
-            throw new runtime.RequiredError('formatCreate','Required parameter requestParameters.formatCreate was null or undefined when calling createFormat.');
+        if (requestParameters['formatCreate'] == null) {
+            throw new runtime.RequiredError(
+                'formatCreate',
+                'Required parameter "formatCreate" was null or undefined when calling createFormat().'
+            );
         }
 
         const queryParameters: any = {};
@@ -367,7 +383,7 @@ export class RootServerApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: FormatCreateToJSON(requestParameters.formatCreate),
+            body: FormatCreateToJSON(requestParameters['formatCreate']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => FormatFromJSON(jsonValue));
@@ -387,8 +403,11 @@ export class RootServerApi extends runtime.BaseAPI {
      * Creates a meeting
      */
     async createMeetingRaw(requestParameters: CreateMeetingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Meeting>> {
-        if (requestParameters.meetingCreate === null || requestParameters.meetingCreate === undefined) {
-            throw new runtime.RequiredError('meetingCreate','Required parameter requestParameters.meetingCreate was null or undefined when calling createMeeting.');
+        if (requestParameters['meetingCreate'] == null) {
+            throw new runtime.RequiredError(
+                'meetingCreate',
+                'Required parameter "meetingCreate" was null or undefined when calling createMeeting().'
+            );
         }
 
         const queryParameters: any = {};
@@ -407,7 +426,7 @@ export class RootServerApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: MeetingCreateToJSON(requestParameters.meetingCreate),
+            body: MeetingCreateToJSON(requestParameters['meetingCreate']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MeetingFromJSON(jsonValue));
@@ -427,8 +446,11 @@ export class RootServerApi extends runtime.BaseAPI {
      * Creates a service body
      */
     async createServiceBodyRaw(requestParameters: CreateServiceBodyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ServiceBody>> {
-        if (requestParameters.serviceBodyCreate === null || requestParameters.serviceBodyCreate === undefined) {
-            throw new runtime.RequiredError('serviceBodyCreate','Required parameter requestParameters.serviceBodyCreate was null or undefined when calling createServiceBody.');
+        if (requestParameters['serviceBodyCreate'] == null) {
+            throw new runtime.RequiredError(
+                'serviceBodyCreate',
+                'Required parameter "serviceBodyCreate" was null or undefined when calling createServiceBody().'
+            );
         }
 
         const queryParameters: any = {};
@@ -447,7 +469,7 @@ export class RootServerApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: ServiceBodyCreateToJSON(requestParameters.serviceBodyCreate),
+            body: ServiceBodyCreateToJSON(requestParameters['serviceBodyCreate']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ServiceBodyFromJSON(jsonValue));
@@ -467,8 +489,11 @@ export class RootServerApi extends runtime.BaseAPI {
      * Creates a user
      */
     async createUserRaw(requestParameters: CreateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<User>> {
-        if (requestParameters.userCreate === null || requestParameters.userCreate === undefined) {
-            throw new runtime.RequiredError('userCreate','Required parameter requestParameters.userCreate was null or undefined when calling createUser.');
+        if (requestParameters['userCreate'] == null) {
+            throw new runtime.RequiredError(
+                'userCreate',
+                'Required parameter "userCreate" was null or undefined when calling createUser().'
+            );
         }
 
         const queryParameters: any = {};
@@ -487,7 +512,7 @@ export class RootServerApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: UserCreateToJSON(requestParameters.userCreate),
+            body: UserCreateToJSON(requestParameters['userCreate']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UserFromJSON(jsonValue));
@@ -507,8 +532,11 @@ export class RootServerApi extends runtime.BaseAPI {
      * Deletes a format
      */
     async deleteFormatRaw(requestParameters: DeleteFormatRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.formatId === null || requestParameters.formatId === undefined) {
-            throw new runtime.RequiredError('formatId','Required parameter requestParameters.formatId was null or undefined when calling deleteFormat.');
+        if (requestParameters['formatId'] == null) {
+            throw new runtime.RequiredError(
+                'formatId',
+                'Required parameter "formatId" was null or undefined when calling deleteFormat().'
+            );
         }
 
         const queryParameters: any = {};
@@ -521,7 +549,7 @@ export class RootServerApi extends runtime.BaseAPI {
         }
 
         const response = await this.request({
-            path: `/api/v1/formats/{formatId}`.replace(`{${"formatId"}}`, encodeURIComponent(String(requestParameters.formatId))),
+            path: `/api/v1/formats/{formatId}`.replace(`{${"formatId"}}`, encodeURIComponent(String(requestParameters['formatId']))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -543,8 +571,11 @@ export class RootServerApi extends runtime.BaseAPI {
      * Deletes a meeting
      */
     async deleteMeetingRaw(requestParameters: DeleteMeetingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.meetingId === null || requestParameters.meetingId === undefined) {
-            throw new runtime.RequiredError('meetingId','Required parameter requestParameters.meetingId was null or undefined when calling deleteMeeting.');
+        if (requestParameters['meetingId'] == null) {
+            throw new runtime.RequiredError(
+                'meetingId',
+                'Required parameter "meetingId" was null or undefined when calling deleteMeeting().'
+            );
         }
 
         const queryParameters: any = {};
@@ -557,7 +588,7 @@ export class RootServerApi extends runtime.BaseAPI {
         }
 
         const response = await this.request({
-            path: `/api/v1/meetings/{meetingId}`.replace(`{${"meetingId"}}`, encodeURIComponent(String(requestParameters.meetingId))),
+            path: `/api/v1/meetings/{meetingId}`.replace(`{${"meetingId"}}`, encodeURIComponent(String(requestParameters['meetingId']))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -579,8 +610,11 @@ export class RootServerApi extends runtime.BaseAPI {
      * Deletes a service body
      */
     async deleteServiceBodyRaw(requestParameters: DeleteServiceBodyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.serviceBodyId === null || requestParameters.serviceBodyId === undefined) {
-            throw new runtime.RequiredError('serviceBodyId','Required parameter requestParameters.serviceBodyId was null or undefined when calling deleteServiceBody.');
+        if (requestParameters['serviceBodyId'] == null) {
+            throw new runtime.RequiredError(
+                'serviceBodyId',
+                'Required parameter "serviceBodyId" was null or undefined when calling deleteServiceBody().'
+            );
         }
 
         const queryParameters: any = {};
@@ -593,7 +627,7 @@ export class RootServerApi extends runtime.BaseAPI {
         }
 
         const response = await this.request({
-            path: `/api/v1/servicebodies/{serviceBodyId}`.replace(`{${"serviceBodyId"}}`, encodeURIComponent(String(requestParameters.serviceBodyId))),
+            path: `/api/v1/servicebodies/{serviceBodyId}`.replace(`{${"serviceBodyId"}}`, encodeURIComponent(String(requestParameters['serviceBodyId']))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -615,8 +649,11 @@ export class RootServerApi extends runtime.BaseAPI {
      * Deletes a user
      */
     async deleteUserRaw(requestParameters: DeleteUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling deleteUser.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling deleteUser().'
+            );
         }
 
         const queryParameters: any = {};
@@ -629,7 +666,7 @@ export class RootServerApi extends runtime.BaseAPI {
         }
 
         const response = await this.request({
-            path: `/api/v1/users/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters.userId))),
+            path: `/api/v1/users/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -651,8 +688,11 @@ export class RootServerApi extends runtime.BaseAPI {
      * Retrieves a format
      */
     async getFormatRaw(requestParameters: GetFormatRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Format>> {
-        if (requestParameters.formatId === null || requestParameters.formatId === undefined) {
-            throw new runtime.RequiredError('formatId','Required parameter requestParameters.formatId was null or undefined when calling getFormat.');
+        if (requestParameters['formatId'] == null) {
+            throw new runtime.RequiredError(
+                'formatId',
+                'Required parameter "formatId" was null or undefined when calling getFormat().'
+            );
         }
 
         const queryParameters: any = {};
@@ -665,7 +705,7 @@ export class RootServerApi extends runtime.BaseAPI {
         }
 
         const response = await this.request({
-            path: `/api/v1/formats/{formatId}`.replace(`{${"formatId"}}`, encodeURIComponent(String(requestParameters.formatId))),
+            path: `/api/v1/formats/{formatId}`.replace(`{${"formatId"}}`, encodeURIComponent(String(requestParameters['formatId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -721,8 +761,11 @@ export class RootServerApi extends runtime.BaseAPI {
      * Retrieves a meeting
      */
     async getMeetingRaw(requestParameters: GetMeetingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Meeting>> {
-        if (requestParameters.meetingId === null || requestParameters.meetingId === undefined) {
-            throw new runtime.RequiredError('meetingId','Required parameter requestParameters.meetingId was null or undefined when calling getMeeting.');
+        if (requestParameters['meetingId'] == null) {
+            throw new runtime.RequiredError(
+                'meetingId',
+                'Required parameter "meetingId" was null or undefined when calling getMeeting().'
+            );
         }
 
         const queryParameters: any = {};
@@ -735,7 +778,7 @@ export class RootServerApi extends runtime.BaseAPI {
         }
 
         const response = await this.request({
-            path: `/api/v1/meetings/{meetingId}`.replace(`{${"meetingId"}}`, encodeURIComponent(String(requestParameters.meetingId))),
+            path: `/api/v1/meetings/{meetingId}`.replace(`{${"meetingId"}}`, encodeURIComponent(String(requestParameters['meetingId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -760,20 +803,20 @@ export class RootServerApi extends runtime.BaseAPI {
     async getMeetingsRaw(requestParameters: GetMeetingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Meeting>>> {
         const queryParameters: any = {};
 
-        if (requestParameters.meetingIds !== undefined) {
-            queryParameters['meetingIds'] = requestParameters.meetingIds;
+        if (requestParameters['meetingIds'] != null) {
+            queryParameters['meetingIds'] = requestParameters['meetingIds'];
         }
 
-        if (requestParameters.days !== undefined) {
-            queryParameters['days'] = requestParameters.days;
+        if (requestParameters['days'] != null) {
+            queryParameters['days'] = requestParameters['days'];
         }
 
-        if (requestParameters.serviceBodyIds !== undefined) {
-            queryParameters['serviceBodyIds'] = requestParameters.serviceBodyIds;
+        if (requestParameters['serviceBodyIds'] != null) {
+            queryParameters['serviceBodyIds'] = requestParameters['serviceBodyIds'];
         }
 
-        if (requestParameters.searchString !== undefined) {
-            queryParameters['searchString'] = requestParameters.searchString;
+        if (requestParameters['searchString'] != null) {
+            queryParameters['searchString'] = requestParameters['searchString'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -799,6 +842,69 @@ export class RootServerApi extends runtime.BaseAPI {
      */
     async getMeetings(requestParameters: GetMeetingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Meeting>> {
         const response = await this.getMeetingsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieve a single root server id.
+     * Retrieves a root server
+     */
+    async getRootServerRaw(requestParameters: GetRootServerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RootServer>> {
+        if (requestParameters['rootServerId'] == null) {
+            throw new runtime.RequiredError(
+                'rootServerId',
+                'Required parameter "rootServerId" was null or undefined when calling getRootServer().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/api/v1/rootservers/{rootServerId}`.replace(`{${"rootServerId"}}`, encodeURIComponent(String(requestParameters['rootServerId']))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => RootServerFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve a single root server id.
+     * Retrieves a root server
+     */
+    async getRootServer(requestParameters: GetRootServerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RootServer> {
+        const response = await this.getRootServerRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieve root servers.
+     * Retrieves root servers
+     */
+    async getRootServersRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<RootServer>>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/api/v1/rootservers`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(RootServerFromJSON));
+    }
+
+    /**
+     * Retrieve root servers.
+     * Retrieves root servers
+     */
+    async getRootServers(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<RootServer>> {
+        const response = await this.getRootServersRaw(initOverrides);
         return await response.value();
     }
 
@@ -840,8 +946,11 @@ export class RootServerApi extends runtime.BaseAPI {
      * Retrieves a service body
      */
     async getServiceBodyRaw(requestParameters: GetServiceBodyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ServiceBody>> {
-        if (requestParameters.serviceBodyId === null || requestParameters.serviceBodyId === undefined) {
-            throw new runtime.RequiredError('serviceBodyId','Required parameter requestParameters.serviceBodyId was null or undefined when calling getServiceBody.');
+        if (requestParameters['serviceBodyId'] == null) {
+            throw new runtime.RequiredError(
+                'serviceBodyId',
+                'Required parameter "serviceBodyId" was null or undefined when calling getServiceBody().'
+            );
         }
 
         const queryParameters: any = {};
@@ -854,7 +963,7 @@ export class RootServerApi extends runtime.BaseAPI {
         }
 
         const response = await this.request({
-            path: `/api/v1/servicebodies/{serviceBodyId}`.replace(`{${"serviceBodyId"}}`, encodeURIComponent(String(requestParameters.serviceBodyId))),
+            path: `/api/v1/servicebodies/{serviceBodyId}`.replace(`{${"serviceBodyId"}}`, encodeURIComponent(String(requestParameters['serviceBodyId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -877,8 +986,11 @@ export class RootServerApi extends runtime.BaseAPI {
      * Retrieves a single user
      */
     async getUserRaw(requestParameters: GetUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<User>> {
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getUser.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling getUser().'
+            );
         }
 
         const queryParameters: any = {};
@@ -891,7 +1003,7 @@ export class RootServerApi extends runtime.BaseAPI {
         }
 
         const response = await this.request({
-            path: `/api/v1/users/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters.userId))),
+            path: `/api/v1/users/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -947,12 +1059,18 @@ export class RootServerApi extends runtime.BaseAPI {
      * Patches a user
      */
     async partialUpdateUserRaw(requestParameters: PartialUpdateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling partialUpdateUser.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling partialUpdateUser().'
+            );
         }
 
-        if (requestParameters.userPartialUpdate === null || requestParameters.userPartialUpdate === undefined) {
-            throw new runtime.RequiredError('userPartialUpdate','Required parameter requestParameters.userPartialUpdate was null or undefined when calling partialUpdateUser.');
+        if (requestParameters['userPartialUpdate'] == null) {
+            throw new runtime.RequiredError(
+                'userPartialUpdate',
+                'Required parameter "userPartialUpdate" was null or undefined when calling partialUpdateUser().'
+            );
         }
 
         const queryParameters: any = {};
@@ -967,11 +1085,11 @@ export class RootServerApi extends runtime.BaseAPI {
         }
 
         const response = await this.request({
-            path: `/api/v1/users/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters.userId))),
+            path: `/api/v1/users/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
-            body: UserPartialUpdateToJSON(requestParameters.userPartialUpdate),
+            body: UserPartialUpdateToJSON(requestParameters['userPartialUpdate']),
         }, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -990,12 +1108,18 @@ export class RootServerApi extends runtime.BaseAPI {
      * Patches a format
      */
     async patchFormatRaw(requestParameters: PatchFormatRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.formatId === null || requestParameters.formatId === undefined) {
-            throw new runtime.RequiredError('formatId','Required parameter requestParameters.formatId was null or undefined when calling patchFormat.');
+        if (requestParameters['formatId'] == null) {
+            throw new runtime.RequiredError(
+                'formatId',
+                'Required parameter "formatId" was null or undefined when calling patchFormat().'
+            );
         }
 
-        if (requestParameters.formatPartialUpdate === null || requestParameters.formatPartialUpdate === undefined) {
-            throw new runtime.RequiredError('formatPartialUpdate','Required parameter requestParameters.formatPartialUpdate was null or undefined when calling patchFormat.');
+        if (requestParameters['formatPartialUpdate'] == null) {
+            throw new runtime.RequiredError(
+                'formatPartialUpdate',
+                'Required parameter "formatPartialUpdate" was null or undefined when calling patchFormat().'
+            );
         }
 
         const queryParameters: any = {};
@@ -1010,11 +1134,11 @@ export class RootServerApi extends runtime.BaseAPI {
         }
 
         const response = await this.request({
-            path: `/api/v1/formats/{formatId}`.replace(`{${"formatId"}}`, encodeURIComponent(String(requestParameters.formatId))),
+            path: `/api/v1/formats/{formatId}`.replace(`{${"formatId"}}`, encodeURIComponent(String(requestParameters['formatId']))),
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
-            body: FormatPartialUpdateToJSON(requestParameters.formatPartialUpdate),
+            body: FormatPartialUpdateToJSON(requestParameters['formatPartialUpdate']),
         }, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -1033,12 +1157,18 @@ export class RootServerApi extends runtime.BaseAPI {
      * Patches a meeting
      */
     async patchMeetingRaw(requestParameters: PatchMeetingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.meetingId === null || requestParameters.meetingId === undefined) {
-            throw new runtime.RequiredError('meetingId','Required parameter requestParameters.meetingId was null or undefined when calling patchMeeting.');
+        if (requestParameters['meetingId'] == null) {
+            throw new runtime.RequiredError(
+                'meetingId',
+                'Required parameter "meetingId" was null or undefined when calling patchMeeting().'
+            );
         }
 
-        if (requestParameters.meetingPartialUpdate === null || requestParameters.meetingPartialUpdate === undefined) {
-            throw new runtime.RequiredError('meetingPartialUpdate','Required parameter requestParameters.meetingPartialUpdate was null or undefined when calling patchMeeting.');
+        if (requestParameters['meetingPartialUpdate'] == null) {
+            throw new runtime.RequiredError(
+                'meetingPartialUpdate',
+                'Required parameter "meetingPartialUpdate" was null or undefined when calling patchMeeting().'
+            );
         }
 
         const queryParameters: any = {};
@@ -1053,11 +1183,11 @@ export class RootServerApi extends runtime.BaseAPI {
         }
 
         const response = await this.request({
-            path: `/api/v1/meetings/{meetingId}`.replace(`{${"meetingId"}}`, encodeURIComponent(String(requestParameters.meetingId))),
+            path: `/api/v1/meetings/{meetingId}`.replace(`{${"meetingId"}}`, encodeURIComponent(String(requestParameters['meetingId']))),
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
-            body: MeetingPartialUpdateToJSON(requestParameters.meetingPartialUpdate),
+            body: MeetingPartialUpdateToJSON(requestParameters['meetingPartialUpdate']),
         }, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -1076,12 +1206,18 @@ export class RootServerApi extends runtime.BaseAPI {
      * Patches a service body
      */
     async patchServiceBodyRaw(requestParameters: PatchServiceBodyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.serviceBodyId === null || requestParameters.serviceBodyId === undefined) {
-            throw new runtime.RequiredError('serviceBodyId','Required parameter requestParameters.serviceBodyId was null or undefined when calling patchServiceBody.');
+        if (requestParameters['serviceBodyId'] == null) {
+            throw new runtime.RequiredError(
+                'serviceBodyId',
+                'Required parameter "serviceBodyId" was null or undefined when calling patchServiceBody().'
+            );
         }
 
-        if (requestParameters.serviceBodyPartialUpdate === null || requestParameters.serviceBodyPartialUpdate === undefined) {
-            throw new runtime.RequiredError('serviceBodyPartialUpdate','Required parameter requestParameters.serviceBodyPartialUpdate was null or undefined when calling patchServiceBody.');
+        if (requestParameters['serviceBodyPartialUpdate'] == null) {
+            throw new runtime.RequiredError(
+                'serviceBodyPartialUpdate',
+                'Required parameter "serviceBodyPartialUpdate" was null or undefined when calling patchServiceBody().'
+            );
         }
 
         const queryParameters: any = {};
@@ -1096,11 +1232,11 @@ export class RootServerApi extends runtime.BaseAPI {
         }
 
         const response = await this.request({
-            path: `/api/v1/servicebodies/{serviceBodyId}`.replace(`{${"serviceBodyId"}}`, encodeURIComponent(String(requestParameters.serviceBodyId))),
+            path: `/api/v1/servicebodies/{serviceBodyId}`.replace(`{${"serviceBodyId"}}`, encodeURIComponent(String(requestParameters['serviceBodyId']))),
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
-            body: ServiceBodyPartialUpdateToJSON(requestParameters.serviceBodyPartialUpdate),
+            body: ServiceBodyPartialUpdateToJSON(requestParameters['serviceBodyPartialUpdate']),
         }, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -1119,12 +1255,18 @@ export class RootServerApi extends runtime.BaseAPI {
      * Updates a format
      */
     async updateFormatRaw(requestParameters: UpdateFormatRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.formatId === null || requestParameters.formatId === undefined) {
-            throw new runtime.RequiredError('formatId','Required parameter requestParameters.formatId was null or undefined when calling updateFormat.');
+        if (requestParameters['formatId'] == null) {
+            throw new runtime.RequiredError(
+                'formatId',
+                'Required parameter "formatId" was null or undefined when calling updateFormat().'
+            );
         }
 
-        if (requestParameters.formatUpdate === null || requestParameters.formatUpdate === undefined) {
-            throw new runtime.RequiredError('formatUpdate','Required parameter requestParameters.formatUpdate was null or undefined when calling updateFormat.');
+        if (requestParameters['formatUpdate'] == null) {
+            throw new runtime.RequiredError(
+                'formatUpdate',
+                'Required parameter "formatUpdate" was null or undefined when calling updateFormat().'
+            );
         }
 
         const queryParameters: any = {};
@@ -1139,11 +1281,11 @@ export class RootServerApi extends runtime.BaseAPI {
         }
 
         const response = await this.request({
-            path: `/api/v1/formats/{formatId}`.replace(`{${"formatId"}}`, encodeURIComponent(String(requestParameters.formatId))),
+            path: `/api/v1/formats/{formatId}`.replace(`{${"formatId"}}`, encodeURIComponent(String(requestParameters['formatId']))),
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: FormatUpdateToJSON(requestParameters.formatUpdate),
+            body: FormatUpdateToJSON(requestParameters['formatUpdate']),
         }, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -1162,12 +1304,18 @@ export class RootServerApi extends runtime.BaseAPI {
      * Updates a meeting
      */
     async updateMeetingRaw(requestParameters: UpdateMeetingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.meetingId === null || requestParameters.meetingId === undefined) {
-            throw new runtime.RequiredError('meetingId','Required parameter requestParameters.meetingId was null or undefined when calling updateMeeting.');
+        if (requestParameters['meetingId'] == null) {
+            throw new runtime.RequiredError(
+                'meetingId',
+                'Required parameter "meetingId" was null or undefined when calling updateMeeting().'
+            );
         }
 
-        if (requestParameters.meetingUpdate === null || requestParameters.meetingUpdate === undefined) {
-            throw new runtime.RequiredError('meetingUpdate','Required parameter requestParameters.meetingUpdate was null or undefined when calling updateMeeting.');
+        if (requestParameters['meetingUpdate'] == null) {
+            throw new runtime.RequiredError(
+                'meetingUpdate',
+                'Required parameter "meetingUpdate" was null or undefined when calling updateMeeting().'
+            );
         }
 
         const queryParameters: any = {};
@@ -1182,11 +1330,11 @@ export class RootServerApi extends runtime.BaseAPI {
         }
 
         const response = await this.request({
-            path: `/api/v1/meetings/{meetingId}`.replace(`{${"meetingId"}}`, encodeURIComponent(String(requestParameters.meetingId))),
+            path: `/api/v1/meetings/{meetingId}`.replace(`{${"meetingId"}}`, encodeURIComponent(String(requestParameters['meetingId']))),
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: MeetingUpdateToJSON(requestParameters.meetingUpdate),
+            body: MeetingUpdateToJSON(requestParameters['meetingUpdate']),
         }, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -1205,12 +1353,18 @@ export class RootServerApi extends runtime.BaseAPI {
      * Updates a Service Body
      */
     async updateServiceBodyRaw(requestParameters: UpdateServiceBodyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.serviceBodyId === null || requestParameters.serviceBodyId === undefined) {
-            throw new runtime.RequiredError('serviceBodyId','Required parameter requestParameters.serviceBodyId was null or undefined when calling updateServiceBody.');
+        if (requestParameters['serviceBodyId'] == null) {
+            throw new runtime.RequiredError(
+                'serviceBodyId',
+                'Required parameter "serviceBodyId" was null or undefined when calling updateServiceBody().'
+            );
         }
 
-        if (requestParameters.serviceBodyUpdate === null || requestParameters.serviceBodyUpdate === undefined) {
-            throw new runtime.RequiredError('serviceBodyUpdate','Required parameter requestParameters.serviceBodyUpdate was null or undefined when calling updateServiceBody.');
+        if (requestParameters['serviceBodyUpdate'] == null) {
+            throw new runtime.RequiredError(
+                'serviceBodyUpdate',
+                'Required parameter "serviceBodyUpdate" was null or undefined when calling updateServiceBody().'
+            );
         }
 
         const queryParameters: any = {};
@@ -1225,11 +1379,11 @@ export class RootServerApi extends runtime.BaseAPI {
         }
 
         const response = await this.request({
-            path: `/api/v1/servicebodies/{serviceBodyId}`.replace(`{${"serviceBodyId"}}`, encodeURIComponent(String(requestParameters.serviceBodyId))),
+            path: `/api/v1/servicebodies/{serviceBodyId}`.replace(`{${"serviceBodyId"}}`, encodeURIComponent(String(requestParameters['serviceBodyId']))),
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: ServiceBodyUpdateToJSON(requestParameters.serviceBodyUpdate),
+            body: ServiceBodyUpdateToJSON(requestParameters['serviceBodyUpdate']),
         }, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -1248,12 +1402,18 @@ export class RootServerApi extends runtime.BaseAPI {
      * Update single user
      */
     async updateUserRaw(requestParameters: UpdateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling updateUser.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling updateUser().'
+            );
         }
 
-        if (requestParameters.userUpdate === null || requestParameters.userUpdate === undefined) {
-            throw new runtime.RequiredError('userUpdate','Required parameter requestParameters.userUpdate was null or undefined when calling updateUser.');
+        if (requestParameters['userUpdate'] == null) {
+            throw new runtime.RequiredError(
+                'userUpdate',
+                'Required parameter "userUpdate" was null or undefined when calling updateUser().'
+            );
         }
 
         const queryParameters: any = {};
@@ -1268,11 +1428,11 @@ export class RootServerApi extends runtime.BaseAPI {
         }
 
         const response = await this.request({
-            path: `/api/v1/users/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters.userId))),
+            path: `/api/v1/users/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: UserUpdateToJSON(requestParameters.userUpdate),
+            body: UserUpdateToJSON(requestParameters['userUpdate']),
         }, initOverrides);
 
         return new runtime.VoidApiResponse(response);

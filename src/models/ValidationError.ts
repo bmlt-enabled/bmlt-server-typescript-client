@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -36,12 +36,10 @@ export interface ValidationError {
 /**
  * Check if a given object implements the ValidationError interface.
  */
-export function instanceOfValidationError(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "message" in value;
-    isInstance = isInstance && "errors" in value;
-
-    return isInstance;
+export function instanceOfValidationError(value: object): value is ValidationError {
+    if (!('message' in value) || value['message'] === undefined) return false;
+    if (!('errors' in value) || value['errors'] === undefined) return false;
+    return true;
 }
 
 export function ValidationErrorFromJSON(json: any): ValidationError {
@@ -49,7 +47,7 @@ export function ValidationErrorFromJSON(json: any): ValidationError {
 }
 
 export function ValidationErrorFromJSONTyped(json: any, ignoreDiscriminator: boolean): ValidationError {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -60,16 +58,13 @@ export function ValidationErrorFromJSONTyped(json: any, ignoreDiscriminator: boo
 }
 
 export function ValidationErrorToJSON(value?: ValidationError | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'message': value.message,
-        'errors': value.errors,
+        'message': value['message'],
+        'errors': value['errors'],
     };
 }
 

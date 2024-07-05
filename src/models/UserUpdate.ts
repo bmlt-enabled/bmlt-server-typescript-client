@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -51,10 +51,10 @@ export interface UserUpdate {
     email?: string;
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof UserUpdate
      */
-    ownerId?: string;
+    ownerId?: number;
     /**
      * 
      * @type {string}
@@ -66,13 +66,11 @@ export interface UserUpdate {
 /**
  * Check if a given object implements the UserUpdate interface.
  */
-export function instanceOfUserUpdate(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "username" in value;
-    isInstance = isInstance && "type" in value;
-    isInstance = isInstance && "displayName" in value;
-
-    return isInstance;
+export function instanceOfUserUpdate(value: object): value is UserUpdate {
+    if (!('username' in value) || value['username'] === undefined) return false;
+    if (!('type' in value) || value['type'] === undefined) return false;
+    if (!('displayName' in value) || value['displayName'] === undefined) return false;
+    return true;
 }
 
 export function UserUpdateFromJSON(json: any): UserUpdate {
@@ -80,7 +78,7 @@ export function UserUpdateFromJSON(json: any): UserUpdate {
 }
 
 export function UserUpdateFromJSONTyped(json: any, ignoreDiscriminator: boolean): UserUpdate {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -88,29 +86,26 @@ export function UserUpdateFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'username': json['username'],
         'type': json['type'],
         'displayName': json['displayName'],
-        'description': !exists(json, 'description') ? undefined : json['description'],
-        'email': !exists(json, 'email') ? undefined : json['email'],
-        'ownerId': !exists(json, 'ownerId') ? undefined : json['ownerId'],
-        'password': !exists(json, 'password') ? undefined : json['password'],
+        'description': json['description'] == null ? undefined : json['description'],
+        'email': json['email'] == null ? undefined : json['email'],
+        'ownerId': json['ownerId'] == null ? undefined : json['ownerId'],
+        'password': json['password'] == null ? undefined : json['password'],
     };
 }
 
 export function UserUpdateToJSON(value?: UserUpdate | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'username': value.username,
-        'type': value.type,
-        'displayName': value.displayName,
-        'description': value.description,
-        'email': value.email,
-        'ownerId': value.ownerId,
-        'password': value.password,
+        'username': value['username'],
+        'type': value['type'],
+        'displayName': value['displayName'],
+        'description': value['description'],
+        'email': value['email'],
+        'ownerId': value['ownerId'],
+        'password': value['password'],
     };
 }
 

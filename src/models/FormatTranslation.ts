@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -48,14 +48,12 @@ export interface FormatTranslation {
 /**
  * Check if a given object implements the FormatTranslation interface.
  */
-export function instanceOfFormatTranslation(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "key" in value;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "description" in value;
-    isInstance = isInstance && "language" in value;
-
-    return isInstance;
+export function instanceOfFormatTranslation(value: object): value is FormatTranslation {
+    if (!('key' in value) || value['key'] === undefined) return false;
+    if (!('name' in value) || value['name'] === undefined) return false;
+    if (!('description' in value) || value['description'] === undefined) return false;
+    if (!('language' in value) || value['language'] === undefined) return false;
+    return true;
 }
 
 export function FormatTranslationFromJSON(json: any): FormatTranslation {
@@ -63,7 +61,7 @@ export function FormatTranslationFromJSON(json: any): FormatTranslation {
 }
 
 export function FormatTranslationFromJSONTyped(json: any, ignoreDiscriminator: boolean): FormatTranslation {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -76,18 +74,15 @@ export function FormatTranslationFromJSONTyped(json: any, ignoreDiscriminator: b
 }
 
 export function FormatTranslationToJSON(value?: FormatTranslation | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'key': value.key,
-        'name': value.name,
-        'description': value.description,
-        'language': value.language,
+        'key': value['key'],
+        'name': value['name'],
+        'description': value['description'],
+        'language': value['language'],
     };
 }
 

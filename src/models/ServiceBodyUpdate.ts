@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -84,16 +84,14 @@ export interface ServiceBodyUpdate {
 /**
  * Check if a given object implements the ServiceBodyUpdate interface.
  */
-export function instanceOfServiceBodyUpdate(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "parentId" in value;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "description" in value;
-    isInstance = isInstance && "type" in value;
-    isInstance = isInstance && "adminUserId" in value;
-    isInstance = isInstance && "assignedUserIds" in value;
-
-    return isInstance;
+export function instanceOfServiceBodyUpdate(value: object): value is ServiceBodyUpdate {
+    if (!('parentId' in value) || value['parentId'] === undefined) return false;
+    if (!('name' in value) || value['name'] === undefined) return false;
+    if (!('description' in value) || value['description'] === undefined) return false;
+    if (!('type' in value) || value['type'] === undefined) return false;
+    if (!('adminUserId' in value) || value['adminUserId'] === undefined) return false;
+    if (!('assignedUserIds' in value) || value['assignedUserIds'] === undefined) return false;
+    return true;
 }
 
 export function ServiceBodyUpdateFromJSON(json: any): ServiceBodyUpdate {
@@ -101,7 +99,7 @@ export function ServiceBodyUpdateFromJSON(json: any): ServiceBodyUpdate {
 }
 
 export function ServiceBodyUpdateFromJSONTyped(json: any, ignoreDiscriminator: boolean): ServiceBodyUpdate {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -112,32 +110,29 @@ export function ServiceBodyUpdateFromJSONTyped(json: any, ignoreDiscriminator: b
         'type': json['type'],
         'adminUserId': json['adminUserId'],
         'assignedUserIds': json['assignedUserIds'],
-        'url': !exists(json, 'url') ? undefined : json['url'],
-        'helpline': !exists(json, 'helpline') ? undefined : json['helpline'],
-        'email': !exists(json, 'email') ? undefined : json['email'],
-        'worldId': !exists(json, 'worldId') ? undefined : json['worldId'],
+        'url': json['url'] == null ? undefined : json['url'],
+        'helpline': json['helpline'] == null ? undefined : json['helpline'],
+        'email': json['email'] == null ? undefined : json['email'],
+        'worldId': json['worldId'] == null ? undefined : json['worldId'],
     };
 }
 
 export function ServiceBodyUpdateToJSON(value?: ServiceBodyUpdate | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'parentId': value.parentId,
-        'name': value.name,
-        'description': value.description,
-        'type': value.type,
-        'adminUserId': value.adminUserId,
-        'assignedUserIds': value.assignedUserIds,
-        'url': value.url,
-        'helpline': value.helpline,
-        'email': value.email,
-        'worldId': value.worldId,
+        'parentId': value['parentId'],
+        'name': value['name'],
+        'description': value['description'],
+        'type': value['type'],
+        'adminUserId': value['adminUserId'],
+        'assignedUserIds': value['assignedUserIds'],
+        'url': value['url'],
+        'helpline': value['helpline'],
+        'email': value['email'],
+        'worldId': value['worldId'],
     };
 }
 

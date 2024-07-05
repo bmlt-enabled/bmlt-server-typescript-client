@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -30,11 +30,9 @@ export interface AuthorizationError {
 /**
  * Check if a given object implements the AuthorizationError interface.
  */
-export function instanceOfAuthorizationError(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "message" in value;
-
-    return isInstance;
+export function instanceOfAuthorizationError(value: object): value is AuthorizationError {
+    if (!('message' in value) || value['message'] === undefined) return false;
+    return true;
 }
 
 export function AuthorizationErrorFromJSON(json: any): AuthorizationError {
@@ -42,7 +40,7 @@ export function AuthorizationErrorFromJSON(json: any): AuthorizationError {
 }
 
 export function AuthorizationErrorFromJSONTyped(json: any, ignoreDiscriminator: boolean): AuthorizationError {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -52,15 +50,12 @@ export function AuthorizationErrorFromJSONTyped(json: any, ignoreDiscriminator: 
 }
 
 export function AuthorizationErrorToJSON(value?: AuthorizationError | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'message': value.message,
+        'message': value['message'],
     };
 }
 

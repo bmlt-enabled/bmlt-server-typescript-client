@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -90,21 +90,19 @@ export interface ServiceBody {
 /**
  * Check if a given object implements the ServiceBody interface.
  */
-export function instanceOfServiceBody(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "parentId" in value;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "description" in value;
-    isInstance = isInstance && "type" in value;
-    isInstance = isInstance && "adminUserId" in value;
-    isInstance = isInstance && "assignedUserIds" in value;
-    isInstance = isInstance && "url" in value;
-    isInstance = isInstance && "helpline" in value;
-    isInstance = isInstance && "email" in value;
-    isInstance = isInstance && "worldId" in value;
-    isInstance = isInstance && "id" in value;
-
-    return isInstance;
+export function instanceOfServiceBody(value: object): value is ServiceBody {
+    if (!('parentId' in value) || value['parentId'] === undefined) return false;
+    if (!('name' in value) || value['name'] === undefined) return false;
+    if (!('description' in value) || value['description'] === undefined) return false;
+    if (!('type' in value) || value['type'] === undefined) return false;
+    if (!('adminUserId' in value) || value['adminUserId'] === undefined) return false;
+    if (!('assignedUserIds' in value) || value['assignedUserIds'] === undefined) return false;
+    if (!('url' in value) || value['url'] === undefined) return false;
+    if (!('helpline' in value) || value['helpline'] === undefined) return false;
+    if (!('email' in value) || value['email'] === undefined) return false;
+    if (!('worldId' in value) || value['worldId'] === undefined) return false;
+    if (!('id' in value) || value['id'] === undefined) return false;
+    return true;
 }
 
 export function ServiceBodyFromJSON(json: any): ServiceBody {
@@ -112,7 +110,7 @@ export function ServiceBodyFromJSON(json: any): ServiceBody {
 }
 
 export function ServiceBodyFromJSONTyped(json: any, ignoreDiscriminator: boolean): ServiceBody {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -132,25 +130,22 @@ export function ServiceBodyFromJSONTyped(json: any, ignoreDiscriminator: boolean
 }
 
 export function ServiceBodyToJSON(value?: ServiceBody | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'parentId': value.parentId,
-        'name': value.name,
-        'description': value.description,
-        'type': value.type,
-        'adminUserId': value.adminUserId,
-        'assignedUserIds': value.assignedUserIds,
-        'url': value.url,
-        'helpline': value.helpline,
-        'email': value.email,
-        'worldId': value.worldId,
-        'id': value.id,
+        'parentId': value['parentId'],
+        'name': value['name'],
+        'description': value['description'],
+        'type': value['type'],
+        'adminUserId': value['adminUserId'],
+        'assignedUserIds': value['assignedUserIds'],
+        'url': value['url'],
+        'helpline': value['helpline'],
+        'email': value['email'],
+        'worldId': value['worldId'],
+        'id': value['id'],
     };
 }
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { FormatTranslation } from './FormatTranslation';
 import {
     FormatTranslationFromJSON,
@@ -49,10 +49,8 @@ export interface FormatBase {
 /**
  * Check if a given object implements the FormatBase interface.
  */
-export function instanceOfFormatBase(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+export function instanceOfFormatBase(value: object): value is FormatBase {
+    return true;
 }
 
 export function FormatBaseFromJSON(json: any): FormatBase {
@@ -60,29 +58,26 @@ export function FormatBaseFromJSON(json: any): FormatBase {
 }
 
 export function FormatBaseFromJSONTyped(json: any, ignoreDiscriminator: boolean): FormatBase {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'worldId': !exists(json, 'worldId') ? undefined : json['worldId'],
-        'type': !exists(json, 'type') ? undefined : json['type'],
-        'translations': !exists(json, 'translations') ? undefined : ((json['translations'] as Array<any>).map(FormatTranslationFromJSON)),
+        'worldId': json['worldId'] == null ? undefined : json['worldId'],
+        'type': json['type'] == null ? undefined : json['type'],
+        'translations': json['translations'] == null ? undefined : ((json['translations'] as Array<any>).map(FormatTranslationFromJSON)),
     };
 }
 
 export function FormatBaseToJSON(value?: FormatBase | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'worldId': value.worldId,
-        'type': value.type,
-        'translations': value.translations === undefined ? undefined : ((value.translations as Array<any>).map(FormatTranslationToJSON)),
+        'worldId': value['worldId'],
+        'type': value['type'],
+        'translations': value['translations'] == null ? undefined : ((value['translations'] as Array<any>).map(FormatTranslationToJSON)),
     };
 }
 

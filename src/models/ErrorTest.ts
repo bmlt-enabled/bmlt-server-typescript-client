@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -42,10 +42,8 @@ export interface ErrorTest {
 /**
  * Check if a given object implements the ErrorTest interface.
  */
-export function instanceOfErrorTest(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+export function instanceOfErrorTest(value: object): value is ErrorTest {
+    return true;
 }
 
 export function ErrorTestFromJSON(json: any): ErrorTest {
@@ -53,29 +51,26 @@ export function ErrorTestFromJSON(json: any): ErrorTest {
 }
 
 export function ErrorTestFromJSONTyped(json: any, ignoreDiscriminator: boolean): ErrorTest {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'arbitraryString': !exists(json, 'arbitrary_string') ? undefined : json['arbitrary_string'],
-        'arbitraryInt': !exists(json, 'arbitrary_int') ? undefined : json['arbitrary_int'],
-        'forceServerError': !exists(json, 'force_server_error') ? undefined : json['force_server_error'],
+        'arbitraryString': json['arbitrary_string'] == null ? undefined : json['arbitrary_string'],
+        'arbitraryInt': json['arbitrary_int'] == null ? undefined : json['arbitrary_int'],
+        'forceServerError': json['force_server_error'] == null ? undefined : json['force_server_error'],
     };
 }
 
 export function ErrorTestToJSON(value?: ErrorTest | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'arbitrary_string': value.arbitraryString,
-        'arbitrary_int': value.arbitraryInt,
-        'force_server_error': value.forceServerError,
+        'arbitrary_string': value['arbitraryString'],
+        'arbitrary_int': value['arbitraryInt'],
+        'force_server_error': value['forceServerError'],
     };
 }
 

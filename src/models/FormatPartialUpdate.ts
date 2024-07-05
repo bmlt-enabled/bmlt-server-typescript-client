@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { FormatTranslation } from './FormatTranslation';
 import {
     FormatTranslationFromJSON,
@@ -49,10 +49,8 @@ export interface FormatPartialUpdate {
 /**
  * Check if a given object implements the FormatPartialUpdate interface.
  */
-export function instanceOfFormatPartialUpdate(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+export function instanceOfFormatPartialUpdate(value: object): value is FormatPartialUpdate {
+    return true;
 }
 
 export function FormatPartialUpdateFromJSON(json: any): FormatPartialUpdate {
@@ -60,29 +58,26 @@ export function FormatPartialUpdateFromJSON(json: any): FormatPartialUpdate {
 }
 
 export function FormatPartialUpdateFromJSONTyped(json: any, ignoreDiscriminator: boolean): FormatPartialUpdate {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'worldId': !exists(json, 'worldId') ? undefined : json['worldId'],
-        'type': !exists(json, 'type') ? undefined : json['type'],
-        'translations': !exists(json, 'translations') ? undefined : ((json['translations'] as Array<any>).map(FormatTranslationFromJSON)),
+        'worldId': json['worldId'] == null ? undefined : json['worldId'],
+        'type': json['type'] == null ? undefined : json['type'],
+        'translations': json['translations'] == null ? undefined : ((json['translations'] as Array<any>).map(FormatTranslationFromJSON)),
     };
 }
 
 export function FormatPartialUpdateToJSON(value?: FormatPartialUpdate | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'worldId': value.worldId,
-        'type': value.type,
-        'translations': value.translations === undefined ? undefined : ((value.translations as Array<any>).map(FormatTranslationToJSON)),
+        'worldId': value['worldId'],
+        'type': value['type'],
+        'translations': value['translations'] == null ? undefined : ((value['translations'] as Array<any>).map(FormatTranslationToJSON)),
     };
 }
 

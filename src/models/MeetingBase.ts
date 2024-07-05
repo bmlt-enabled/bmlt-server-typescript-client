@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -240,10 +240,8 @@ export interface MeetingBase {
 /**
  * Check if a given object implements the MeetingBase interface.
  */
-export function instanceOfMeetingBase(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+export function instanceOfMeetingBase(value: object): value is MeetingBase {
+    return true;
 }
 
 export function MeetingBaseFromJSON(json: any): MeetingBase {
@@ -251,95 +249,92 @@ export function MeetingBaseFromJSON(json: any): MeetingBase {
 }
 
 export function MeetingBaseFromJSONTyped(json: any, ignoreDiscriminator: boolean): MeetingBase {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'serviceBodyId': !exists(json, 'serviceBodyId') ? undefined : json['serviceBodyId'],
-        'formatIds': !exists(json, 'formatIds') ? undefined : json['formatIds'],
-        'venueType': !exists(json, 'venueType') ? undefined : json['venueType'],
-        'temporarilyVirtual': !exists(json, 'temporarilyVirtual') ? undefined : json['temporarilyVirtual'],
-        'day': !exists(json, 'day') ? undefined : json['day'],
-        'startTime': !exists(json, 'startTime') ? undefined : json['startTime'],
-        'duration': !exists(json, 'duration') ? undefined : json['duration'],
-        'timeZone': !exists(json, 'timeZone') ? undefined : json['timeZone'],
-        'latitude': !exists(json, 'latitude') ? undefined : json['latitude'],
-        'longitude': !exists(json, 'longitude') ? undefined : json['longitude'],
-        'published': !exists(json, 'published') ? undefined : json['published'],
-        'email': !exists(json, 'email') ? undefined : json['email'],
-        'worldId': !exists(json, 'worldId') ? undefined : json['worldId'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'locationText': !exists(json, 'location_text') ? undefined : json['location_text'],
-        'locationInfo': !exists(json, 'location_info') ? undefined : json['location_info'],
-        'locationStreet': !exists(json, 'location_street') ? undefined : json['location_street'],
-        'locationNeighborhood': !exists(json, 'location_neighborhood') ? undefined : json['location_neighborhood'],
-        'locationCitySubsection': !exists(json, 'location_city_subsection') ? undefined : json['location_city_subsection'],
-        'locationMunicipality': !exists(json, 'location_municipality') ? undefined : json['location_municipality'],
-        'locationSubProvince': !exists(json, 'location_sub_province') ? undefined : json['location_sub_province'],
-        'locationProvince': !exists(json, 'location_province') ? undefined : json['location_province'],
-        'locationPostalCode1': !exists(json, 'location_postal_code_1') ? undefined : json['location_postal_code_1'],
-        'locationNation': !exists(json, 'location_nation') ? undefined : json['location_nation'],
-        'phoneMeetingNumber': !exists(json, 'phone_meeting_number') ? undefined : json['phone_meeting_number'],
-        'virtualMeetingLink': !exists(json, 'virtual_meeting_link') ? undefined : json['virtual_meeting_link'],
-        'virtualMeetingAdditionalInfo': !exists(json, 'virtual_meeting_additional_info') ? undefined : json['virtual_meeting_additional_info'],
-        'contactName1': !exists(json, 'contact_name_1') ? undefined : json['contact_name_1'],
-        'contactName2': !exists(json, 'contact_name_2') ? undefined : json['contact_name_2'],
-        'contactPhone1': !exists(json, 'contact_phone_1') ? undefined : json['contact_phone_1'],
-        'contactPhone2': !exists(json, 'contact_phone_2') ? undefined : json['contact_phone_2'],
-        'contactEmail1': !exists(json, 'contact_email_1') ? undefined : json['contact_email_1'],
-        'contactEmail2': !exists(json, 'contact_email_2') ? undefined : json['contact_email_2'],
-        'busLines': !exists(json, 'bus_lines') ? undefined : json['bus_lines'],
-        'trainLine': !exists(json, 'train_line') ? undefined : json['train_line'],
-        'comments': !exists(json, 'comments') ? undefined : json['comments'],
+        'serviceBodyId': json['serviceBodyId'] == null ? undefined : json['serviceBodyId'],
+        'formatIds': json['formatIds'] == null ? undefined : json['formatIds'],
+        'venueType': json['venueType'] == null ? undefined : json['venueType'],
+        'temporarilyVirtual': json['temporarilyVirtual'] == null ? undefined : json['temporarilyVirtual'],
+        'day': json['day'] == null ? undefined : json['day'],
+        'startTime': json['startTime'] == null ? undefined : json['startTime'],
+        'duration': json['duration'] == null ? undefined : json['duration'],
+        'timeZone': json['timeZone'] == null ? undefined : json['timeZone'],
+        'latitude': json['latitude'] == null ? undefined : json['latitude'],
+        'longitude': json['longitude'] == null ? undefined : json['longitude'],
+        'published': json['published'] == null ? undefined : json['published'],
+        'email': json['email'] == null ? undefined : json['email'],
+        'worldId': json['worldId'] == null ? undefined : json['worldId'],
+        'name': json['name'] == null ? undefined : json['name'],
+        'locationText': json['location_text'] == null ? undefined : json['location_text'],
+        'locationInfo': json['location_info'] == null ? undefined : json['location_info'],
+        'locationStreet': json['location_street'] == null ? undefined : json['location_street'],
+        'locationNeighborhood': json['location_neighborhood'] == null ? undefined : json['location_neighborhood'],
+        'locationCitySubsection': json['location_city_subsection'] == null ? undefined : json['location_city_subsection'],
+        'locationMunicipality': json['location_municipality'] == null ? undefined : json['location_municipality'],
+        'locationSubProvince': json['location_sub_province'] == null ? undefined : json['location_sub_province'],
+        'locationProvince': json['location_province'] == null ? undefined : json['location_province'],
+        'locationPostalCode1': json['location_postal_code_1'] == null ? undefined : json['location_postal_code_1'],
+        'locationNation': json['location_nation'] == null ? undefined : json['location_nation'],
+        'phoneMeetingNumber': json['phone_meeting_number'] == null ? undefined : json['phone_meeting_number'],
+        'virtualMeetingLink': json['virtual_meeting_link'] == null ? undefined : json['virtual_meeting_link'],
+        'virtualMeetingAdditionalInfo': json['virtual_meeting_additional_info'] == null ? undefined : json['virtual_meeting_additional_info'],
+        'contactName1': json['contact_name_1'] == null ? undefined : json['contact_name_1'],
+        'contactName2': json['contact_name_2'] == null ? undefined : json['contact_name_2'],
+        'contactPhone1': json['contact_phone_1'] == null ? undefined : json['contact_phone_1'],
+        'contactPhone2': json['contact_phone_2'] == null ? undefined : json['contact_phone_2'],
+        'contactEmail1': json['contact_email_1'] == null ? undefined : json['contact_email_1'],
+        'contactEmail2': json['contact_email_2'] == null ? undefined : json['contact_email_2'],
+        'busLines': json['bus_lines'] == null ? undefined : json['bus_lines'],
+        'trainLine': json['train_line'] == null ? undefined : json['train_line'],
+        'comments': json['comments'] == null ? undefined : json['comments'],
     };
 }
 
 export function MeetingBaseToJSON(value?: MeetingBase | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'serviceBodyId': value.serviceBodyId,
-        'formatIds': value.formatIds,
-        'venueType': value.venueType,
-        'temporarilyVirtual': value.temporarilyVirtual,
-        'day': value.day,
-        'startTime': value.startTime,
-        'duration': value.duration,
-        'timeZone': value.timeZone,
-        'latitude': value.latitude,
-        'longitude': value.longitude,
-        'published': value.published,
-        'email': value.email,
-        'worldId': value.worldId,
-        'name': value.name,
-        'location_text': value.locationText,
-        'location_info': value.locationInfo,
-        'location_street': value.locationStreet,
-        'location_neighborhood': value.locationNeighborhood,
-        'location_city_subsection': value.locationCitySubsection,
-        'location_municipality': value.locationMunicipality,
-        'location_sub_province': value.locationSubProvince,
-        'location_province': value.locationProvince,
-        'location_postal_code_1': value.locationPostalCode1,
-        'location_nation': value.locationNation,
-        'phone_meeting_number': value.phoneMeetingNumber,
-        'virtual_meeting_link': value.virtualMeetingLink,
-        'virtual_meeting_additional_info': value.virtualMeetingAdditionalInfo,
-        'contact_name_1': value.contactName1,
-        'contact_name_2': value.contactName2,
-        'contact_phone_1': value.contactPhone1,
-        'contact_phone_2': value.contactPhone2,
-        'contact_email_1': value.contactEmail1,
-        'contact_email_2': value.contactEmail2,
-        'bus_lines': value.busLines,
-        'train_line': value.trainLine,
-        'comments': value.comments,
+        'serviceBodyId': value['serviceBodyId'],
+        'formatIds': value['formatIds'],
+        'venueType': value['venueType'],
+        'temporarilyVirtual': value['temporarilyVirtual'],
+        'day': value['day'],
+        'startTime': value['startTime'],
+        'duration': value['duration'],
+        'timeZone': value['timeZone'],
+        'latitude': value['latitude'],
+        'longitude': value['longitude'],
+        'published': value['published'],
+        'email': value['email'],
+        'worldId': value['worldId'],
+        'name': value['name'],
+        'location_text': value['locationText'],
+        'location_info': value['locationInfo'],
+        'location_street': value['locationStreet'],
+        'location_neighborhood': value['locationNeighborhood'],
+        'location_city_subsection': value['locationCitySubsection'],
+        'location_municipality': value['locationMunicipality'],
+        'location_sub_province': value['locationSubProvince'],
+        'location_province': value['locationProvince'],
+        'location_postal_code_1': value['locationPostalCode1'],
+        'location_nation': value['locationNation'],
+        'phone_meeting_number': value['phoneMeetingNumber'],
+        'virtual_meeting_link': value['virtualMeetingLink'],
+        'virtual_meeting_additional_info': value['virtualMeetingAdditionalInfo'],
+        'contact_name_1': value['contactName1'],
+        'contact_name_2': value['contactName2'],
+        'contact_phone_1': value['contactPhone1'],
+        'contact_phone_2': value['contactPhone2'],
+        'contact_email_1': value['contactEmail1'],
+        'contact_email_2': value['contactEmail2'],
+        'bus_lines': value['busLines'],
+        'train_line': value['trainLine'],
+        'comments': value['comments'],
     };
 }
 

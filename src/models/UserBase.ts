@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -51,19 +51,17 @@ export interface UserBase {
     email?: string;
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof UserBase
      */
-    ownerId?: string;
+    ownerId?: number;
 }
 
 /**
  * Check if a given object implements the UserBase interface.
  */
-export function instanceOfUserBase(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+export function instanceOfUserBase(value: object): value is UserBase {
+    return true;
 }
 
 export function UserBaseFromJSON(json: any): UserBase {
@@ -71,35 +69,32 @@ export function UserBaseFromJSON(json: any): UserBase {
 }
 
 export function UserBaseFromJSONTyped(json: any, ignoreDiscriminator: boolean): UserBase {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'username': !exists(json, 'username') ? undefined : json['username'],
-        'type': !exists(json, 'type') ? undefined : json['type'],
-        'displayName': !exists(json, 'displayName') ? undefined : json['displayName'],
-        'description': !exists(json, 'description') ? undefined : json['description'],
-        'email': !exists(json, 'email') ? undefined : json['email'],
-        'ownerId': !exists(json, 'ownerId') ? undefined : json['ownerId'],
+        'username': json['username'] == null ? undefined : json['username'],
+        'type': json['type'] == null ? undefined : json['type'],
+        'displayName': json['displayName'] == null ? undefined : json['displayName'],
+        'description': json['description'] == null ? undefined : json['description'],
+        'email': json['email'] == null ? undefined : json['email'],
+        'ownerId': json['ownerId'] == null ? undefined : json['ownerId'],
     };
 }
 
 export function UserBaseToJSON(value?: UserBase | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'username': value.username,
-        'type': value.type,
-        'displayName': value.displayName,
-        'description': value.description,
-        'email': value.email,
-        'ownerId': value.ownerId,
+        'username': value['username'],
+        'type': value['type'],
+        'displayName': value['displayName'],
+        'description': value['description'],
+        'email': value['email'],
+        'ownerId': value['ownerId'],
     };
 }
 

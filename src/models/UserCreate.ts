@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -51,10 +51,10 @@ export interface UserCreate {
     email?: string;
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof UserCreate
      */
-    ownerId?: string;
+    ownerId?: number;
     /**
      * 
      * @type {string}
@@ -66,14 +66,12 @@ export interface UserCreate {
 /**
  * Check if a given object implements the UserCreate interface.
  */
-export function instanceOfUserCreate(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "username" in value;
-    isInstance = isInstance && "type" in value;
-    isInstance = isInstance && "displayName" in value;
-    isInstance = isInstance && "password" in value;
-
-    return isInstance;
+export function instanceOfUserCreate(value: object): value is UserCreate {
+    if (!('username' in value) || value['username'] === undefined) return false;
+    if (!('type' in value) || value['type'] === undefined) return false;
+    if (!('displayName' in value) || value['displayName'] === undefined) return false;
+    if (!('password' in value) || value['password'] === undefined) return false;
+    return true;
 }
 
 export function UserCreateFromJSON(json: any): UserCreate {
@@ -81,7 +79,7 @@ export function UserCreateFromJSON(json: any): UserCreate {
 }
 
 export function UserCreateFromJSONTyped(json: any, ignoreDiscriminator: boolean): UserCreate {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -89,29 +87,26 @@ export function UserCreateFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'username': json['username'],
         'type': json['type'],
         'displayName': json['displayName'],
-        'description': !exists(json, 'description') ? undefined : json['description'],
-        'email': !exists(json, 'email') ? undefined : json['email'],
-        'ownerId': !exists(json, 'ownerId') ? undefined : json['ownerId'],
+        'description': json['description'] == null ? undefined : json['description'],
+        'email': json['email'] == null ? undefined : json['email'],
+        'ownerId': json['ownerId'] == null ? undefined : json['ownerId'],
         'password': json['password'],
     };
 }
 
 export function UserCreateToJSON(value?: UserCreate | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'username': value.username,
-        'type': value.type,
-        'displayName': value.displayName,
-        'description': value.description,
-        'email': value.email,
-        'ownerId': value.ownerId,
-        'password': value.password,
+        'username': value['username'],
+        'type': value['type'],
+        'displayName': value['displayName'],
+        'description': value['description'],
+        'email': value['email'],
+        'ownerId': value['ownerId'],
+        'password': value['password'],
     };
 }
 

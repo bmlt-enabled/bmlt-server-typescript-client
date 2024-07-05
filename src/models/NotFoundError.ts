@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -30,11 +30,9 @@ export interface NotFoundError {
 /**
  * Check if a given object implements the NotFoundError interface.
  */
-export function instanceOfNotFoundError(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "message" in value;
-
-    return isInstance;
+export function instanceOfNotFoundError(value: object): value is NotFoundError {
+    if (!('message' in value) || value['message'] === undefined) return false;
+    return true;
 }
 
 export function NotFoundErrorFromJSON(json: any): NotFoundError {
@@ -42,7 +40,7 @@ export function NotFoundErrorFromJSON(json: any): NotFoundError {
 }
 
 export function NotFoundErrorFromJSONTyped(json: any, ignoreDiscriminator: boolean): NotFoundError {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -52,15 +50,12 @@ export function NotFoundErrorFromJSONTyped(json: any, ignoreDiscriminator: boole
 }
 
 export function NotFoundErrorToJSON(value?: NotFoundError | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'message': value.message,
+        'message': value['message'],
     };
 }
 

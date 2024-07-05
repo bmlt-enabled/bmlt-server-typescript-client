@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -30,11 +30,9 @@ export interface ConflictError {
 /**
  * Check if a given object implements the ConflictError interface.
  */
-export function instanceOfConflictError(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "message" in value;
-
-    return isInstance;
+export function instanceOfConflictError(value: object): value is ConflictError {
+    if (!('message' in value) || value['message'] === undefined) return false;
+    return true;
 }
 
 export function ConflictErrorFromJSON(json: any): ConflictError {
@@ -42,7 +40,7 @@ export function ConflictErrorFromJSON(json: any): ConflictError {
 }
 
 export function ConflictErrorFromJSONTyped(json: any, ignoreDiscriminator: boolean): ConflictError {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -52,15 +50,12 @@ export function ConflictErrorFromJSONTyped(json: any, ignoreDiscriminator: boole
 }
 
 export function ConflictErrorToJSON(value?: ConflictError | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'message': value.message,
+        'message': value['message'],
     };
 }
 

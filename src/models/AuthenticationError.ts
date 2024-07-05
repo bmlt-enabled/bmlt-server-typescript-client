@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -30,11 +30,9 @@ export interface AuthenticationError {
 /**
  * Check if a given object implements the AuthenticationError interface.
  */
-export function instanceOfAuthenticationError(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "message" in value;
-
-    return isInstance;
+export function instanceOfAuthenticationError(value: object): value is AuthenticationError {
+    if (!('message' in value) || value['message'] === undefined) return false;
+    return true;
 }
 
 export function AuthenticationErrorFromJSON(json: any): AuthenticationError {
@@ -42,7 +40,7 @@ export function AuthenticationErrorFromJSON(json: any): AuthenticationError {
 }
 
 export function AuthenticationErrorFromJSONTyped(json: any, ignoreDiscriminator: boolean): AuthenticationError {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -52,15 +50,12 @@ export function AuthenticationErrorFromJSONTyped(json: any, ignoreDiscriminator:
 }
 
 export function AuthenticationErrorToJSON(value?: AuthenticationError | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'message': value.message,
+        'message': value['message'],
     };
 }
 

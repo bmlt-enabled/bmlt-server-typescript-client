@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -51,10 +51,10 @@ export interface UserPartialUpdate {
     email?: string;
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof UserPartialUpdate
      */
-    ownerId?: string;
+    ownerId?: number;
     /**
      * 
      * @type {string}
@@ -66,10 +66,8 @@ export interface UserPartialUpdate {
 /**
  * Check if a given object implements the UserPartialUpdate interface.
  */
-export function instanceOfUserPartialUpdate(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+export function instanceOfUserPartialUpdate(value: object): value is UserPartialUpdate {
+    return true;
 }
 
 export function UserPartialUpdateFromJSON(json: any): UserPartialUpdate {
@@ -77,37 +75,34 @@ export function UserPartialUpdateFromJSON(json: any): UserPartialUpdate {
 }
 
 export function UserPartialUpdateFromJSONTyped(json: any, ignoreDiscriminator: boolean): UserPartialUpdate {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'username': !exists(json, 'username') ? undefined : json['username'],
-        'type': !exists(json, 'type') ? undefined : json['type'],
-        'displayName': !exists(json, 'displayName') ? undefined : json['displayName'],
-        'description': !exists(json, 'description') ? undefined : json['description'],
-        'email': !exists(json, 'email') ? undefined : json['email'],
-        'ownerId': !exists(json, 'ownerId') ? undefined : json['ownerId'],
-        'password': !exists(json, 'password') ? undefined : json['password'],
+        'username': json['username'] == null ? undefined : json['username'],
+        'type': json['type'] == null ? undefined : json['type'],
+        'displayName': json['displayName'] == null ? undefined : json['displayName'],
+        'description': json['description'] == null ? undefined : json['description'],
+        'email': json['email'] == null ? undefined : json['email'],
+        'ownerId': json['ownerId'] == null ? undefined : json['ownerId'],
+        'password': json['password'] == null ? undefined : json['password'],
     };
 }
 
 export function UserPartialUpdateToJSON(value?: UserPartialUpdate | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'username': value.username,
-        'type': value.type,
-        'displayName': value.displayName,
-        'description': value.description,
-        'email': value.email,
-        'ownerId': value.ownerId,
-        'password': value.password,
+        'username': value['username'],
+        'type': value['type'],
+        'displayName': value['displayName'],
+        'description': value['description'],
+        'email': value['email'],
+        'ownerId': value['ownerId'],
+        'password': value['password'],
     };
 }
 

@@ -10,7 +10,6 @@ src/models/AuthorizationError.ts
 src/models/ConflictError.ts
 src/models/ErrorTest.ts
 src/models/Format.ts
-src/models/FormatAllOf.ts
 src/models/FormatBase.ts
 src/models/FormatCreate.ts
 src/models/FormatPartialUpdate.ts
@@ -22,6 +21,11 @@ src/models/MeetingCreate.ts
 src/models/MeetingPartialUpdate.ts
 src/models/MeetingUpdate.ts
 src/models/NotFoundError.ts
+src/models/RootServer.ts
+src/models/RootServerBase.ts
+src/models/RootServerBaseStatistics.ts
+src/models/RootServerBaseStatisticsMeetings.ts
+src/models/RootServerBaseStatisticsServiceBodies.ts
 src/models/ServerError.ts
 src/models/ServiceBody.ts
 src/models/ServiceBodyBase.ts
@@ -33,7 +37,6 @@ src/models/TokenCredentials.ts
 src/models/User.ts
 src/models/UserBase.ts
 src/models/UserCreate.ts
-src/models/UserCreateAllOf.ts
 src/models/UserPartialUpdate.ts
 src/models/UserUpdate.ts
 src/models/ValidationError.ts
