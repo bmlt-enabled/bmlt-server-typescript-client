@@ -24,21 +24,21 @@ export interface TokenCredentials {
      * @type {string}
      * @memberof TokenCredentials
      */
-    password: string;
+    username: string;
     /**
      * 
      * @type {string}
      * @memberof TokenCredentials
      */
-    username: string;
+    password: string;
 }
 
 /**
  * Check if a given object implements the TokenCredentials interface.
  */
 export function instanceOfTokenCredentials(value: object): value is TokenCredentials {
-    if (!('password' in value) || value['password'] === undefined) return false;
     if (!('username' in value) || value['username'] === undefined) return false;
+    if (!('password' in value) || value['password'] === undefined) return false;
     return true;
 }
 
@@ -52,8 +52,8 @@ export function TokenCredentialsFromJSONTyped(json: any, ignoreDiscriminator: bo
     }
     return {
         
-        'password': json['password'],
         'username': json['username'],
+        'password': json['password'],
     };
 }
 
@@ -63,8 +63,8 @@ export function TokenCredentialsToJSON(value?: TokenCredentials | null): any {
     }
     return {
         
-        'password': value['password'],
         'username': value['username'],
+        'password': value['password'],
     };
 }
 
