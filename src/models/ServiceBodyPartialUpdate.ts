@@ -24,7 +24,7 @@ export interface ServiceBodyPartialUpdate {
      * @type {number}
      * @memberof ServiceBodyPartialUpdate
      */
-    parentId?: number;
+    parentId?: number | null;
     /**
      * 
      * @type {string}
@@ -60,25 +60,25 @@ export interface ServiceBodyPartialUpdate {
      * @type {string}
      * @memberof ServiceBodyPartialUpdate
      */
-    url?: string;
+    url?: string | null;
     /**
      * 
      * @type {string}
      * @memberof ServiceBodyPartialUpdate
      */
-    helpline?: string;
+    helpline?: string | null;
     /**
      * 
      * @type {string}
      * @memberof ServiceBodyPartialUpdate
      */
-    email?: string;
+    email?: string | null;
     /**
      * 
      * @type {string}
      * @memberof ServiceBodyPartialUpdate
      */
-    worldId?: string;
+    worldId?: string | null;
 }
 
 /**
