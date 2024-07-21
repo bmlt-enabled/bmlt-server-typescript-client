@@ -13,7 +13,7 @@
  */
 
 
-export const BASE_PATH = "https://latest.aws.bmlt.app/main_server".replace(/\/+$/, "");
+export const BASE_PATH = "http://localhost:8000/main_server".replace(/\/+$/, "");
 
 export interface ConfigurationParameters {
     basePath?: string; // override base path

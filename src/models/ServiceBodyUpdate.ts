@@ -24,7 +24,7 @@ export interface ServiceBodyUpdate {
      * @type {number}
      * @memberof ServiceBodyUpdate
      */
-    parentId: number;
+    parentId?: number;
     /**
      * 
      * @type {string}
@@ -85,7 +85,6 @@ export interface ServiceBodyUpdate {
  * Check if a given object implements the ServiceBodyUpdate interface.
  */
 export function instanceOfServiceBodyUpdate(value: object): value is ServiceBodyUpdate {
-    if (!('parentId' in value) || value['parentId'] === undefined) return false;
     if (!('name' in value) || value['name'] === undefined) return false;
     if (!('description' in value) || value['description'] === undefined) return false;
     if (!('type' in value) || value['type'] === undefined) return false;
@@ -104,7 +103,7 @@ export function ServiceBodyUpdateFromJSONTyped(json: any, ignoreDiscriminator: b
     }
     return {
         
-        'parentId': json['parentId'],
+        'parentId': json['parentId'] == null ? undefined : json['parentId'],
         'name': json['name'],
         'description': json['description'],
         'type': json['type'],
