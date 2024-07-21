@@ -24,7 +24,7 @@ export interface ServiceBody {
      * @type {number}
      * @memberof ServiceBody
      */
-    parentId: number;
+    parentId: number | null;
     /**
      * 
      * @type {string}
@@ -60,25 +60,25 @@ export interface ServiceBody {
      * @type {string}
      * @memberof ServiceBody
      */
-    url: string;
+    url: string | null;
     /**
      * 
      * @type {string}
      * @memberof ServiceBody
      */
-    helpline: string;
+    helpline: string | null;
     /**
      * 
      * @type {string}
      * @memberof ServiceBody
      */
-    email: string;
+    email: string | null;
     /**
      * 
      * @type {string}
      * @memberof ServiceBody
      */
-    worldId: string;
+    worldId: string | null;
     /**
      * 
      * @type {number}

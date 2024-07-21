@@ -24,7 +24,7 @@ export interface ServiceBodyCreate {
      * @type {number}
      * @memberof ServiceBodyCreate
      */
-    parentId?: number;
+    parentId: number | null;
     /**
      * 
      * @type {string}
@@ -60,31 +60,32 @@ export interface ServiceBodyCreate {
      * @type {string}
      * @memberof ServiceBodyCreate
      */
-    url?: string;
+    url?: string | null;
     /**
      * 
      * @type {string}
      * @memberof ServiceBodyCreate
      */
-    helpline?: string;
+    helpline?: string | null;
     /**
      * 
      * @type {string}
      * @memberof ServiceBodyCreate
      */
-    email?: string;
+    email?: string | null;
     /**
      * 
      * @type {string}
      * @memberof ServiceBodyCreate
      */
-    worldId?: string;
+    worldId?: string | null;
 }
 
 /**
  * Check if a given object implements the ServiceBodyCreate interface.
  */
 export function instanceOfServiceBodyCreate(value: object): value is ServiceBodyCreate {
+    if (!('parentId' in value) || value['parentId'] === undefined) return false;
     if (!('name' in value) || value['name'] === undefined) return false;
     if (!('description' in value) || value['description'] === undefined) return false;
     if (!('type' in value) || value['type'] === undefined) return false;
@@ -103,7 +104,7 @@ export function ServiceBodyCreateFromJSONTyped(json: any, ignoreDiscriminator: b
     }
     return {
         
-        'parentId': json['parentId'] == null ? undefined : json['parentId'],
+        'parentId': json['parentId'],
         'name': json['name'],
         'description': json['description'],
         'type': json['type'],
