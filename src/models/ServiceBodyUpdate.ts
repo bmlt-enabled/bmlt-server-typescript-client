@@ -60,25 +60,25 @@ export interface ServiceBodyUpdate {
      * @type {string}
      * @memberof ServiceBodyUpdate
      */
-    url?: string | null;
+    url?: string;
     /**
      * 
      * @type {string}
      * @memberof ServiceBodyUpdate
      */
-    helpline?: string | null;
+    helpline?: string;
     /**
      * 
      * @type {string}
      * @memberof ServiceBodyUpdate
      */
-    email?: string | null;
+    email?: string;
     /**
      * 
      * @type {string}
      * @memberof ServiceBodyUpdate
      */
-    worldId?: string | null;
+    worldId?: string;
 }
 
 /**
