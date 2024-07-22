@@ -60,25 +60,25 @@ export interface ServiceBodyPartialUpdate {
      * @type {string}
      * @memberof ServiceBodyPartialUpdate
      */
-    url?: string | null;
+    url?: string;
     /**
      * 
      * @type {string}
      * @memberof ServiceBodyPartialUpdate
      */
-    helpline?: string | null;
+    helpline?: string;
     /**
      * 
      * @type {string}
      * @memberof ServiceBodyPartialUpdate
      */
-    email?: string | null;
+    email?: string;
     /**
      * 
      * @type {string}
      * @memberof ServiceBodyPartialUpdate
      */
-    worldId?: string | null;
+    worldId?: string;
 }
 
 /**
