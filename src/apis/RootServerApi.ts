@@ -757,6 +757,39 @@ export class RootServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Retrieve the laravel log if it exists.
+     * Retrieves laravel log
+     */
+    async getLaravelLogRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Blob>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("bmltToken", []);
+        }
+
+        const response = await this.request({
+            path: `/api/v1/logs/laravel`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.BlobApiResponse(response);
+    }
+
+    /**
+     * Retrieve the laravel log if it exists.
+     * Retrieves laravel log
+     */
+    async getLaravelLog(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Blob> {
+        const response = await this.getLaravelLogRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Retrieve a meeting.
      * Retrieves a meeting
      */
