@@ -111,10 +111,15 @@ export function ServiceBodyPartialUpdateFromJSONTyped(json: any, ignoreDiscrimin
     };
 }
 
-export function ServiceBodyPartialUpdateToJSON(value?: ServiceBodyPartialUpdate | null): any {
+  export function ServiceBodyPartialUpdateToJSON(json: any): ServiceBodyPartialUpdate {
+      return ServiceBodyPartialUpdateToJSONTyped(json, false);
+  }
+
+  export function ServiceBodyPartialUpdateToJSONTyped(value?: ServiceBodyPartialUpdate | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'parentId': value['parentId'],

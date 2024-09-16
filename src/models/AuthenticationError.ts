@@ -49,10 +49,15 @@ export function AuthenticationErrorFromJSONTyped(json: any, ignoreDiscriminator:
     };
 }
 
-export function AuthenticationErrorToJSON(value?: AuthenticationError | null): any {
+  export function AuthenticationErrorToJSON(json: any): AuthenticationError {
+      return AuthenticationErrorToJSONTyped(json, false);
+  }
+
+  export function AuthenticationErrorToJSONTyped(value?: AuthenticationError | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'message': value['message'],

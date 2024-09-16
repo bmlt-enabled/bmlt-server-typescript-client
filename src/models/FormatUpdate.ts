@@ -18,6 +18,7 @@ import {
     FormatTranslationFromJSON,
     FormatTranslationFromJSONTyped,
     FormatTranslationToJSON,
+    FormatTranslationToJSONTyped,
 } from './FormatTranslation';
 
 /**
@@ -70,10 +71,15 @@ export function FormatUpdateFromJSONTyped(json: any, ignoreDiscriminator: boolea
     };
 }
 
-export function FormatUpdateToJSON(value?: FormatUpdate | null): any {
+  export function FormatUpdateToJSON(json: any): FormatUpdate {
+      return FormatUpdateToJSONTyped(json, false);
+  }
+
+  export function FormatUpdateToJSONTyped(value?: FormatUpdate | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'worldId': value['worldId'],

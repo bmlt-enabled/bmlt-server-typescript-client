@@ -62,10 +62,15 @@ export function ErrorTestFromJSONTyped(json: any, ignoreDiscriminator: boolean):
     };
 }
 
-export function ErrorTestToJSON(value?: ErrorTest | null): any {
+  export function ErrorTestToJSON(json: any): ErrorTest {
+      return ErrorTestToJSONTyped(json, false);
+  }
+
+  export function ErrorTestToJSONTyped(value?: ErrorTest | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'arbitrary_string': value['arbitraryString'],

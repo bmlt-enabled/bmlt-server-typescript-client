@@ -73,10 +73,15 @@ export function RootServerBaseStatisticsServiceBodiesFromJSONTyped(json: any, ig
     };
 }
 
-export function RootServerBaseStatisticsServiceBodiesToJSON(value?: RootServerBaseStatisticsServiceBodies | null): any {
+  export function RootServerBaseStatisticsServiceBodiesToJSON(json: any): RootServerBaseStatisticsServiceBodies {
+      return RootServerBaseStatisticsServiceBodiesToJSONTyped(json, false);
+  }
+
+  export function RootServerBaseStatisticsServiceBodiesToJSONTyped(value?: RootServerBaseStatisticsServiceBodies | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'numZones': value['numZones'],

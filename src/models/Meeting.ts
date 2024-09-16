@@ -228,7 +228,7 @@ export interface Meeting {
      * @type {string}
      * @memberof Meeting
      */
-    trainLine?: string;
+    trainLines?: string;
     /**
      * 
      * @type {string}
@@ -309,16 +309,21 @@ export function MeetingFromJSONTyped(json: any, ignoreDiscriminator: boolean): M
         'contactEmail1': json['contact_email_1'] == null ? undefined : json['contact_email_1'],
         'contactEmail2': json['contact_email_2'] == null ? undefined : json['contact_email_2'],
         'busLines': json['bus_lines'] == null ? undefined : json['bus_lines'],
-        'trainLine': json['train_line'] == null ? undefined : json['train_line'],
+        'trainLines': json['train_lines'] == null ? undefined : json['train_lines'],
         'comments': json['comments'] == null ? undefined : json['comments'],
         'id': json['id'],
     };
 }
 
-export function MeetingToJSON(value?: Meeting | null): any {
+  export function MeetingToJSON(json: any): Meeting {
+      return MeetingToJSONTyped(json, false);
+  }
+
+  export function MeetingToJSONTyped(value?: Meeting | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'serviceBodyId': value['serviceBodyId'],
@@ -355,7 +360,7 @@ export function MeetingToJSON(value?: Meeting | null): any {
         'contact_email_1': value['contactEmail1'],
         'contact_email_2': value['contactEmail2'],
         'bus_lines': value['busLines'],
-        'train_line': value['trainLine'],
+        'train_lines': value['trainLines'],
         'comments': value['comments'],
         'id': value['id'],
     };

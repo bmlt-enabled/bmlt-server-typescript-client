@@ -49,10 +49,15 @@ export function ConflictErrorFromJSONTyped(json: any, ignoreDiscriminator: boole
     };
 }
 
-export function ConflictErrorToJSON(value?: ConflictError | null): any {
+  export function ConflictErrorToJSON(json: any): ConflictError {
+      return ConflictErrorToJSONTyped(json, false);
+  }
+
+  export function ConflictErrorToJSONTyped(value?: ConflictError | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'message': value['message'],

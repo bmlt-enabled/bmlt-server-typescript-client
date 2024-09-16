@@ -18,6 +18,7 @@ import {
     FormatTranslationFromJSON,
     FormatTranslationFromJSONTyped,
     FormatTranslationToJSON,
+    FormatTranslationToJSONTyped,
 } from './FormatTranslation';
 
 /**
@@ -69,10 +70,15 @@ export function FormatPartialUpdateFromJSONTyped(json: any, ignoreDiscriminator:
     };
 }
 
-export function FormatPartialUpdateToJSON(value?: FormatPartialUpdate | null): any {
+  export function FormatPartialUpdateToJSON(json: any): FormatPartialUpdate {
+      return FormatPartialUpdateToJSONTyped(json, false);
+  }
+
+  export function FormatPartialUpdateToJSONTyped(value?: FormatPartialUpdate | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'worldId': value['worldId'],

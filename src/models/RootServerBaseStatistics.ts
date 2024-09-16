@@ -18,12 +18,14 @@ import {
     RootServerBaseStatisticsMeetingsFromJSON,
     RootServerBaseStatisticsMeetingsFromJSONTyped,
     RootServerBaseStatisticsMeetingsToJSON,
+    RootServerBaseStatisticsMeetingsToJSONTyped,
 } from './RootServerBaseStatisticsMeetings';
 import type { RootServerBaseStatisticsServiceBodies } from './RootServerBaseStatisticsServiceBodies';
 import {
     RootServerBaseStatisticsServiceBodiesFromJSON,
     RootServerBaseStatisticsServiceBodiesFromJSONTyped,
     RootServerBaseStatisticsServiceBodiesToJSON,
+    RootServerBaseStatisticsServiceBodiesToJSONTyped,
 } from './RootServerBaseStatisticsServiceBodies';
 
 /**
@@ -70,10 +72,15 @@ export function RootServerBaseStatisticsFromJSONTyped(json: any, ignoreDiscrimin
     };
 }
 
-export function RootServerBaseStatisticsToJSON(value?: RootServerBaseStatistics | null): any {
+  export function RootServerBaseStatisticsToJSON(json: any): RootServerBaseStatistics {
+      return RootServerBaseStatisticsToJSONTyped(json, false);
+  }
+
+  export function RootServerBaseStatisticsToJSONTyped(value?: RootServerBaseStatistics | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'serviceBodies': RootServerBaseStatisticsServiceBodiesToJSON(value['serviceBodies']),

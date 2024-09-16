@@ -94,10 +94,15 @@ export function UserCreateFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     };
 }
 
-export function UserCreateToJSON(value?: UserCreate | null): any {
+  export function UserCreateToJSON(json: any): UserCreate {
+      return UserCreateToJSONTyped(json, false);
+  }
+
+  export function UserCreateToJSONTyped(value?: UserCreate | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'username': value['username'],

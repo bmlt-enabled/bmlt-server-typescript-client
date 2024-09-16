@@ -117,10 +117,15 @@ export function ServiceBodyUpdateFromJSONTyped(json: any, ignoreDiscriminator: b
     };
 }
 
-export function ServiceBodyUpdateToJSON(value?: ServiceBodyUpdate | null): any {
+  export function ServiceBodyUpdateToJSON(json: any): ServiceBodyUpdate {
+      return ServiceBodyUpdateToJSONTyped(json, false);
+  }
+
+  export function ServiceBodyUpdateToJSONTyped(value?: ServiceBodyUpdate | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'parentId': value['parentId'],

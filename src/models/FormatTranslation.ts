@@ -73,10 +73,15 @@ export function FormatTranslationFromJSONTyped(json: any, ignoreDiscriminator: b
     };
 }
 
-export function FormatTranslationToJSON(value?: FormatTranslation | null): any {
+  export function FormatTranslationToJSON(json: any): FormatTranslation {
+      return FormatTranslationToJSONTyped(json, false);
+  }
+
+  export function FormatTranslationToJSONTyped(value?: FormatTranslation | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'key': value['key'],

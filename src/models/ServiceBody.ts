@@ -129,10 +129,15 @@ export function ServiceBodyFromJSONTyped(json: any, ignoreDiscriminator: boolean
     };
 }
 
-export function ServiceBodyToJSON(value?: ServiceBody | null): any {
+  export function ServiceBodyToJSON(json: any): ServiceBody {
+      return ServiceBodyToJSONTyped(json, false);
+  }
+
+  export function ServiceBodyToJSONTyped(value?: ServiceBody | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'parentId': value['parentId'],

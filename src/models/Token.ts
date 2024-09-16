@@ -73,10 +73,15 @@ export function TokenFromJSONTyped(json: any, ignoreDiscriminator: boolean): Tok
     };
 }
 
-export function TokenToJSON(value?: Token | null): any {
+  export function TokenToJSON(json: any): Token {
+      return TokenToJSONTyped(json, false);
+  }
+
+  export function TokenToJSONTyped(value?: Token | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'access_token': value['accessToken'],

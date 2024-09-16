@@ -49,10 +49,15 @@ export function AuthorizationErrorFromJSONTyped(json: any, ignoreDiscriminator: 
     };
 }
 
-export function AuthorizationErrorToJSON(value?: AuthorizationError | null): any {
+  export function AuthorizationErrorToJSON(json: any): AuthorizationError {
+      return AuthorizationErrorToJSONTyped(json, false);
+  }
+
+  export function AuthorizationErrorToJSONTyped(value?: AuthorizationError | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'message': value['message'],

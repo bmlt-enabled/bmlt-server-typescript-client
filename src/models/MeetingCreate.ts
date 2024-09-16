@@ -228,7 +228,7 @@ export interface MeetingCreate {
      * @type {string}
      * @memberof MeetingCreate
      */
-    trainLine?: string;
+    trainLines?: string;
     /**
      * 
      * @type {string}
@@ -298,15 +298,20 @@ export function MeetingCreateFromJSONTyped(json: any, ignoreDiscriminator: boole
         'contactEmail1': json['contact_email_1'] == null ? undefined : json['contact_email_1'],
         'contactEmail2': json['contact_email_2'] == null ? undefined : json['contact_email_2'],
         'busLines': json['bus_lines'] == null ? undefined : json['bus_lines'],
-        'trainLine': json['train_line'] == null ? undefined : json['train_line'],
+        'trainLines': json['train_lines'] == null ? undefined : json['train_lines'],
         'comments': json['comments'] == null ? undefined : json['comments'],
     };
 }
 
-export function MeetingCreateToJSON(value?: MeetingCreate | null): any {
+  export function MeetingCreateToJSON(json: any): MeetingCreate {
+      return MeetingCreateToJSONTyped(json, false);
+  }
+
+  export function MeetingCreateToJSONTyped(value?: MeetingCreate | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'serviceBodyId': value['serviceBodyId'],
@@ -343,7 +348,7 @@ export function MeetingCreateToJSON(value?: MeetingCreate | null): any {
         'contact_email_1': value['contactEmail1'],
         'contact_email_2': value['contactEmail2'],
         'bus_lines': value['busLines'],
-        'train_line': value['trainLine'],
+        'train_lines': value['trainLines'],
         'comments': value['comments'],
     };
 }

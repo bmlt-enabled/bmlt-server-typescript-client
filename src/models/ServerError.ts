@@ -49,10 +49,15 @@ export function ServerErrorFromJSONTyped(json: any, ignoreDiscriminator: boolean
     };
 }
 
-export function ServerErrorToJSON(value?: ServerError | null): any {
+  export function ServerErrorToJSON(json: any): ServerError {
+      return ServerErrorToJSONTyped(json, false);
+  }
+
+  export function ServerErrorToJSONTyped(value?: ServerError | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'message': value['message'],

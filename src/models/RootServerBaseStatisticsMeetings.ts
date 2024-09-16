@@ -81,10 +81,15 @@ export function RootServerBaseStatisticsMeetingsFromJSONTyped(json: any, ignoreD
     };
 }
 
-export function RootServerBaseStatisticsMeetingsToJSON(value?: RootServerBaseStatisticsMeetings | null): any {
+  export function RootServerBaseStatisticsMeetingsToJSON(json: any): RootServerBaseStatisticsMeetings {
+      return RootServerBaseStatisticsMeetingsToJSONTyped(json, false);
+  }
+
+  export function RootServerBaseStatisticsMeetingsToJSONTyped(value?: RootServerBaseStatisticsMeetings | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'numTotal': value['numTotal'],

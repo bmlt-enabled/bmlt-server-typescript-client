@@ -18,6 +18,7 @@ import {
     RootServerBaseStatisticsFromJSON,
     RootServerBaseStatisticsFromJSONTyped,
     RootServerBaseStatisticsToJSON,
+    RootServerBaseStatisticsToJSONTyped,
 } from './RootServerBaseStatistics';
 
 /**
@@ -90,10 +91,15 @@ export function RootServerBaseFromJSONTyped(json: any, ignoreDiscriminator: bool
     };
 }
 
-export function RootServerBaseToJSON(value?: RootServerBase | null): any {
+  export function RootServerBaseToJSON(json: any): RootServerBase {
+      return RootServerBaseToJSONTyped(json, false);
+  }
+
+  export function RootServerBaseToJSONTyped(value?: RootServerBase | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'sourceId': value['sourceId'],
