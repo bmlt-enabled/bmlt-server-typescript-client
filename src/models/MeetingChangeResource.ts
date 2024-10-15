@@ -62,9 +62,9 @@ export function MeetingChangeResourceFromJSONTyped(json: any, ignoreDiscriminato
     }
     return {
         
-        'dateString': json['date_string'] == null ? undefined : json['date_string'],
-        'userName': json['user_name'] == null ? undefined : json['user_name'],
-        'serviceBodyName': json['service_body_name'] == null ? undefined : json['service_body_name'],
+        'dateString': json['dateString'] == null ? undefined : json['dateString'],
+        'userName': json['userName'] == null ? undefined : json['userName'],
+        'serviceBodyName': json['serviceBodyName'] == null ? undefined : json['serviceBodyName'],
         'details': json['details'] == null ? undefined : json['details'],
     };
 }
@@ -80,9 +80,9 @@ export function MeetingChangeResourceFromJSONTyped(json: any, ignoreDiscriminato
 
     return {
         
-        'date_string': value['dateString'],
-        'user_name': value['userName'],
-        'service_body_name': value['serviceBodyName'],
+        'dateString': value['dateString'],
+        'userName': value['userName'],
+        'serviceBodyName': value['serviceBodyName'],
         'details': value['details'],
     };
 }
