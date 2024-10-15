@@ -17,6 +17,7 @@ src/models/FormatTranslation.ts
 src/models/FormatUpdate.ts
 src/models/Meeting.ts
 src/models/MeetingBase.ts
+src/models/MeetingChangeResource.ts
 src/models/MeetingCreate.ts
 src/models/MeetingPartialUpdate.ts
 src/models/MeetingUpdate.ts

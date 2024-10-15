@@ -12,6 +12,7 @@ export * from './FormatTranslation';
 export * from './FormatUpdate';
 export * from './Meeting';
 export * from './MeetingBase';
+export * from './MeetingChangeResource';
 export * from './MeetingCreate';
 export * from './MeetingPartialUpdate';
 export * from './MeetingUpdate';

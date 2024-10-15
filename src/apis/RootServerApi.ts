@@ -24,6 +24,7 @@ import type {
   FormatPartialUpdate,
   FormatUpdate,
   Meeting,
+  MeetingChangeResource,
   MeetingCreate,
   MeetingPartialUpdate,
   MeetingUpdate,
@@ -61,6 +62,8 @@ import {
     FormatUpdateToJSON,
     MeetingFromJSON,
     MeetingToJSON,
+    MeetingChangeResourceFromJSON,
+    MeetingChangeResourceToJSON,
     MeetingCreateFromJSON,
     MeetingCreateToJSON,
     MeetingPartialUpdateFromJSON,
@@ -142,6 +145,10 @@ export interface GetFormatRequest {
 }
 
 export interface GetMeetingRequest {
+    meetingId: number;
+}
+
+export interface GetMeetingChangesRequest {
     meetingId: number;
 }
 
@@ -826,6 +833,46 @@ export class RootServerApi extends runtime.BaseAPI {
      */
     async getMeeting(requestParameters: GetMeetingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Meeting> {
         const response = await this.getMeetingRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieve all changes made to a specific meeting.
+     * Retrieve changes for a meeting
+     */
+    async getMeetingChangesRaw(requestParameters: GetMeetingChangesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<MeetingChangeResource>>> {
+        if (requestParameters['meetingId'] == null) {
+            throw new runtime.RequiredError(
+                'meetingId',
+                'Required parameter "meetingId" was null or undefined when calling getMeetingChanges().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("bmltToken", []);
+        }
+
+        const response = await this.request({
+            path: `/api/v1/meetings/{meetingId}/changes`.replace(`{${"meetingId"}}`, encodeURIComponent(String(requestParameters['meetingId']))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(MeetingChangeResourceFromJSON));
+    }
+
+    /**
+     * Retrieve all changes made to a specific meeting.
+     * Retrieve changes for a meeting
+     */
+    async getMeetingChanges(requestParameters: GetMeetingChangesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<MeetingChangeResource>> {
+        const response = await this.getMeetingChangesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
