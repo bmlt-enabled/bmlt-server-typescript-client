@@ -38,11 +38,11 @@ export interface MeetingChangeResource {
      */
     serviceBodyName?: string;
     /**
-     * Details about the changes.
-     * @type {string}
+     * List of details about the changes.
+     * @type {Array<string>}
      * @memberof MeetingChangeResource
      */
-    details?: string;
+    details?: Array<string>;
 }
 
 /**
