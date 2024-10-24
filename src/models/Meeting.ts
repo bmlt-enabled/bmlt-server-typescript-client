@@ -90,7 +90,7 @@ export interface Meeting {
      * @type {string}
      * @memberof Meeting
      */
-    email?: string;
+    email: string;
     /**
      * 
      * @type {string}
@@ -258,6 +258,7 @@ export function instanceOfMeeting(value: object): value is Meeting {
     if (!('latitude' in value) || value['latitude'] === undefined) return false;
     if (!('longitude' in value) || value['longitude'] === undefined) return false;
     if (!('published' in value) || value['published'] === undefined) return false;
+    if (!('email' in value) || value['email'] === undefined) return false;
     if (!('worldId' in value) || value['worldId'] === undefined) return false;
     if (!('name' in value) || value['name'] === undefined) return false;
     if (!('id' in value) || value['id'] === undefined) return false;
@@ -285,7 +286,7 @@ export function MeetingFromJSONTyped(json: any, ignoreDiscriminator: boolean): M
         'latitude': json['latitude'],
         'longitude': json['longitude'],
         'published': json['published'],
-        'email': json['email'] == null ? undefined : json['email'],
+        'email': json['email'],
         'worldId': json['worldId'],
         'name': json['name'],
         'locationText': json['location_text'] == null ? undefined : json['location_text'],
