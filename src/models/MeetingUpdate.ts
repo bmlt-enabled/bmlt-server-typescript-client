@@ -237,10 +237,10 @@ export interface MeetingUpdate {
     comments?: string;
     /**
      * 
-     * @type {{ [key: string]: string; }}
+     * @type {object}
      * @memberof MeetingUpdate
      */
-    customFields?: { [key: string]: string; };
+    customFields?: object;
 }
 
 /**

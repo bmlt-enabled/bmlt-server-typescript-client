@@ -237,10 +237,10 @@ export interface MeetingPartialUpdate {
     comments?: string;
     /**
      * 
-     * @type {{ [key: string]: string; }}
+     * @type {object}
      * @memberof MeetingPartialUpdate
      */
-    customFields?: { [key: string]: string; };
+    customFields?: object;
 }
 
 /**
