@@ -237,10 +237,10 @@ export interface MeetingBase {
     comments?: string;
     /**
      * 
-     * @type {object}
+     * @type {{ [key: string]: string; }}
      * @memberof MeetingBase
      */
-    customFields?: object;
+    customFields?: { [key: string]: string; };
 }
 
 /**
