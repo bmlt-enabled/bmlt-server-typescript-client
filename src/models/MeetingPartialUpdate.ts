@@ -235,6 +235,12 @@ export interface MeetingPartialUpdate {
      * @memberof MeetingPartialUpdate
      */
     comments?: string;
+    /**
+     * 
+     * @type {object}
+     * @memberof MeetingPartialUpdate
+     */
+    customFields?: object;
 }
 
 /**
@@ -300,6 +306,7 @@ export function MeetingPartialUpdateFromJSONTyped(json: any, ignoreDiscriminator
         'busLines': json['bus_lines'] == null ? undefined : json['bus_lines'],
         'trainLines': json['train_lines'] == null ? undefined : json['train_lines'],
         'comments': json['comments'] == null ? undefined : json['comments'],
+        'customFields': json['customFields'] == null ? undefined : json['customFields'],
     };
 }
 
@@ -350,6 +357,7 @@ export function MeetingPartialUpdateFromJSONTyped(json: any, ignoreDiscriminator
         'bus_lines': value['busLines'],
         'train_lines': value['trainLines'],
         'comments': value['comments'],
+        'customFields': value['customFields'],
     };
 }
 

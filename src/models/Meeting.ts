@@ -237,6 +237,12 @@ export interface Meeting {
     comments?: string;
     /**
      * 
+     * @type {object}
+     * @memberof Meeting
+     */
+    customFields?: object;
+    /**
+     * 
      * @type {number}
      * @memberof Meeting
      */
@@ -311,6 +317,7 @@ export function MeetingFromJSONTyped(json: any, ignoreDiscriminator: boolean): M
         'busLines': json['bus_lines'] == null ? undefined : json['bus_lines'],
         'trainLines': json['train_lines'] == null ? undefined : json['train_lines'],
         'comments': json['comments'] == null ? undefined : json['comments'],
+        'customFields': json['customFields'] == null ? undefined : json['customFields'],
         'id': json['id'],
     };
 }
@@ -362,6 +369,7 @@ export function MeetingFromJSONTyped(json: any, ignoreDiscriminator: boolean): M
         'bus_lines': value['busLines'],
         'train_lines': value['trainLines'],
         'comments': value['comments'],
+        'customFields': value['customFields'],
         'id': value['id'],
     };
 }

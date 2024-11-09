@@ -235,6 +235,12 @@ export interface MeetingUpdate {
      * @memberof MeetingUpdate
      */
     comments?: string;
+    /**
+     * 
+     * @type {object}
+     * @memberof MeetingUpdate
+     */
+    customFields?: object;
 }
 
 /**
@@ -300,6 +306,7 @@ export function MeetingUpdateFromJSONTyped(json: any, ignoreDiscriminator: boole
         'busLines': json['bus_lines'] == null ? undefined : json['bus_lines'],
         'trainLines': json['train_lines'] == null ? undefined : json['train_lines'],
         'comments': json['comments'] == null ? undefined : json['comments'],
+        'customFields': json['customFields'] == null ? undefined : json['customFields'],
     };
 }
 
@@ -350,6 +357,7 @@ export function MeetingUpdateFromJSONTyped(json: any, ignoreDiscriminator: boole
         'bus_lines': value['busLines'],
         'train_lines': value['trainLines'],
         'comments': value['comments'],
+        'customFields': value['customFields'],
     };
 }
 

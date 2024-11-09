@@ -235,6 +235,12 @@ export interface MeetingBase {
      * @memberof MeetingBase
      */
     comments?: string;
+    /**
+     * 
+     * @type {object}
+     * @memberof MeetingBase
+     */
+    customFields?: object;
 }
 
 /**
@@ -290,6 +296,7 @@ export function MeetingBaseFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'busLines': json['bus_lines'] == null ? undefined : json['bus_lines'],
         'trainLines': json['train_lines'] == null ? undefined : json['train_lines'],
         'comments': json['comments'] == null ? undefined : json['comments'],
+        'customFields': json['customFields'] == null ? undefined : json['customFields'],
     };
 }
 
@@ -340,6 +347,7 @@ export function MeetingBaseFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'bus_lines': value['busLines'],
         'train_lines': value['trainLines'],
         'comments': value['comments'],
+        'customFields': value['customFields'],
     };
 }
 
