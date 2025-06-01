@@ -93,11 +93,11 @@ export function UserUpdateFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     };
 }
 
-  export function UserUpdateToJSON(json: any): UserUpdate {
-      return UserUpdateToJSONTyped(json, false);
-  }
+export function UserUpdateToJSON(json: any): UserUpdate {
+    return UserUpdateToJSONTyped(json, false);
+}
 
-  export function UserUpdateToJSONTyped(value?: UserUpdate | null, ignoreDiscriminator: boolean = false): any {
+export function UserUpdateToJSONTyped(value?: UserUpdate | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

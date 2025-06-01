@@ -111,11 +111,11 @@ export function ServiceBodyPartialUpdateFromJSONTyped(json: any, ignoreDiscrimin
     };
 }
 
-  export function ServiceBodyPartialUpdateToJSON(json: any): ServiceBodyPartialUpdate {
-      return ServiceBodyPartialUpdateToJSONTyped(json, false);
-  }
+export function ServiceBodyPartialUpdateToJSON(json: any): ServiceBodyPartialUpdate {
+    return ServiceBodyPartialUpdateToJSONTyped(json, false);
+}
 
-  export function ServiceBodyPartialUpdateToJSONTyped(value?: ServiceBodyPartialUpdate | null, ignoreDiscriminator: boolean = false): any {
+export function ServiceBodyPartialUpdateToJSONTyped(value?: ServiceBodyPartialUpdate | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

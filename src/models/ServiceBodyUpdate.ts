@@ -117,11 +117,11 @@ export function ServiceBodyUpdateFromJSONTyped(json: any, ignoreDiscriminator: b
     };
 }
 
-  export function ServiceBodyUpdateToJSON(json: any): ServiceBodyUpdate {
-      return ServiceBodyUpdateToJSONTyped(json, false);
-  }
+export function ServiceBodyUpdateToJSON(json: any): ServiceBodyUpdate {
+    return ServiceBodyUpdateToJSONTyped(json, false);
+}
 
-  export function ServiceBodyUpdateToJSONTyped(value?: ServiceBodyUpdate | null, ignoreDiscriminator: boolean = false): any {
+export function ServiceBodyUpdateToJSONTyped(value?: ServiceBodyUpdate | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

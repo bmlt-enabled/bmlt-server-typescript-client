@@ -90,11 +90,11 @@ export function UserPartialUpdateFromJSONTyped(json: any, ignoreDiscriminator: b
     };
 }
 
-  export function UserPartialUpdateToJSON(json: any): UserPartialUpdate {
-      return UserPartialUpdateToJSONTyped(json, false);
-  }
+export function UserPartialUpdateToJSON(json: any): UserPartialUpdate {
+    return UserPartialUpdateToJSONTyped(json, false);
+}
 
-  export function UserPartialUpdateToJSONTyped(value?: UserPartialUpdate | null, ignoreDiscriminator: boolean = false): any {
+export function UserPartialUpdateToJSONTyped(value?: UserPartialUpdate | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

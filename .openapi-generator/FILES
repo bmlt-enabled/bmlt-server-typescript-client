@@ -2,7 +2,7 @@
 .npmignore
 README.md
 package.json
-src/apis/RootServerApi.ts
+src/apis/ServerApi.ts
 src/apis/index.ts
 src/index.ts
 src/models/AuthenticationError.ts
@@ -22,11 +22,11 @@ src/models/MeetingCreate.ts
 src/models/MeetingPartialUpdate.ts
 src/models/MeetingUpdate.ts
 src/models/NotFoundError.ts
-src/models/RootServer.ts
-src/models/RootServerBase.ts
-src/models/RootServerBaseStatistics.ts
-src/models/RootServerBaseStatisticsMeetings.ts
-src/models/RootServerBaseStatisticsServiceBodies.ts
+src/models/Server.ts
+src/models/ServerBase.ts
+src/models/ServerBaseStatistics.ts
+src/models/ServerBaseStatisticsMeetings.ts
+src/models/ServerBaseStatisticsServiceBodies.ts
 src/models/ServerError.ts
 src/models/ServiceBody.ts
 src/models/ServiceBodyBase.ts

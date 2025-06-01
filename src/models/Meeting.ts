@@ -322,11 +322,11 @@ export function MeetingFromJSONTyped(json: any, ignoreDiscriminator: boolean): M
     };
 }
 
-  export function MeetingToJSON(json: any): Meeting {
-      return MeetingToJSONTyped(json, false);
-  }
+export function MeetingToJSON(json: any): Meeting {
+    return MeetingToJSONTyped(json, false);
+}
 
-  export function MeetingToJSONTyped(value?: Meeting | null, ignoreDiscriminator: boolean = false): any {
+export function MeetingToJSONTyped(value?: Meeting | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

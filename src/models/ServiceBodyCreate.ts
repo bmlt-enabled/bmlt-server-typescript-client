@@ -117,11 +117,11 @@ export function ServiceBodyCreateFromJSONTyped(json: any, ignoreDiscriminator: b
     };
 }
 
-  export function ServiceBodyCreateToJSON(json: any): ServiceBodyCreate {
-      return ServiceBodyCreateToJSONTyped(json, false);
-  }
+export function ServiceBodyCreateToJSON(json: any): ServiceBodyCreate {
+    return ServiceBodyCreateToJSONTyped(json, false);
+}
 
-  export function ServiceBodyCreateToJSONTyped(value?: ServiceBodyCreate | null, ignoreDiscriminator: boolean = false): any {
+export function ServiceBodyCreateToJSONTyped(value?: ServiceBodyCreate | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

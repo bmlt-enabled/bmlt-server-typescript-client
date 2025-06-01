@@ -57,11 +57,11 @@ export function ValidationErrorFromJSONTyped(json: any, ignoreDiscriminator: boo
     };
 }
 
-  export function ValidationErrorToJSON(json: any): ValidationError {
-      return ValidationErrorToJSONTyped(json, false);
-  }
+export function ValidationErrorToJSON(json: any): ValidationError {
+    return ValidationErrorToJSONTyped(json, false);
+}
 
-  export function ValidationErrorToJSONTyped(value?: ValidationError | null, ignoreDiscriminator: boolean = false): any {
+export function ValidationErrorToJSONTyped(value?: ValidationError | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

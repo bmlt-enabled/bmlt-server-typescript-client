@@ -71,11 +71,11 @@ export function FormatUpdateFromJSONTyped(json: any, ignoreDiscriminator: boolea
     };
 }
 
-  export function FormatUpdateToJSON(json: any): FormatUpdate {
-      return FormatUpdateToJSONTyped(json, false);
-  }
+export function FormatUpdateToJSON(json: any): FormatUpdate {
+    return FormatUpdateToJSONTyped(json, false);
+}
 
-  export function FormatUpdateToJSONTyped(value?: FormatUpdate | null, ignoreDiscriminator: boolean = false): any {
+export function FormatUpdateToJSONTyped(value?: FormatUpdate | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

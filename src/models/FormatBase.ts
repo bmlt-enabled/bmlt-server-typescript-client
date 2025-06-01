@@ -70,11 +70,11 @@ export function FormatBaseFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     };
 }
 
-  export function FormatBaseToJSON(json: any): FormatBase {
-      return FormatBaseToJSONTyped(json, false);
-  }
+export function FormatBaseToJSON(json: any): FormatBase {
+    return FormatBaseToJSONTyped(json, false);
+}
 
-  export function FormatBaseToJSONTyped(value?: FormatBase | null, ignoreDiscriminator: boolean = false): any {
+export function FormatBaseToJSONTyped(value?: FormatBase | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

@@ -49,11 +49,11 @@ export function NotFoundErrorFromJSONTyped(json: any, ignoreDiscriminator: boole
     };
 }
 
-  export function NotFoundErrorToJSON(json: any): NotFoundError {
-      return NotFoundErrorToJSONTyped(json, false);
-  }
+export function NotFoundErrorToJSON(json: any): NotFoundError {
+    return NotFoundErrorToJSONTyped(json, false);
+}
 
-  export function NotFoundErrorToJSONTyped(value?: NotFoundError | null, ignoreDiscriminator: boolean = false): any {
+export function NotFoundErrorToJSONTyped(value?: NotFoundError | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

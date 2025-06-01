@@ -81,11 +81,11 @@ export function FormatFromJSONTyped(json: any, ignoreDiscriminator: boolean): Fo
     };
 }
 
-  export function FormatToJSON(json: any): Format {
-      return FormatToJSONTyped(json, false);
-  }
+export function FormatToJSON(json: any): Format {
+    return FormatToJSONTyped(json, false);
+}
 
-  export function FormatToJSONTyped(value?: Format | null, ignoreDiscriminator: boolean = false): any {
+export function FormatToJSONTyped(value?: Format | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

@@ -83,11 +83,11 @@ export function UserBaseFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
     };
 }
 
-  export function UserBaseToJSON(json: any): UserBase {
-      return UserBaseToJSONTyped(json, false);
-  }
+export function UserBaseToJSON(json: any): UserBase {
+    return UserBaseToJSONTyped(json, false);
+}
 
-  export function UserBaseToJSONTyped(value?: UserBase | null, ignoreDiscriminator: boolean = false): any {
+export function UserBaseToJSONTyped(value?: UserBase | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

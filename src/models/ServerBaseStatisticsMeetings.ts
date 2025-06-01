@@ -16,45 +16,45 @@ import { mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface RootServerBaseStatisticsMeetings
+ * @interface ServerBaseStatisticsMeetings
  */
-export interface RootServerBaseStatisticsMeetings {
+export interface ServerBaseStatisticsMeetings {
     /**
      * 
      * @type {number}
-     * @memberof RootServerBaseStatisticsMeetings
+     * @memberof ServerBaseStatisticsMeetings
      */
     numTotal: number;
     /**
      * 
      * @type {number}
-     * @memberof RootServerBaseStatisticsMeetings
+     * @memberof ServerBaseStatisticsMeetings
      */
     numInPerson: number;
     /**
      * 
      * @type {number}
-     * @memberof RootServerBaseStatisticsMeetings
+     * @memberof ServerBaseStatisticsMeetings
      */
     numVirtual: number;
     /**
      * 
      * @type {number}
-     * @memberof RootServerBaseStatisticsMeetings
+     * @memberof ServerBaseStatisticsMeetings
      */
     numHybrid: number;
     /**
      * 
      * @type {number}
-     * @memberof RootServerBaseStatisticsMeetings
+     * @memberof ServerBaseStatisticsMeetings
      */
     numUnknown: number;
 }
 
 /**
- * Check if a given object implements the RootServerBaseStatisticsMeetings interface.
+ * Check if a given object implements the ServerBaseStatisticsMeetings interface.
  */
-export function instanceOfRootServerBaseStatisticsMeetings(value: object): value is RootServerBaseStatisticsMeetings {
+export function instanceOfServerBaseStatisticsMeetings(value: object): value is ServerBaseStatisticsMeetings {
     if (!('numTotal' in value) || value['numTotal'] === undefined) return false;
     if (!('numInPerson' in value) || value['numInPerson'] === undefined) return false;
     if (!('numVirtual' in value) || value['numVirtual'] === undefined) return false;
@@ -63,11 +63,11 @@ export function instanceOfRootServerBaseStatisticsMeetings(value: object): value
     return true;
 }
 
-export function RootServerBaseStatisticsMeetingsFromJSON(json: any): RootServerBaseStatisticsMeetings {
-    return RootServerBaseStatisticsMeetingsFromJSONTyped(json, false);
+export function ServerBaseStatisticsMeetingsFromJSON(json: any): ServerBaseStatisticsMeetings {
+    return ServerBaseStatisticsMeetingsFromJSONTyped(json, false);
 }
 
-export function RootServerBaseStatisticsMeetingsFromJSONTyped(json: any, ignoreDiscriminator: boolean): RootServerBaseStatisticsMeetings {
+export function ServerBaseStatisticsMeetingsFromJSONTyped(json: any, ignoreDiscriminator: boolean): ServerBaseStatisticsMeetings {
     if (json == null) {
         return json;
     }
@@ -81,11 +81,11 @@ export function RootServerBaseStatisticsMeetingsFromJSONTyped(json: any, ignoreD
     };
 }
 
-  export function RootServerBaseStatisticsMeetingsToJSON(json: any): RootServerBaseStatisticsMeetings {
-      return RootServerBaseStatisticsMeetingsToJSONTyped(json, false);
-  }
+export function ServerBaseStatisticsMeetingsToJSON(json: any): ServerBaseStatisticsMeetings {
+    return ServerBaseStatisticsMeetingsToJSONTyped(json, false);
+}
 
-  export function RootServerBaseStatisticsMeetingsToJSONTyped(value?: RootServerBaseStatisticsMeetings | null, ignoreDiscriminator: boolean = false): any {
+export function ServerBaseStatisticsMeetingsToJSONTyped(value?: ServerBaseStatisticsMeetings | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

@@ -300,11 +300,11 @@ export function MeetingBaseFromJSONTyped(json: any, ignoreDiscriminator: boolean
     };
 }
 
-  export function MeetingBaseToJSON(json: any): MeetingBase {
-      return MeetingBaseToJSONTyped(json, false);
-  }
+export function MeetingBaseToJSON(json: any): MeetingBase {
+    return MeetingBaseToJSONTyped(json, false);
+}
 
-  export function MeetingBaseToJSONTyped(value?: MeetingBase | null, ignoreDiscriminator: boolean = false): any {
+export function MeetingBaseToJSONTyped(value?: MeetingBase | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

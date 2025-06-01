@@ -29,7 +29,7 @@ import type {
   MeetingPartialUpdate,
   MeetingUpdate,
   NotFoundError,
-  RootServer,
+  Server,
   ServerError,
   ServiceBody,
   ServiceBodyCreate,
@@ -72,8 +72,8 @@ import {
     MeetingUpdateToJSON,
     NotFoundErrorFromJSON,
     NotFoundErrorToJSON,
-    RootServerFromJSON,
-    RootServerToJSON,
+    ServerFromJSON,
+    ServerToJSON,
     ServerErrorFromJSON,
     ServerErrorToJSON,
     ServiceBodyFromJSON,
@@ -159,8 +159,8 @@ export interface GetMeetingsRequest {
     searchString?: string;
 }
 
-export interface GetRootServerRequest {
-    rootServerId: number;
+export interface GetServerRequest {
+    serverId: number;
 }
 
 export interface GetServiceBodyRequest {
@@ -214,7 +214,7 @@ export interface UpdateUserRequest {
 /**
  * 
  */
-export class RootServerApi extends runtime.BaseAPI {
+export class ServerApi extends runtime.BaseAPI {
 
     /**
      * Revoke token and logout.
@@ -926,14 +926,14 @@ export class RootServerApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve a single root server id.
-     * Retrieves a root server
+     * Retrieve a single server id.
+     * Retrieves a server
      */
-    async getRootServerRaw(requestParameters: GetRootServerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RootServer>> {
-        if (requestParameters['rootServerId'] == null) {
+    async getServerRaw(requestParameters: GetServerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Server>> {
+        if (requestParameters['serverId'] == null) {
             throw new runtime.RequiredError(
-                'rootServerId',
-                'Required parameter "rootServerId" was null or undefined when calling getRootServer().'
+                'serverId',
+                'Required parameter "serverId" was null or undefined when calling getServer().'
             );
         }
 
@@ -942,49 +942,49 @@ export class RootServerApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/api/v1/rootservers/{rootServerId}`.replace(`{${"rootServerId"}}`, encodeURIComponent(String(requestParameters['rootServerId']))),
+            path: `/api/v1/servers/{serverId}`.replace(`{${"serverId"}}`, encodeURIComponent(String(requestParameters['serverId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => RootServerFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => ServerFromJSON(jsonValue));
     }
 
     /**
-     * Retrieve a single root server id.
-     * Retrieves a root server
+     * Retrieve a single server id.
+     * Retrieves a server
      */
-    async getRootServer(requestParameters: GetRootServerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RootServer> {
-        const response = await this.getRootServerRaw(requestParameters, initOverrides);
+    async getServer(requestParameters: GetServerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Server> {
+        const response = await this.getServerRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Retrieve root servers.
-     * Retrieves root servers
+     * Retrieve servers.
+     * Retrieves servers
      */
-    async getRootServersRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<RootServer>>> {
+    async getServersRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Server>>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/api/v1/rootservers`,
+            path: `/api/v1/servers`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(RootServerFromJSON));
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(ServerFromJSON));
     }
 
     /**
-     * Retrieve root servers.
-     * Retrieves root servers
+     * Retrieve servers.
+     * Retrieves servers
      */
-    async getRootServers(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<RootServer>> {
-        const response = await this.getRootServersRaw(initOverrides);
+    async getServers(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Server>> {
+        const response = await this.getServersRaw(initOverrides);
         return await response.value();
     }
 

@@ -69,11 +69,11 @@ export function MeetingChangeResourceFromJSONTyped(json: any, ignoreDiscriminato
     };
 }
 
-  export function MeetingChangeResourceToJSON(json: any): MeetingChangeResource {
-      return MeetingChangeResourceToJSONTyped(json, false);
-  }
+export function MeetingChangeResourceToJSON(json: any): MeetingChangeResource {
+    return MeetingChangeResourceToJSONTyped(json, false);
+}
 
-  export function MeetingChangeResourceToJSONTyped(value?: MeetingChangeResource | null, ignoreDiscriminator: boolean = false): any {
+export function MeetingChangeResourceToJSONTyped(value?: MeetingChangeResource | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

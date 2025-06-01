@@ -129,11 +129,11 @@ export function ServiceBodyFromJSONTyped(json: any, ignoreDiscriminator: boolean
     };
 }
 
-  export function ServiceBodyToJSON(json: any): ServiceBody {
-      return ServiceBodyToJSONTyped(json, false);
-  }
+export function ServiceBodyToJSON(json: any): ServiceBody {
+    return ServiceBodyToJSONTyped(json, false);
+}
 
-  export function ServiceBodyToJSONTyped(value?: ServiceBody | null, ignoreDiscriminator: boolean = false): any {
+export function ServiceBodyToJSONTyped(value?: ServiceBody | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

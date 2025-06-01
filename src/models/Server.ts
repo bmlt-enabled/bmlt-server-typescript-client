@@ -13,68 +13,68 @@
  */
 
 import { mapValues } from '../runtime';
-import type { RootServerBaseStatistics } from './RootServerBaseStatistics';
+import type { ServerBaseStatistics } from './ServerBaseStatistics';
 import {
-    RootServerBaseStatisticsFromJSON,
-    RootServerBaseStatisticsFromJSONTyped,
-    RootServerBaseStatisticsToJSON,
-    RootServerBaseStatisticsToJSONTyped,
-} from './RootServerBaseStatistics';
+    ServerBaseStatisticsFromJSON,
+    ServerBaseStatisticsFromJSONTyped,
+    ServerBaseStatisticsToJSON,
+    ServerBaseStatisticsToJSONTyped,
+} from './ServerBaseStatistics';
 
 /**
  * 
  * @export
- * @interface RootServer
+ * @interface Server
  */
-export interface RootServer {
+export interface Server {
     /**
      * 
      * @type {number}
-     * @memberof RootServer
+     * @memberof Server
      */
     sourceId: number;
     /**
      * 
      * @type {string}
-     * @memberof RootServer
+     * @memberof Server
      */
     name: string;
     /**
      * 
      * @type {string}
-     * @memberof RootServer
+     * @memberof Server
      */
     url: string;
     /**
      * 
-     * @type {RootServerBaseStatistics}
-     * @memberof RootServer
+     * @type {ServerBaseStatistics}
+     * @memberof Server
      */
-    statistics?: RootServerBaseStatistics;
+    statistics?: ServerBaseStatistics;
     /**
      * 
      * @type {string}
-     * @memberof RootServer
+     * @memberof Server
      */
     serverInfo?: string;
     /**
      * 
      * @type {Date}
-     * @memberof RootServer
+     * @memberof Server
      */
     lastSuccessfulImport: Date;
     /**
      * 
      * @type {number}
-     * @memberof RootServer
+     * @memberof Server
      */
     id: number;
 }
 
 /**
- * Check if a given object implements the RootServer interface.
+ * Check if a given object implements the Server interface.
  */
-export function instanceOfRootServer(value: object): value is RootServer {
+export function instanceOfServer(value: object): value is Server {
     if (!('sourceId' in value) || value['sourceId'] === undefined) return false;
     if (!('name' in value) || value['name'] === undefined) return false;
     if (!('url' in value) || value['url'] === undefined) return false;
@@ -83,11 +83,11 @@ export function instanceOfRootServer(value: object): value is RootServer {
     return true;
 }
 
-export function RootServerFromJSON(json: any): RootServer {
-    return RootServerFromJSONTyped(json, false);
+export function ServerFromJSON(json: any): Server {
+    return ServerFromJSONTyped(json, false);
 }
 
-export function RootServerFromJSONTyped(json: any, ignoreDiscriminator: boolean): RootServer {
+export function ServerFromJSONTyped(json: any, ignoreDiscriminator: boolean): Server {
     if (json == null) {
         return json;
     }
@@ -96,18 +96,18 @@ export function RootServerFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'sourceId': json['sourceId'],
         'name': json['name'],
         'url': json['url'],
-        'statistics': json['statistics'] == null ? undefined : RootServerBaseStatisticsFromJSON(json['statistics']),
+        'statistics': json['statistics'] == null ? undefined : ServerBaseStatisticsFromJSON(json['statistics']),
         'serverInfo': json['serverInfo'] == null ? undefined : json['serverInfo'],
         'lastSuccessfulImport': (new Date(json['lastSuccessfulImport'])),
         'id': json['id'],
     };
 }
 
-  export function RootServerToJSON(json: any): RootServer {
-      return RootServerToJSONTyped(json, false);
-  }
+export function ServerToJSON(json: any): Server {
+    return ServerToJSONTyped(json, false);
+}
 
-  export function RootServerToJSONTyped(value?: RootServer | null, ignoreDiscriminator: boolean = false): any {
+export function ServerToJSONTyped(value?: Server | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
@@ -117,7 +117,7 @@ export function RootServerFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'sourceId': value['sourceId'],
         'name': value['name'],
         'url': value['url'],
-        'statistics': RootServerBaseStatisticsToJSON(value['statistics']),
+        'statistics': ServerBaseStatisticsToJSON(value['statistics']),
         'serverInfo': value['serverInfo'],
         'lastSuccessfulImport': ((value['lastSuccessfulImport']).toISOString()),
         'id': value['id'],

@@ -57,11 +57,11 @@ export function TokenCredentialsFromJSONTyped(json: any, ignoreDiscriminator: bo
     };
 }
 
-  export function TokenCredentialsToJSON(json: any): TokenCredentials {
-      return TokenCredentialsToJSONTyped(json, false);
-  }
+export function TokenCredentialsToJSON(json: any): TokenCredentials {
+    return TokenCredentialsToJSONTyped(json, false);
+}
 
-  export function TokenCredentialsToJSONTyped(value?: TokenCredentials | null, ignoreDiscriminator: boolean = false): any {
+export function TokenCredentialsToJSONTyped(value?: TokenCredentials | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

@@ -71,11 +71,11 @@ export function FormatCreateFromJSONTyped(json: any, ignoreDiscriminator: boolea
     };
 }
 
-  export function FormatCreateToJSON(json: any): FormatCreate {
-      return FormatCreateToJSONTyped(json, false);
-  }
+export function FormatCreateToJSON(json: any): FormatCreate {
+    return FormatCreateToJSONTyped(json, false);
+}
 
-  export function FormatCreateToJSONTyped(value?: FormatCreate | null, ignoreDiscriminator: boolean = false): any {
+export function FormatCreateToJSONTyped(value?: FormatCreate | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

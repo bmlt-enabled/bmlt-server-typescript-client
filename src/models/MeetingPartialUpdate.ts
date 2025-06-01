@@ -310,11 +310,11 @@ export function MeetingPartialUpdateFromJSONTyped(json: any, ignoreDiscriminator
     };
 }
 
-  export function MeetingPartialUpdateToJSON(json: any): MeetingPartialUpdate {
-      return MeetingPartialUpdateToJSONTyped(json, false);
-  }
+export function MeetingPartialUpdateToJSON(json: any): MeetingPartialUpdate {
+    return MeetingPartialUpdateToJSONTyped(json, false);
+}
 
-  export function MeetingPartialUpdateToJSONTyped(value?: MeetingPartialUpdate | null, ignoreDiscriminator: boolean = false): any {
+export function MeetingPartialUpdateToJSONTyped(value?: MeetingPartialUpdate | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

@@ -70,11 +70,11 @@ export function FormatPartialUpdateFromJSONTyped(json: any, ignoreDiscriminator:
     };
 }
 
-  export function FormatPartialUpdateToJSON(json: any): FormatPartialUpdate {
-      return FormatPartialUpdateToJSONTyped(json, false);
-  }
+export function FormatPartialUpdateToJSON(json: any): FormatPartialUpdate {
+    return FormatPartialUpdateToJSONTyped(json, false);
+}
 
-  export function FormatPartialUpdateToJSONTyped(value?: FormatPartialUpdate | null, ignoreDiscriminator: boolean = false): any {
+export function FormatPartialUpdateToJSONTyped(value?: FormatPartialUpdate | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

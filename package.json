@@ -1,11 +1,11 @@
 {
-  "name": "bmlt-root-server-client",
+  "name": "bmlt-server-client",
   "version": "latest",
-  "description": "OpenAPI client for bmlt-root-server-client",
+  "description": "OpenAPI client for bmlt-server-client",
   "author": "OpenAPI-Generator",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bmlt-enabled/bmlt-root-server-typescript-client.git"
+    "url": "https://github.com/bmlt-enabled/bmlt-server-typescript-client.git"
   },
   "main": "./dist/index.js",
   "typings": "./dist/index.d.ts",
