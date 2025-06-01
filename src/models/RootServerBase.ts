@@ -13,70 +13,70 @@
  */
 
 import { mapValues } from '../runtime';
-import type { ServerBaseStatistics } from './ServerBaseStatistics';
+import type { RootServerBaseStatistics } from './RootServerBaseStatistics';
 import {
-    ServerBaseStatisticsFromJSON,
-    ServerBaseStatisticsFromJSONTyped,
-    ServerBaseStatisticsToJSON,
-    ServerBaseStatisticsToJSONTyped,
-} from './ServerBaseStatistics';
+    RootServerBaseStatisticsFromJSON,
+    RootServerBaseStatisticsFromJSONTyped,
+    RootServerBaseStatisticsToJSON,
+    RootServerBaseStatisticsToJSONTyped,
+} from './RootServerBaseStatistics';
 
 /**
  * 
  * @export
- * @interface ServerBase
+ * @interface RootServerBase
  */
-export interface ServerBase {
+export interface RootServerBase {
     /**
      * 
      * @type {number}
-     * @memberof ServerBase
+     * @memberof RootServerBase
      */
     sourceId?: number;
     /**
      * 
      * @type {string}
-     * @memberof ServerBase
+     * @memberof RootServerBase
      */
     name?: string;
     /**
      * 
      * @type {string}
-     * @memberof ServerBase
+     * @memberof RootServerBase
      */
     url?: string;
     /**
      * 
-     * @type {ServerBaseStatistics}
-     * @memberof ServerBase
+     * @type {RootServerBaseStatistics}
+     * @memberof RootServerBase
      */
-    statistics?: ServerBaseStatistics;
+    statistics?: RootServerBaseStatistics;
     /**
      * 
      * @type {string}
-     * @memberof ServerBase
+     * @memberof RootServerBase
      */
     serverInfo?: string;
     /**
      * 
      * @type {Date}
-     * @memberof ServerBase
+     * @memberof RootServerBase
      */
     lastSuccessfulImport?: Date;
 }
 
 /**
- * Check if a given object implements the ServerBase interface.
+ * Check if a given object implements the RootServerBase interface.
  */
-export function instanceOfServerBase(value: object): value is ServerBase {
+export function instanceOfRootServerBase(value: object): value is RootServerBase {
     return true;
 }
 
-export function ServerBaseFromJSON(json: any): ServerBase {
-    return ServerBaseFromJSONTyped(json, false);
+export function RootServerBaseFromJSON(json: any): RootServerBase {
+    return RootServerBaseFromJSONTyped(json, false);
 }
 
-export function ServerBaseFromJSONTyped(json: any, ignoreDiscriminator: boolean): ServerBase {
+export function RootServerBaseFromJSONTyped(json: any, ignoreDiscriminator: boolean): RootServerBase {
     if (json == null) {
         return json;
     }
@@ -85,17 +85,17 @@ export function ServerBaseFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'sourceId': json['sourceId'] == null ? undefined : json['sourceId'],
         'name': json['name'] == null ? undefined : json['name'],
         'url': json['url'] == null ? undefined : json['url'],
-        'statistics': json['statistics'] == null ? undefined : ServerBaseStatisticsFromJSON(json['statistics']),
+        'statistics': json['statistics'] == null ? undefined : RootServerBaseStatisticsFromJSON(json['statistics']),
         'serverInfo': json['serverInfo'] == null ? undefined : json['serverInfo'],
         'lastSuccessfulImport': json['lastSuccessfulImport'] == null ? undefined : (new Date(json['lastSuccessfulImport'])),
     };
 }
 
-export function ServerBaseToJSON(json: any): ServerBase {
-    return ServerBaseToJSONTyped(json, false);
+export function RootServerBaseToJSON(json: any): RootServerBase {
+    return RootServerBaseToJSONTyped(json, false);
 }
 
-export function ServerBaseToJSONTyped(value?: ServerBase | null, ignoreDiscriminator: boolean = false): any {
+export function RootServerBaseToJSONTyped(value?: RootServerBase | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
@@ -105,7 +105,7 @@ export function ServerBaseToJSONTyped(value?: ServerBase | null, ignoreDiscrimin
         'sourceId': value['sourceId'],
         'name': value['name'],
         'url': value['url'],
-        'statistics': ServerBaseStatisticsToJSON(value['statistics']),
+        'statistics': RootServerBaseStatisticsToJSON(value['statistics']),
         'serverInfo': value['serverInfo'],
         'lastSuccessfulImport': value['lastSuccessfulImport'] == null ? undefined : ((value['lastSuccessfulImport']).toISOString()),
     };

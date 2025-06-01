@@ -16,39 +16,39 @@ import { mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface ServerBaseStatisticsServiceBodies
+ * @interface RootServerBaseStatisticsServiceBodies
  */
-export interface ServerBaseStatisticsServiceBodies {
+export interface RootServerBaseStatisticsServiceBodies {
     /**
      * 
      * @type {number}
-     * @memberof ServerBaseStatisticsServiceBodies
+     * @memberof RootServerBaseStatisticsServiceBodies
      */
     numZones: number;
     /**
      * 
      * @type {number}
-     * @memberof ServerBaseStatisticsServiceBodies
+     * @memberof RootServerBaseStatisticsServiceBodies
      */
     numRegions: number;
     /**
      * 
      * @type {number}
-     * @memberof ServerBaseStatisticsServiceBodies
+     * @memberof RootServerBaseStatisticsServiceBodies
      */
     numAreas: number;
     /**
      * 
      * @type {number}
-     * @memberof ServerBaseStatisticsServiceBodies
+     * @memberof RootServerBaseStatisticsServiceBodies
      */
     numGroups: number;
 }
 
 /**
- * Check if a given object implements the ServerBaseStatisticsServiceBodies interface.
+ * Check if a given object implements the RootServerBaseStatisticsServiceBodies interface.
  */
-export function instanceOfServerBaseStatisticsServiceBodies(value: object): value is ServerBaseStatisticsServiceBodies {
+export function instanceOfRootServerBaseStatisticsServiceBodies(value: object): value is RootServerBaseStatisticsServiceBodies {
     if (!('numZones' in value) || value['numZones'] === undefined) return false;
     if (!('numRegions' in value) || value['numRegions'] === undefined) return false;
     if (!('numAreas' in value) || value['numAreas'] === undefined) return false;
@@ -56,11 +56,11 @@ export function instanceOfServerBaseStatisticsServiceBodies(value: object): valu
     return true;
 }
 
-export function ServerBaseStatisticsServiceBodiesFromJSON(json: any): ServerBaseStatisticsServiceBodies {
-    return ServerBaseStatisticsServiceBodiesFromJSONTyped(json, false);
+export function RootServerBaseStatisticsServiceBodiesFromJSON(json: any): RootServerBaseStatisticsServiceBodies {
+    return RootServerBaseStatisticsServiceBodiesFromJSONTyped(json, false);
 }
 
-export function ServerBaseStatisticsServiceBodiesFromJSONTyped(json: any, ignoreDiscriminator: boolean): ServerBaseStatisticsServiceBodies {
+export function RootServerBaseStatisticsServiceBodiesFromJSONTyped(json: any, ignoreDiscriminator: boolean): RootServerBaseStatisticsServiceBodies {
     if (json == null) {
         return json;
     }
@@ -73,11 +73,11 @@ export function ServerBaseStatisticsServiceBodiesFromJSONTyped(json: any, ignore
     };
 }
 
-export function ServerBaseStatisticsServiceBodiesToJSON(json: any): ServerBaseStatisticsServiceBodies {
-    return ServerBaseStatisticsServiceBodiesToJSONTyped(json, false);
+export function RootServerBaseStatisticsServiceBodiesToJSON(json: any): RootServerBaseStatisticsServiceBodies {
+    return RootServerBaseStatisticsServiceBodiesToJSONTyped(json, false);
 }
 
-export function ServerBaseStatisticsServiceBodiesToJSONTyped(value?: ServerBaseStatisticsServiceBodies | null, ignoreDiscriminator: boolean = false): any {
+export function RootServerBaseStatisticsServiceBodiesToJSONTyped(value?: RootServerBaseStatisticsServiceBodies | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
