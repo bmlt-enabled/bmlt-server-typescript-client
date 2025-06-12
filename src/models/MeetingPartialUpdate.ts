@@ -24,19 +24,19 @@ export interface MeetingPartialUpdate {
      * @type {number}
      * @memberof MeetingPartialUpdate
      */
-    serviceBodyId: number;
+    serviceBodyId?: number;
     /**
      * 
      * @type {Array<number>}
      * @memberof MeetingPartialUpdate
      */
-    formatIds: Array<number>;
+    formatIds?: Array<number>;
     /**
      * 
      * @type {number}
      * @memberof MeetingPartialUpdate
      */
-    venueType: number;
+    venueType?: number;
     /**
      * 
      * @type {boolean}
@@ -48,19 +48,19 @@ export interface MeetingPartialUpdate {
      * @type {number}
      * @memberof MeetingPartialUpdate
      */
-    day: number;
+    day?: number;
     /**
      * 
      * @type {string}
      * @memberof MeetingPartialUpdate
      */
-    startTime: string;
+    startTime?: string;
     /**
      * 
      * @type {string}
      * @memberof MeetingPartialUpdate
      */
-    duration: string;
+    duration?: string;
     /**
      * 
      * @type {string}
@@ -72,19 +72,19 @@ export interface MeetingPartialUpdate {
      * @type {number}
      * @memberof MeetingPartialUpdate
      */
-    latitude: number;
+    latitude?: number;
     /**
      * 
      * @type {number}
      * @memberof MeetingPartialUpdate
      */
-    longitude: number;
+    longitude?: number;
     /**
      * 
      * @type {boolean}
      * @memberof MeetingPartialUpdate
      */
-    published: boolean;
+    published?: boolean;
     /**
      * 
      * @type {string}
@@ -102,7 +102,7 @@ export interface MeetingPartialUpdate {
      * @type {string}
      * @memberof MeetingPartialUpdate
      */
-    name: string;
+    name?: string;
     /**
      * 
      * @type {string}
@@ -247,16 +247,6 @@ export interface MeetingPartialUpdate {
  * Check if a given object implements the MeetingPartialUpdate interface.
  */
 export function instanceOfMeetingPartialUpdate(value: object): value is MeetingPartialUpdate {
-    if (!('serviceBodyId' in value) || value['serviceBodyId'] === undefined) return false;
-    if (!('formatIds' in value) || value['formatIds'] === undefined) return false;
-    if (!('venueType' in value) || value['venueType'] === undefined) return false;
-    if (!('day' in value) || value['day'] === undefined) return false;
-    if (!('startTime' in value) || value['startTime'] === undefined) return false;
-    if (!('duration' in value) || value['duration'] === undefined) return false;
-    if (!('latitude' in value) || value['latitude'] === undefined) return false;
-    if (!('longitude' in value) || value['longitude'] === undefined) return false;
-    if (!('published' in value) || value['published'] === undefined) return false;
-    if (!('name' in value) || value['name'] === undefined) return false;
     return true;
 }
 
@@ -270,20 +260,20 @@ export function MeetingPartialUpdateFromJSONTyped(json: any, ignoreDiscriminator
     }
     return {
         
-        'serviceBodyId': json['serviceBodyId'],
-        'formatIds': json['formatIds'],
-        'venueType': json['venueType'],
+        'serviceBodyId': json['serviceBodyId'] == null ? undefined : json['serviceBodyId'],
+        'formatIds': json['formatIds'] == null ? undefined : json['formatIds'],
+        'venueType': json['venueType'] == null ? undefined : json['venueType'],
         'temporarilyVirtual': json['temporarilyVirtual'] == null ? undefined : json['temporarilyVirtual'],
-        'day': json['day'],
-        'startTime': json['startTime'],
-        'duration': json['duration'],
+        'day': json['day'] == null ? undefined : json['day'],
+        'startTime': json['startTime'] == null ? undefined : json['startTime'],
+        'duration': json['duration'] == null ? undefined : json['duration'],
         'timeZone': json['timeZone'] == null ? undefined : json['timeZone'],
-        'latitude': json['latitude'],
-        'longitude': json['longitude'],
-        'published': json['published'],
+        'latitude': json['latitude'] == null ? undefined : json['latitude'],
+        'longitude': json['longitude'] == null ? undefined : json['longitude'],
+        'published': json['published'] == null ? undefined : json['published'],
         'email': json['email'] == null ? undefined : json['email'],
         'worldId': json['worldId'] == null ? undefined : json['worldId'],
-        'name': json['name'],
+        'name': json['name'] == null ? undefined : json['name'],
         'locationText': json['location_text'] == null ? undefined : json['location_text'],
         'locationInfo': json['location_info'] == null ? undefined : json['location_info'],
         'locationStreet': json['location_street'] == null ? undefined : json['location_street'],
