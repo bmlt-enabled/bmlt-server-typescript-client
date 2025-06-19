@@ -184,7 +184,7 @@ export interface PatchFormatRequest {
 export interface PatchMeetingRequest {
     meetingId: number;
     meetingPartialUpdate: MeetingPartialUpdate;
-    skipValidation?: PatchMeetingSkipValidationEnum;
+    skipVenueTypeLocationValidation?: boolean;
 }
 
 export interface PatchServiceBodyRequest {
@@ -1254,8 +1254,8 @@ export class RootServerApi extends runtime.BaseAPI {
 
         const queryParameters: any = {};
 
-        if (requestParameters['skipValidation'] != null) {
-            queryParameters['skipValidation'] = requestParameters['skipValidation'];
+        if (requestParameters['skipVenueTypeLocationValidation'] != null) {
+            queryParameters['skipVenueTypeLocationValidation'] = requestParameters['skipVenueTypeLocationValidation'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1532,12 +1532,3 @@ export class RootServerApi extends runtime.BaseAPI {
     }
 
 }
-
-/**
- * @export
- */
-export const PatchMeetingSkipValidationEnum = {
-    NUMBER_0: 0,
-    NUMBER_1: 1
-} as const;
-export type PatchMeetingSkipValidationEnum = typeof PatchMeetingSkipValidationEnum[keyof typeof PatchMeetingSkipValidationEnum];
