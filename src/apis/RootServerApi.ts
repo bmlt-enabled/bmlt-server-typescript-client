@@ -184,6 +184,7 @@ export interface PatchFormatRequest {
 export interface PatchMeetingRequest {
     meetingId: number;
     meetingPartialUpdate: MeetingPartialUpdate;
+    skipValidation?: PatchMeetingSkipValidationEnum;
 }
 
 export interface PatchServiceBodyRequest {
@@ -1253,6 +1254,10 @@ export class RootServerApi extends runtime.BaseAPI {
 
         const queryParameters: any = {};
 
+        if (requestParameters['skipValidation'] != null) {
+            queryParameters['skipValidation'] = requestParameters['skipValidation'];
+        }
+
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
@@ -1527,3 +1532,12 @@ export class RootServerApi extends runtime.BaseAPI {
     }
 
 }
+
+/**
+ * @export
+ */
+export const PatchMeetingSkipValidationEnum = {
+    NUMBER_0: 0,
+    NUMBER_1: 1
+} as const;
+export type PatchMeetingSkipValidationEnum = typeof PatchMeetingSkipValidationEnum[keyof typeof PatchMeetingSkipValidationEnum];
