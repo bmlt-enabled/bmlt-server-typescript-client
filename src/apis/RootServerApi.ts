@@ -231,8 +231,11 @@ export class RootServerApi extends runtime.BaseAPI {
             headerParameters["Authorization"] = await this.configuration.accessToken("bmltToken", []);
         }
 
+
+        let urlPath = `/api/v1/auth/logout`;
+
         const response = await this.request({
-            path: `/api/v1/auth/logout`,
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -263,8 +266,11 @@ export class RootServerApi extends runtime.BaseAPI {
             headerParameters["Authorization"] = await this.configuration.accessToken("bmltToken", []);
         }
 
+
+        let urlPath = `/api/v1/auth/refresh`;
+
         const response = await this.request({
-            path: `/api/v1/auth/refresh`,
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -300,8 +306,11 @@ export class RootServerApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
+
+        let urlPath = `/api/v1/auth/token`;
+
         const response = await this.request({
-            path: `/api/v1/auth/token`,
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -343,8 +352,11 @@ export class RootServerApi extends runtime.BaseAPI {
             headerParameters["Authorization"] = await this.configuration.accessToken("bmltToken", []);
         }
 
+
+        let urlPath = `/api/v1/errortest`;
+
         const response = await this.request({
-            path: `/api/v1/errortest`,
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -386,8 +398,11 @@ export class RootServerApi extends runtime.BaseAPI {
             headerParameters["Authorization"] = await this.configuration.accessToken("bmltToken", []);
         }
 
+
+        let urlPath = `/api/v1/formats`;
+
         const response = await this.request({
-            path: `/api/v1/formats`,
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -429,8 +444,11 @@ export class RootServerApi extends runtime.BaseAPI {
             headerParameters["Authorization"] = await this.configuration.accessToken("bmltToken", []);
         }
 
+
+        let urlPath = `/api/v1/meetings`;
+
         const response = await this.request({
-            path: `/api/v1/meetings`,
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -472,8 +490,11 @@ export class RootServerApi extends runtime.BaseAPI {
             headerParameters["Authorization"] = await this.configuration.accessToken("bmltToken", []);
         }
 
+
+        let urlPath = `/api/v1/servicebodies`;
+
         const response = await this.request({
-            path: `/api/v1/servicebodies`,
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -515,8 +536,11 @@ export class RootServerApi extends runtime.BaseAPI {
             headerParameters["Authorization"] = await this.configuration.accessToken("bmltToken", []);
         }
 
+
+        let urlPath = `/api/v1/users`;
+
         const response = await this.request({
-            path: `/api/v1/users`,
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -556,8 +580,12 @@ export class RootServerApi extends runtime.BaseAPI {
             headerParameters["Authorization"] = await this.configuration.accessToken("bmltToken", []);
         }
 
+
+        let urlPath = `/api/v1/formats/{formatId}`;
+        urlPath = urlPath.replace(`{${"formatId"}}`, encodeURIComponent(String(requestParameters['formatId'])));
+
         const response = await this.request({
-            path: `/api/v1/formats/{formatId}`.replace(`{${"formatId"}}`, encodeURIComponent(String(requestParameters['formatId']))),
+            path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -595,8 +623,12 @@ export class RootServerApi extends runtime.BaseAPI {
             headerParameters["Authorization"] = await this.configuration.accessToken("bmltToken", []);
         }
 
+
+        let urlPath = `/api/v1/meetings/{meetingId}`;
+        urlPath = urlPath.replace(`{${"meetingId"}}`, encodeURIComponent(String(requestParameters['meetingId'])));
+
         const response = await this.request({
-            path: `/api/v1/meetings/{meetingId}`.replace(`{${"meetingId"}}`, encodeURIComponent(String(requestParameters['meetingId']))),
+            path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -634,8 +666,12 @@ export class RootServerApi extends runtime.BaseAPI {
             headerParameters["Authorization"] = await this.configuration.accessToken("bmltToken", []);
         }
 
+
+        let urlPath = `/api/v1/servicebodies/{serviceBodyId}`;
+        urlPath = urlPath.replace(`{${"serviceBodyId"}}`, encodeURIComponent(String(requestParameters['serviceBodyId'])));
+
         const response = await this.request({
-            path: `/api/v1/servicebodies/{serviceBodyId}`.replace(`{${"serviceBodyId"}}`, encodeURIComponent(String(requestParameters['serviceBodyId']))),
+            path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -673,8 +709,12 @@ export class RootServerApi extends runtime.BaseAPI {
             headerParameters["Authorization"] = await this.configuration.accessToken("bmltToken", []);
         }
 
+
+        let urlPath = `/api/v1/users/{userId}`;
+        urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
+
         const response = await this.request({
-            path: `/api/v1/users/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
+            path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -712,8 +752,12 @@ export class RootServerApi extends runtime.BaseAPI {
             headerParameters["Authorization"] = await this.configuration.accessToken("bmltToken", []);
         }
 
+
+        let urlPath = `/api/v1/formats/{formatId}`;
+        urlPath = urlPath.replace(`{${"formatId"}}`, encodeURIComponent(String(requestParameters['formatId'])));
+
         const response = await this.request({
-            path: `/api/v1/formats/{formatId}`.replace(`{${"formatId"}}`, encodeURIComponent(String(requestParameters['formatId']))),
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -745,8 +789,11 @@ export class RootServerApi extends runtime.BaseAPI {
             headerParameters["Authorization"] = await this.configuration.accessToken("bmltToken", []);
         }
 
+
+        let urlPath = `/api/v1/formats`;
+
         const response = await this.request({
-            path: `/api/v1/formats`,
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -778,8 +825,11 @@ export class RootServerApi extends runtime.BaseAPI {
             headerParameters["Authorization"] = await this.configuration.accessToken("bmltToken", []);
         }
 
+
+        let urlPath = `/api/v1/logs/laravel`;
+
         const response = await this.request({
-            path: `/api/v1/logs/laravel`,
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -818,8 +868,12 @@ export class RootServerApi extends runtime.BaseAPI {
             headerParameters["Authorization"] = await this.configuration.accessToken("bmltToken", []);
         }
 
+
+        let urlPath = `/api/v1/meetings/{meetingId}`;
+        urlPath = urlPath.replace(`{${"meetingId"}}`, encodeURIComponent(String(requestParameters['meetingId'])));
+
         const response = await this.request({
-            path: `/api/v1/meetings/{meetingId}`.replace(`{${"meetingId"}}`, encodeURIComponent(String(requestParameters['meetingId']))),
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -858,8 +912,12 @@ export class RootServerApi extends runtime.BaseAPI {
             headerParameters["Authorization"] = await this.configuration.accessToken("bmltToken", []);
         }
 
+
+        let urlPath = `/api/v1/meetings/{meetingId}/changes`;
+        urlPath = urlPath.replace(`{${"meetingId"}}`, encodeURIComponent(String(requestParameters['meetingId'])));
+
         const response = await this.request({
-            path: `/api/v1/meetings/{meetingId}/changes`.replace(`{${"meetingId"}}`, encodeURIComponent(String(requestParameters['meetingId']))),
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -907,8 +965,11 @@ export class RootServerApi extends runtime.BaseAPI {
             headerParameters["Authorization"] = await this.configuration.accessToken("bmltToken", []);
         }
 
+
+        let urlPath = `/api/v1/meetings`;
+
         const response = await this.request({
-            path: `/api/v1/meetings`,
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -942,8 +1003,12 @@ export class RootServerApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+
+        let urlPath = `/api/v1/rootservers/{rootServerId}`;
+        urlPath = urlPath.replace(`{${"rootServerId"}}`, encodeURIComponent(String(requestParameters['rootServerId'])));
+
         const response = await this.request({
-            path: `/api/v1/rootservers/{rootServerId}`.replace(`{${"rootServerId"}}`, encodeURIComponent(String(requestParameters['rootServerId']))),
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -970,8 +1035,11 @@ export class RootServerApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+
+        let urlPath = `/api/v1/rootservers`;
+
         const response = await this.request({
-            path: `/api/v1/rootservers`,
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -1003,8 +1071,11 @@ export class RootServerApi extends runtime.BaseAPI {
             headerParameters["Authorization"] = await this.configuration.accessToken("bmltToken", []);
         }
 
+
+        let urlPath = `/api/v1/servicebodies`;
+
         const response = await this.request({
-            path: `/api/v1/servicebodies`,
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -1043,8 +1114,12 @@ export class RootServerApi extends runtime.BaseAPI {
             headerParameters["Authorization"] = await this.configuration.accessToken("bmltToken", []);
         }
 
+
+        let urlPath = `/api/v1/servicebodies/{serviceBodyId}`;
+        urlPath = urlPath.replace(`{${"serviceBodyId"}}`, encodeURIComponent(String(requestParameters['serviceBodyId'])));
+
         const response = await this.request({
-            path: `/api/v1/servicebodies/{serviceBodyId}`.replace(`{${"serviceBodyId"}}`, encodeURIComponent(String(requestParameters['serviceBodyId']))),
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -1083,8 +1158,12 @@ export class RootServerApi extends runtime.BaseAPI {
             headerParameters["Authorization"] = await this.configuration.accessToken("bmltToken", []);
         }
 
+
+        let urlPath = `/api/v1/users/{userId}`;
+        urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
+
         const response = await this.request({
-            path: `/api/v1/users/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -1116,8 +1195,11 @@ export class RootServerApi extends runtime.BaseAPI {
             headerParameters["Authorization"] = await this.configuration.accessToken("bmltToken", []);
         }
 
+
+        let urlPath = `/api/v1/users`;
+
         const response = await this.request({
-            path: `/api/v1/users`,
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -1165,8 +1247,12 @@ export class RootServerApi extends runtime.BaseAPI {
             headerParameters["Authorization"] = await this.configuration.accessToken("bmltToken", []);
         }
 
+
+        let urlPath = `/api/v1/users/{userId}`;
+        urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
+
         const response = await this.request({
-            path: `/api/v1/users/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
+            path: urlPath,
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
@@ -1214,8 +1300,12 @@ export class RootServerApi extends runtime.BaseAPI {
             headerParameters["Authorization"] = await this.configuration.accessToken("bmltToken", []);
         }
 
+
+        let urlPath = `/api/v1/formats/{formatId}`;
+        urlPath = urlPath.replace(`{${"formatId"}}`, encodeURIComponent(String(requestParameters['formatId'])));
+
         const response = await this.request({
-            path: `/api/v1/formats/{formatId}`.replace(`{${"formatId"}}`, encodeURIComponent(String(requestParameters['formatId']))),
+            path: urlPath,
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
@@ -1267,8 +1357,12 @@ export class RootServerApi extends runtime.BaseAPI {
             headerParameters["Authorization"] = await this.configuration.accessToken("bmltToken", []);
         }
 
+
+        let urlPath = `/api/v1/meetings/{meetingId}`;
+        urlPath = urlPath.replace(`{${"meetingId"}}`, encodeURIComponent(String(requestParameters['meetingId'])));
+
         const response = await this.request({
-            path: `/api/v1/meetings/{meetingId}`.replace(`{${"meetingId"}}`, encodeURIComponent(String(requestParameters['meetingId']))),
+            path: urlPath,
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
@@ -1316,8 +1410,12 @@ export class RootServerApi extends runtime.BaseAPI {
             headerParameters["Authorization"] = await this.configuration.accessToken("bmltToken", []);
         }
 
+
+        let urlPath = `/api/v1/servicebodies/{serviceBodyId}`;
+        urlPath = urlPath.replace(`{${"serviceBodyId"}}`, encodeURIComponent(String(requestParameters['serviceBodyId'])));
+
         const response = await this.request({
-            path: `/api/v1/servicebodies/{serviceBodyId}`.replace(`{${"serviceBodyId"}}`, encodeURIComponent(String(requestParameters['serviceBodyId']))),
+            path: urlPath,
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
@@ -1365,8 +1463,12 @@ export class RootServerApi extends runtime.BaseAPI {
             headerParameters["Authorization"] = await this.configuration.accessToken("bmltToken", []);
         }
 
+
+        let urlPath = `/api/v1/formats/{formatId}`;
+        urlPath = urlPath.replace(`{${"formatId"}}`, encodeURIComponent(String(requestParameters['formatId'])));
+
         const response = await this.request({
-            path: `/api/v1/formats/{formatId}`.replace(`{${"formatId"}}`, encodeURIComponent(String(requestParameters['formatId']))),
+            path: urlPath,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
@@ -1414,8 +1516,12 @@ export class RootServerApi extends runtime.BaseAPI {
             headerParameters["Authorization"] = await this.configuration.accessToken("bmltToken", []);
         }
 
+
+        let urlPath = `/api/v1/meetings/{meetingId}`;
+        urlPath = urlPath.replace(`{${"meetingId"}}`, encodeURIComponent(String(requestParameters['meetingId'])));
+
         const response = await this.request({
-            path: `/api/v1/meetings/{meetingId}`.replace(`{${"meetingId"}}`, encodeURIComponent(String(requestParameters['meetingId']))),
+            path: urlPath,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
@@ -1463,8 +1569,12 @@ export class RootServerApi extends runtime.BaseAPI {
             headerParameters["Authorization"] = await this.configuration.accessToken("bmltToken", []);
         }
 
+
+        let urlPath = `/api/v1/servicebodies/{serviceBodyId}`;
+        urlPath = urlPath.replace(`{${"serviceBodyId"}}`, encodeURIComponent(String(requestParameters['serviceBodyId'])));
+
         const response = await this.request({
-            path: `/api/v1/servicebodies/{serviceBodyId}`.replace(`{${"serviceBodyId"}}`, encodeURIComponent(String(requestParameters['serviceBodyId']))),
+            path: urlPath,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
@@ -1512,8 +1622,12 @@ export class RootServerApi extends runtime.BaseAPI {
             headerParameters["Authorization"] = await this.configuration.accessToken("bmltToken", []);
         }
 
+
+        let urlPath = `/api/v1/users/{userId}`;
+        urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
+
         const response = await this.request({
-            path: `/api/v1/users/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
+            path: urlPath,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,

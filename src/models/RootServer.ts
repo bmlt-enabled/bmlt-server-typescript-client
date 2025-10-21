@@ -119,7 +119,7 @@ export function RootServerToJSONTyped(value?: RootServer | null, ignoreDiscrimin
         'url': value['url'],
         'statistics': RootServerBaseStatisticsToJSON(value['statistics']),
         'serverInfo': value['serverInfo'],
-        'lastSuccessfulImport': ((value['lastSuccessfulImport']).toISOString()),
+        'lastSuccessfulImport': value['lastSuccessfulImport'].toISOString(),
         'id': value['id'],
     };
 }

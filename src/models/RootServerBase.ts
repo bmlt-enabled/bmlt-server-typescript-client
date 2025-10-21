@@ -107,7 +107,7 @@ export function RootServerBaseToJSONTyped(value?: RootServerBase | null, ignoreD
         'url': value['url'],
         'statistics': RootServerBaseStatisticsToJSON(value['statistics']),
         'serverInfo': value['serverInfo'],
-        'lastSuccessfulImport': value['lastSuccessfulImport'] == null ? undefined : ((value['lastSuccessfulImport']).toISOString()),
+        'lastSuccessfulImport': value['lastSuccessfulImport'] == null ? value['lastSuccessfulImport'] : value['lastSuccessfulImport'].toISOString(),
     };
 }
 
