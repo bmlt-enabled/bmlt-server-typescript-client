@@ -9,6 +9,8 @@ generate: openapi.json
 	    -g typescript-fetch \
 	    -p npmName=bmlt-server-client \
 	    -p npmVersion=latest \
+	    -p supportsES6=true \
+	    -p target=ES2020 \
 	    --git-repo-id=bmlt-server-typescript-client \
 	    --git-user-id=bmlt-enabled \
 	    -o .
