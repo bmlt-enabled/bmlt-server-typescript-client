@@ -13,6 +13,7 @@ Name | Type
 `email` | string
 `ownerId` | number
 `id` | number
+`lastActiveAt` | Date
 
 ## Example
 
@@ -28,6 +29,7 @@ const example = {
   "email": string,
   "ownerId": 0,
   "id": 0,
+  "lastActiveAt": 2019-05-02T05:05Z,
 } satisfies User
 
 console.log(example)

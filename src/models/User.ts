@@ -61,6 +61,12 @@ export interface User {
      * @memberof User
      */
     id: number;
+    /**
+     * 
+     * @type {Date}
+     * @memberof User
+     */
+    lastActiveAt?: Date | null;
 }
 
 /**
@@ -94,6 +100,7 @@ export function UserFromJSONTyped(json: any, ignoreDiscriminator: boolean): User
         'email': json['email'],
         'ownerId': json['ownerId'],
         'id': json['id'],
+        'lastActiveAt': json['lastActiveAt'] == null ? undefined : (new Date(json['lastActiveAt'])),
     };
 }
 
@@ -115,6 +122,7 @@ export function UserToJSONTyped(value?: User | null, ignoreDiscriminator: boolea
         'email': value['email'],
         'ownerId': value['ownerId'],
         'id': value['id'],
+        'lastActiveAt': value['lastActiveAt'] == null ? value['lastActiveAt'] : value['lastActiveAt'].toISOString(),
     };
 }
 
