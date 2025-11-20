@@ -8,7 +8,7 @@ generate: openapi.json
 	    -i openapi.json \
 	    -g typescript-fetch \
 	    -p npmName=bmlt-server-client \
-	    -p npmVersion=latest \
+	    -p npmVersion=1.4.0 \
 	    -p supportsES6=true \
 	    --git-repo-id=bmlt-server-typescript-client \
 	    --git-user-id=bmlt-enabled \
