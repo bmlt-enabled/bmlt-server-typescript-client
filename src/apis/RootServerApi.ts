@@ -35,6 +35,8 @@ import type {
   ServiceBodyCreate,
   ServiceBodyPartialUpdate,
   ServiceBodyUpdate,
+  SettingsObject,
+  SettingsUpdate,
   Token,
   TokenCredentials,
   User,
@@ -84,6 +86,10 @@ import {
     ServiceBodyPartialUpdateToJSON,
     ServiceBodyUpdateFromJSON,
     ServiceBodyUpdateToJSON,
+    SettingsObjectFromJSON,
+    SettingsObjectToJSON,
+    SettingsUpdateFromJSON,
+    SettingsUpdateToJSON,
     TokenFromJSON,
     TokenToJSON,
     TokenCredentialsFromJSON,
@@ -205,6 +211,10 @@ export interface UpdateMeetingRequest {
 export interface UpdateServiceBodyRequest {
     serviceBodyId: number;
     serviceBodyUpdate: ServiceBodyUpdate;
+}
+
+export interface UpdateSettingsRequest {
+    settingsUpdate: SettingsUpdate;
 }
 
 export interface UpdateUserRequest {
@@ -1138,6 +1148,42 @@ export class RootServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Retrieve all server settings. Only accessible to server administrators.
+     * Retrieves all settings
+     */
+    async getSettingsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsObject>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("bmltToken", []);
+        }
+
+
+        let urlPath = `/api/v1/settings`;
+
+        const response = await this.request({
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SettingsObjectFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve all server settings. Only accessible to server administrators.
+     * Retrieves all settings
+     */
+    async getSettings(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SettingsObject> {
+        const response = await this.getSettingsRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Retrieve single user.
      * Retrieves a single user
      */
@@ -1590,6 +1636,51 @@ export class RootServerApi extends runtime.BaseAPI {
      */
     async updateServiceBody(requestParameters: UpdateServiceBodyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.updateServiceBodyRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Updates one or more server settings. Only accessible to server administrators.
+     * Update settings
+     */
+    async updateSettingsRaw(requestParameters: UpdateSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters['settingsUpdate'] == null) {
+            throw new runtime.RequiredError(
+                'settingsUpdate',
+                'Required parameter "settingsUpdate" was null or undefined when calling updateSettings().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("bmltToken", []);
+        }
+
+
+        let urlPath = `/api/v1/settings`;
+
+        const response = await this.request({
+            path: urlPath,
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SettingsUpdateToJSON(requestParameters['settingsUpdate']),
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Updates one or more server settings. Only accessible to server administrators.
+     * Update settings
+     */
+    async updateSettings(requestParameters: UpdateSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.updateSettingsRaw(requestParameters, initOverrides);
     }
 
     /**
