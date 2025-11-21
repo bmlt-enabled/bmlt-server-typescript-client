@@ -63,18 +63,6 @@ export interface SettingsObject {
     distanceUnits?: string;
     /**
      * 
-     * @type {boolean}
-     * @memberof SettingsObject
-     */
-    enableEmailContact?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SettingsObject
-     */
-    includeServiceBodyAdminOnEmails?: boolean;
-    /**
-     * 
      * @type {Array<string>}
      * @memberof SettingsObject
      */
@@ -201,8 +189,6 @@ export function SettingsObjectFromJSONTyped(json: any, ignoreDiscriminator: bool
         'defaultDurationTime': json['defaultDurationTime'] == null ? undefined : json['defaultDurationTime'],
         'regionBias': json['regionBias'] == null ? undefined : json['regionBias'],
         'distanceUnits': json['distanceUnits'] == null ? undefined : json['distanceUnits'],
-        'enableEmailContact': json['enableEmailContact'] == null ? undefined : json['enableEmailContact'],
-        'includeServiceBodyAdminOnEmails': json['includeServiceBodyAdminOnEmails'] == null ? undefined : json['includeServiceBodyAdminOnEmails'],
         'meetingStatesAndProvinces': json['meetingStatesAndProvinces'] == null ? undefined : json['meetingStatesAndProvinces'],
         'meetingCountiesAndSubProvinces': json['meetingCountiesAndSubProvinces'] == null ? undefined : json['meetingCountiesAndSubProvinces'],
         'searchSpecMapCenterLongitude': json['searchSpecMapCenterLongitude'] == null ? undefined : json['searchSpecMapCenterLongitude'],
@@ -241,8 +227,6 @@ export function SettingsObjectToJSONTyped(value?: SettingsObject | null, ignoreD
         'defaultDurationTime': value['defaultDurationTime'],
         'regionBias': value['regionBias'],
         'distanceUnits': value['distanceUnits'],
-        'enableEmailContact': value['enableEmailContact'],
-        'includeServiceBodyAdminOnEmails': value['includeServiceBodyAdminOnEmails'],
         'meetingStatesAndProvinces': value['meetingStatesAndProvinces'],
         'meetingCountiesAndSubProvinces': value['meetingCountiesAndSubProvinces'],
         'searchSpecMapCenterLongitude': value['searchSpecMapCenterLongitude'],

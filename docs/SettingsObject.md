@@ -13,8 +13,6 @@ Name | Type
 `defaultDurationTime` | string
 `regionBias` | string
 `distanceUnits` | string
-`enableEmailContact` | boolean
-`includeServiceBodyAdminOnEmails` | boolean
 `meetingStatesAndProvinces` | Array&lt;string&gt;
 `meetingCountiesAndSubProvinces` | Array&lt;string&gt;
 `searchSpecMapCenterLongitude` | number
@@ -47,8 +45,6 @@ const example = {
   "defaultDurationTime": 01:00,
   "regionBias": us,
   "distanceUnits": mi,
-  "enableEmailContact": false,
-  "includeServiceBodyAdminOnEmails": false,
   "meetingStatesAndProvinces": [],
   "meetingCountiesAndSubProvinces": [],
   "searchSpecMapCenterLongitude": -118.563659,
