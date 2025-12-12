@@ -81,7 +81,7 @@ All URIs are relative to *http://localhost:8000/main_server*
 *RootServerApi* | [**updateFormat**](docs/RootServerApi.md#updateformat) | **PUT** /api/v1/formats/{formatId} | Updates a format
 *RootServerApi* | [**updateMeeting**](docs/RootServerApi.md#updatemeeting) | **PUT** /api/v1/meetings/{meetingId} | Updates a meeting
 *RootServerApi* | [**updateServiceBody**](docs/RootServerApi.md#updateservicebody) | **PUT** /api/v1/servicebodies/{serviceBodyId} | Updates a Service Body
-*RootServerApi* | [**updateSettings**](docs/RootServerApi.md#updatesettings) | **PUT** /api/v1/settings | Update settings
+*RootServerApi* | [**updateSettings**](docs/RootServerApi.md#updatesettings) | **PATCH** /api/v1/settings | Update settings
 *RootServerApi* | [**updateUser**](docs/RootServerApi.md#updateuser) | **PUT** /api/v1/users/{userId} | Update single user
 
 

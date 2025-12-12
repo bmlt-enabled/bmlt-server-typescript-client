@@ -1666,7 +1666,7 @@ export class RootServerApi extends runtime.BaseAPI {
 
         const response = await this.request({
             path: urlPath,
-            method: 'PUT',
+            method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
             body: SettingsUpdateToJSON(requestParameters['settingsUpdate']),

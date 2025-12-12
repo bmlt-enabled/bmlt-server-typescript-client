@@ -36,7 +36,7 @@ All URIs are relative to *http://localhost:8000/main_server*
 | [**updateFormat**](RootServerApi.md#updateformat) | **PUT** /api/v1/formats/{formatId} | Updates a format |
 | [**updateMeeting**](RootServerApi.md#updatemeeting) | **PUT** /api/v1/meetings/{meetingId} | Updates a meeting |
 | [**updateServiceBody**](RootServerApi.md#updateservicebody) | **PUT** /api/v1/servicebodies/{serviceBodyId} | Updates a Service Body |
-| [**updateSettings**](RootServerApi.md#updatesettings) | **PUT** /api/v1/settings | Update settings |
+| [**updateSettings**](RootServerApi.md#updatesettings) | **PATCH** /api/v1/settings | Update settings |
 | [**updateUser**](RootServerApi.md#updateuser) | **PUT** /api/v1/users/{userId} | Update single user |
 
 
