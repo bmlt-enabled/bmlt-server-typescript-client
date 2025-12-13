@@ -132,18 +132,6 @@ export interface SettingsObject {
      * @type {boolean}
      * @memberof SettingsObject
      */
-    aggregatorModeEnabled?: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof SettingsObject
-     */
-    aggregatorMaxGeoWidthKm?: number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SettingsObject
-     */
     includeServiceBodyEmailInSemantic?: boolean;
     /**
      * 
@@ -200,8 +188,6 @@ export function SettingsObjectFromJSONTyped(json: any, ignoreDiscriminator: bool
         'zipAutoGeocodingEnabled': json['zipAutoGeocodingEnabled'] == null ? undefined : json['zipAutoGeocodingEnabled'],
         'defaultClosedStatus': json['defaultClosedStatus'] == null ? undefined : json['defaultClosedStatus'],
         'enableLanguageSelector': json['enableLanguageSelector'] == null ? undefined : json['enableLanguageSelector'],
-        'aggregatorModeEnabled': json['aggregatorModeEnabled'] == null ? undefined : json['aggregatorModeEnabled'],
-        'aggregatorMaxGeoWidthKm': json['aggregatorMaxGeoWidthKm'] == null ? undefined : json['aggregatorMaxGeoWidthKm'],
         'includeServiceBodyEmailInSemantic': json['includeServiceBodyEmailInSemantic'] == null ? undefined : json['includeServiceBodyEmailInSemantic'],
         'bmltTitle': json['bmltTitle'] == null ? undefined : json['bmltTitle'],
         'bmltNotice': json['bmltNotice'] == null ? undefined : json['bmltNotice'],
@@ -238,8 +224,6 @@ export function SettingsObjectToJSONTyped(value?: SettingsObject | null, ignoreD
         'zipAutoGeocodingEnabled': value['zipAutoGeocodingEnabled'],
         'defaultClosedStatus': value['defaultClosedStatus'],
         'enableLanguageSelector': value['enableLanguageSelector'],
-        'aggregatorModeEnabled': value['aggregatorModeEnabled'],
-        'aggregatorMaxGeoWidthKm': value['aggregatorMaxGeoWidthKm'],
         'includeServiceBodyEmailInSemantic': value['includeServiceBodyEmailInSemantic'],
         'bmltTitle': value['bmltTitle'],
         'bmltNotice': value['bmltNotice'],

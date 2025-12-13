@@ -24,8 +24,6 @@ Name | Type
 `zipAutoGeocodingEnabled` | boolean
 `defaultClosedStatus` | boolean
 `enableLanguageSelector` | boolean
-`aggregatorModeEnabled` | boolean
-`aggregatorMaxGeoWidthKm` | number
 `includeServiceBodyEmailInSemantic` | boolean
 `bmltTitle` | string
 `bmltNotice` | string
@@ -56,8 +54,6 @@ const example = {
   "zipAutoGeocodingEnabled": false,
   "defaultClosedStatus": true,
   "enableLanguageSelector": false,
-  "aggregatorModeEnabled": false,
-  "aggregatorMaxGeoWidthKm": 1000,
   "includeServiceBodyEmailInSemantic": false,
   "bmltTitle": ,
   "bmltNotice": ,
