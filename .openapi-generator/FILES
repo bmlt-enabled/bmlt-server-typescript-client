@@ -30,6 +30,9 @@ docs/ServiceBodyBase.md
 docs/ServiceBodyCreate.md
 docs/ServiceBodyPartialUpdate.md
 docs/ServiceBodyUpdate.md
+docs/SettingsBase.md
+docs/SettingsObject.md
+docs/SettingsUpdate.md
 docs/Token.md
 docs/TokenCredentials.md
 docs/User.md
@@ -70,6 +73,9 @@ src/models/ServiceBodyBase.ts
 src/models/ServiceBodyCreate.ts
 src/models/ServiceBodyPartialUpdate.ts
 src/models/ServiceBodyUpdate.ts
+src/models/SettingsBase.ts
+src/models/SettingsObject.ts
+src/models/SettingsUpdate.ts
 src/models/Token.ts
 src/models/TokenCredentials.ts
 src/models/User.ts

@@ -26,6 +26,7 @@ All URIs are relative to *http://localhost:8000/main_server*
 | [**getRootServers**](RootServerApi.md#getrootservers) | **GET** /api/v1/rootservers | Retrieves root servers |
 | [**getServiceBodies**](RootServerApi.md#getservicebodies) | **GET** /api/v1/servicebodies | Retrieves service bodies |
 | [**getServiceBody**](RootServerApi.md#getservicebody) | **GET** /api/v1/servicebodies/{serviceBodyId} | Retrieves a service body |
+| [**getSettings**](RootServerApi.md#getsettings) | **GET** /api/v1/settings | Retrieves all settings |
 | [**getUser**](RootServerApi.md#getuser) | **GET** /api/v1/users/{userId} | Retrieves a single user |
 | [**getUsers**](RootServerApi.md#getusers) | **GET** /api/v1/users | Retrieves users |
 | [**partialUpdateUser**](RootServerApi.md#partialupdateuser) | **PATCH** /api/v1/users/{userId} | Patches a user |
@@ -35,6 +36,7 @@ All URIs are relative to *http://localhost:8000/main_server*
 | [**updateFormat**](RootServerApi.md#updateformat) | **PUT** /api/v1/formats/{formatId} | Updates a format |
 | [**updateMeeting**](RootServerApi.md#updatemeeting) | **PUT** /api/v1/meetings/{meetingId} | Updates a meeting |
 | [**updateServiceBody**](RootServerApi.md#updateservicebody) | **PUT** /api/v1/servicebodies/{serviceBodyId} | Updates a Service Body |
+| [**updateSettings**](RootServerApi.md#updatesettings) | **PATCH** /api/v1/settings | Update settings |
 | [**updateUser**](RootServerApi.md#updateuser) | **PUT** /api/v1/users/{userId} | Update single user |
 
 
@@ -1608,6 +1610,71 @@ example().catch(console.error);
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
+## getSettings
+
+> SettingsObject getSettings()
+
+Retrieves all settings
+
+Retrieve all server settings. Only accessible to server administrators.
+
+### Example
+
+```ts
+import {
+  Configuration,
+  RootServerApi,
+} from 'bmlt-server-client';
+import type { GetSettingsRequest } from 'bmlt-server-client';
+
+async function example() {
+  console.log("🚀 Testing bmlt-server-client SDK...");
+  const config = new Configuration({ 
+    // To configure OAuth2 access token for authorization: bmltToken password
+    accessToken: "YOUR ACCESS TOKEN",
+  });
+  const api = new RootServerApi(config);
+
+  try {
+    const data = await api.getSettings();
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**SettingsObject**](SettingsObject.md)
+
+### Authorization
+
+[bmltToken password](../README.md#bmltToken-password)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Returns when user is authenticated as admin. |  -  |
+| **401** | Returns when not authenticated |  -  |
+| **403** | Returns when user is not an admin |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
 ## getUser
 
 > User getUser(userId)
@@ -2289,6 +2356,80 @@ example().catch(console.error);
 | **401** | Returns when user is not authenticated. |  -  |
 | **403** | Returns when user is unauthorized to perform action. |  -  |
 | **404** | Returns when no service body exists. |  -  |
+| **422** | Validation error. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## updateSettings
+
+> updateSettings(settingsUpdate)
+
+Update settings
+
+Updates one or more server settings. Only accessible to server administrators.
+
+### Example
+
+```ts
+import {
+  Configuration,
+  RootServerApi,
+} from 'bmlt-server-client';
+import type { UpdateSettingsRequest } from 'bmlt-server-client';
+
+async function example() {
+  console.log("🚀 Testing bmlt-server-client SDK...");
+  const config = new Configuration({ 
+    // To configure OAuth2 access token for authorization: bmltToken password
+    accessToken: "YOUR ACCESS TOKEN",
+  });
+  const api = new RootServerApi(config);
+
+  const body = {
+    // SettingsUpdate | Pass in settings object with values to update
+    settingsUpdate: ...,
+  } satisfies UpdateSettingsRequest;
+
+  try {
+    const data = await api.updateSettings(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **settingsUpdate** | [SettingsUpdate](SettingsUpdate.md) | Pass in settings object with values to update | |
+
+### Return type
+
+`void` (Empty response body)
+
+### Authorization
+
+[bmltToken password](../README.md#bmltToken-password)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **204** | Success. |  -  |
+| **401** | Returns when user is not authenticated. |  -  |
+| **403** | Returns when user is not an admin. |  -  |
 | **422** | Validation error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
