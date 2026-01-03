@@ -237,6 +237,12 @@ export interface Meeting {
     comments?: string;
     /**
      * 
+     * @type {string}
+     * @memberof Meeting
+     */
+    adminNotes?: string;
+    /**
+     * 
      * @type {{ [key: string]: string; }}
      * @memberof Meeting
      */
@@ -317,6 +323,7 @@ export function MeetingFromJSONTyped(json: any, ignoreDiscriminator: boolean): M
         'busLines': json['bus_lines'] == null ? undefined : json['bus_lines'],
         'trainLines': json['train_lines'] == null ? undefined : json['train_lines'],
         'comments': json['comments'] == null ? undefined : json['comments'],
+        'adminNotes': json['admin_notes'] == null ? undefined : json['admin_notes'],
         'customFields': json['customFields'] == null ? undefined : json['customFields'],
         'id': json['id'],
     };
@@ -369,6 +376,7 @@ export function MeetingToJSONTyped(value?: Meeting | null, ignoreDiscriminator: 
         'bus_lines': value['busLines'],
         'train_lines': value['trainLines'],
         'comments': value['comments'],
+        'admin_notes': value['adminNotes'],
         'customFields': value['customFields'],
         'id': value['id'],
     };
