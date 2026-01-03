@@ -140,6 +140,7 @@ export interface DeleteMeetingRequest {
 
 export interface DeleteServiceBodyRequest {
     serviceBodyId: number;
+    force?: DeleteServiceBodyForceEnum;
 }
 
 export interface DeleteUserRequest {
@@ -656,7 +657,7 @@ export class RootServerApi extends runtime.BaseAPI {
     }
 
     /**
-     * Deletes a service body by id.
+     * Deletes a service body by id. If the service body has meetings, use force=true to delete them as well.
      * Deletes a service body
      */
     async deleteServiceBodyRaw(requestParameters: DeleteServiceBodyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
@@ -668,6 +669,10 @@ export class RootServerApi extends runtime.BaseAPI {
         }
 
         const queryParameters: any = {};
+
+        if (requestParameters['force'] != null) {
+            queryParameters['force'] = requestParameters['force'];
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -691,7 +696,7 @@ export class RootServerApi extends runtime.BaseAPI {
     }
 
     /**
-     * Deletes a service body by id.
+     * Deletes a service body by id. If the service body has meetings, use force=true to delete them as well.
      * Deletes a service body
      */
     async deleteServiceBody(requestParameters: DeleteServiceBodyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
@@ -1737,3 +1742,12 @@ export class RootServerApi extends runtime.BaseAPI {
     }
 
 }
+
+/**
+ * @export
+ */
+export const DeleteServiceBodyForceEnum = {
+    True: 'true',
+    False: 'false'
+} as const;
+export type DeleteServiceBodyForceEnum = typeof DeleteServiceBodyForceEnum[keyof typeof DeleteServiceBodyForceEnum];

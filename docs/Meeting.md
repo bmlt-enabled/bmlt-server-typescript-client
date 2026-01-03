@@ -42,7 +42,6 @@ Name | Type
 `busLines` | string
 `trainLines` | string
 `comments` | string
-`adminNotes` | string
 `customFields` | { [key: string]: string; }
 `id` | number
 
@@ -89,7 +88,6 @@ const example = {
   "busLines": string,
   "trainLines": string,
   "comments": string,
-  "adminNotes": string,
   "customFields": {key1=value1, key2=value2},
   "id": 0,
 } satisfies Meeting

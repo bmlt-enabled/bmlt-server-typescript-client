@@ -42,7 +42,6 @@ Name | Type
 `busLines` | string
 `trainLines` | string
 `comments` | string
-`adminNotes` | string
 `customFields` | { [key: string]: string; }
 
 ## Example
@@ -88,7 +87,6 @@ const example = {
   "busLines": string,
   "trainLines": string,
   "comments": string,
-  "adminNotes": string,
   "customFields": {"key1":"value1","key2":"value2"},
 } satisfies MeetingBase
 
