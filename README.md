@@ -1,4 +1,4 @@
-# bmlt-server-client@2.0.2
+# bmlt-server-client@1.4.0
 
 A TypeScript SDK client for the localhost API.
 
