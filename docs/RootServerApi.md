@@ -765,11 +765,11 @@ example().catch(console.error);
 
 ## deleteServiceBody
 
-> deleteServiceBody(serviceBodyId)
+> deleteServiceBody(serviceBodyId, force)
 
 Deletes a service body
 
-Deletes a service body by id.
+Deletes a service body by id. If the service body has meetings, use force&#x3D;true to delete them as well.
 
 ### Example
 
@@ -791,6 +791,8 @@ async function example() {
   const body = {
     // number | ID of service body
     serviceBodyId: 1,
+    // 'true' | 'false' | Force deletion of service body and all associated meetings (optional)
+    force: false,
   } satisfies DeleteServiceBodyRequest;
 
   try {
@@ -811,6 +813,7 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **serviceBodyId** | `number` | ID of service body | [Defaults to `undefined`] |
+| **force** | `true`, `false` | Force deletion of service body and all associated meetings | [Optional] [Defaults to `&#39;false&#39;`] [Enum: true, false] |
 
 ### Return type
 
@@ -833,7 +836,7 @@ example().catch(console.error);
 | **401** | Returns when user is not authenticated. |  -  |
 | **403** | Returns when user is unauthorized to perform action. |  -  |
 | **404** | Returns when no service body exists. |  -  |
-| **409** | Returns when service body has children. |  -  |
+| **409** | Returns when service body has children or meetings (when force&#x3D;false). |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
