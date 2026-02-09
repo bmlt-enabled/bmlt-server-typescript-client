@@ -229,10 +229,9 @@ export interface UpdateUserRequest {
 export class RootServerApi extends runtime.BaseAPI {
 
     /**
-     * Revoke token and logout.
-     * Revokes a token
+     * Creates request options for authLogout without sending the request
      */
-    async authLogoutRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async authLogoutRequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -245,12 +244,21 @@ export class RootServerApi extends runtime.BaseAPI {
 
         let urlPath = `/api/v1/auth/logout`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Revoke token and logout.
+     * Revokes a token
+     */
+    async authLogoutRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.authLogoutRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -264,10 +272,9 @@ export class RootServerApi extends runtime.BaseAPI {
     }
 
     /**
-     * Refresh token.
-     * Revokes and issues a new token
+     * Creates request options for authRefresh without sending the request
      */
-    async authRefreshRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Token>> {
+    async authRefreshRequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -280,12 +287,21 @@ export class RootServerApi extends runtime.BaseAPI {
 
         let urlPath = `/api/v1/auth/refresh`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Refresh token.
+     * Revokes and issues a new token
+     */
+    async authRefreshRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Token>> {
+        const requestOptions = await this.authRefreshRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => TokenFromJSON(jsonValue));
     }
@@ -300,10 +316,9 @@ export class RootServerApi extends runtime.BaseAPI {
     }
 
     /**
-     * Exchange credentials for a new token
-     * Creates a token
+     * Creates request options for authToken without sending the request
      */
-    async authTokenRaw(requestParameters: AuthTokenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Token>> {
+    async authTokenRequestOpts(requestParameters: AuthTokenRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['tokenCredentials'] == null) {
             throw new runtime.RequiredError(
                 'tokenCredentials',
@@ -320,13 +335,22 @@ export class RootServerApi extends runtime.BaseAPI {
 
         let urlPath = `/api/v1/auth/token`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: TokenCredentialsToJSON(requestParameters['tokenCredentials']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Exchange credentials for a new token
+     * Creates a token
+     */
+    async authTokenRaw(requestParameters: AuthTokenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Token>> {
+        const requestOptions = await this.authTokenRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => TokenFromJSON(jsonValue));
     }
@@ -341,10 +365,9 @@ export class RootServerApi extends runtime.BaseAPI {
     }
 
     /**
-     * Tests some errors.
-     * Tests some errors
+     * Creates request options for createErrorTest without sending the request
      */
-    async createErrorTestRaw(requestParameters: CreateErrorTestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ErrorTest>> {
+    async createErrorTestRequestOpts(requestParameters: CreateErrorTestRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['errorTest'] == null) {
             throw new runtime.RequiredError(
                 'errorTest',
@@ -366,13 +389,22 @@ export class RootServerApi extends runtime.BaseAPI {
 
         let urlPath = `/api/v1/errortest`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: ErrorTestToJSON(requestParameters['errorTest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Tests some errors.
+     * Tests some errors
+     */
+    async createErrorTestRaw(requestParameters: CreateErrorTestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ErrorTest>> {
+        const requestOptions = await this.createErrorTestRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ErrorTestFromJSON(jsonValue));
     }
@@ -387,10 +419,9 @@ export class RootServerApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates a format.
-     * Creates a format
+     * Creates request options for createFormat without sending the request
      */
-    async createFormatRaw(requestParameters: CreateFormatRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Format>> {
+    async createFormatRequestOpts(requestParameters: CreateFormatRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['formatCreate'] == null) {
             throw new runtime.RequiredError(
                 'formatCreate',
@@ -412,13 +443,22 @@ export class RootServerApi extends runtime.BaseAPI {
 
         let urlPath = `/api/v1/formats`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: FormatCreateToJSON(requestParameters['formatCreate']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Creates a format.
+     * Creates a format
+     */
+    async createFormatRaw(requestParameters: CreateFormatRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Format>> {
+        const requestOptions = await this.createFormatRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => FormatFromJSON(jsonValue));
     }
@@ -433,10 +473,9 @@ export class RootServerApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates a meeting.
-     * Creates a meeting
+     * Creates request options for createMeeting without sending the request
      */
-    async createMeetingRaw(requestParameters: CreateMeetingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Meeting>> {
+    async createMeetingRequestOpts(requestParameters: CreateMeetingRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['meetingCreate'] == null) {
             throw new runtime.RequiredError(
                 'meetingCreate',
@@ -458,13 +497,22 @@ export class RootServerApi extends runtime.BaseAPI {
 
         let urlPath = `/api/v1/meetings`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: MeetingCreateToJSON(requestParameters['meetingCreate']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Creates a meeting.
+     * Creates a meeting
+     */
+    async createMeetingRaw(requestParameters: CreateMeetingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Meeting>> {
+        const requestOptions = await this.createMeetingRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MeetingFromJSON(jsonValue));
     }
@@ -479,10 +527,9 @@ export class RootServerApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates a service body.
-     * Creates a service body
+     * Creates request options for createServiceBody without sending the request
      */
-    async createServiceBodyRaw(requestParameters: CreateServiceBodyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ServiceBody>> {
+    async createServiceBodyRequestOpts(requestParameters: CreateServiceBodyRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['serviceBodyCreate'] == null) {
             throw new runtime.RequiredError(
                 'serviceBodyCreate',
@@ -504,13 +551,22 @@ export class RootServerApi extends runtime.BaseAPI {
 
         let urlPath = `/api/v1/servicebodies`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: ServiceBodyCreateToJSON(requestParameters['serviceBodyCreate']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Creates a service body.
+     * Creates a service body
+     */
+    async createServiceBodyRaw(requestParameters: CreateServiceBodyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ServiceBody>> {
+        const requestOptions = await this.createServiceBodyRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ServiceBodyFromJSON(jsonValue));
     }
@@ -525,10 +581,9 @@ export class RootServerApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates a user.
-     * Creates a user
+     * Creates request options for createUser without sending the request
      */
-    async createUserRaw(requestParameters: CreateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<User>> {
+    async createUserRequestOpts(requestParameters: CreateUserRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['userCreate'] == null) {
             throw new runtime.RequiredError(
                 'userCreate',
@@ -550,13 +605,22 @@ export class RootServerApi extends runtime.BaseAPI {
 
         let urlPath = `/api/v1/users`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: UserCreateToJSON(requestParameters['userCreate']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Creates a user.
+     * Creates a user
+     */
+    async createUserRaw(requestParameters: CreateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<User>> {
+        const requestOptions = await this.createUserRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UserFromJSON(jsonValue));
     }
@@ -571,10 +635,9 @@ export class RootServerApi extends runtime.BaseAPI {
     }
 
     /**
-     * Deletes a format by id.
-     * Deletes a format
+     * Creates request options for deleteFormat without sending the request
      */
-    async deleteFormatRaw(requestParameters: DeleteFormatRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteFormatRequestOpts(requestParameters: DeleteFormatRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['formatId'] == null) {
             throw new runtime.RequiredError(
                 'formatId',
@@ -595,12 +658,21 @@ export class RootServerApi extends runtime.BaseAPI {
         let urlPath = `/api/v1/formats/{formatId}`;
         urlPath = urlPath.replace(`{${"formatId"}}`, encodeURIComponent(String(requestParameters['formatId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Deletes a format by id.
+     * Deletes a format
+     */
+    async deleteFormatRaw(requestParameters: DeleteFormatRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.deleteFormatRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -614,10 +686,9 @@ export class RootServerApi extends runtime.BaseAPI {
     }
 
     /**
-     * Deletes a meeting by id.
-     * Deletes a meeting
+     * Creates request options for deleteMeeting without sending the request
      */
-    async deleteMeetingRaw(requestParameters: DeleteMeetingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteMeetingRequestOpts(requestParameters: DeleteMeetingRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['meetingId'] == null) {
             throw new runtime.RequiredError(
                 'meetingId',
@@ -638,12 +709,21 @@ export class RootServerApi extends runtime.BaseAPI {
         let urlPath = `/api/v1/meetings/{meetingId}`;
         urlPath = urlPath.replace(`{${"meetingId"}}`, encodeURIComponent(String(requestParameters['meetingId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Deletes a meeting by id.
+     * Deletes a meeting
+     */
+    async deleteMeetingRaw(requestParameters: DeleteMeetingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.deleteMeetingRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -657,10 +737,9 @@ export class RootServerApi extends runtime.BaseAPI {
     }
 
     /**
-     * Deletes a service body by id. If the service body has meetings, use force=true to delete them as well.
-     * Deletes a service body
+     * Creates request options for deleteServiceBody without sending the request
      */
-    async deleteServiceBodyRaw(requestParameters: DeleteServiceBodyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteServiceBodyRequestOpts(requestParameters: DeleteServiceBodyRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['serviceBodyId'] == null) {
             throw new runtime.RequiredError(
                 'serviceBodyId',
@@ -685,12 +764,21 @@ export class RootServerApi extends runtime.BaseAPI {
         let urlPath = `/api/v1/servicebodies/{serviceBodyId}`;
         urlPath = urlPath.replace(`{${"serviceBodyId"}}`, encodeURIComponent(String(requestParameters['serviceBodyId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Deletes a service body by id. If the service body has meetings, use force=true to delete them as well.
+     * Deletes a service body
+     */
+    async deleteServiceBodyRaw(requestParameters: DeleteServiceBodyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.deleteServiceBodyRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -704,10 +792,9 @@ export class RootServerApi extends runtime.BaseAPI {
     }
 
     /**
-     * Deletes a user by id
-     * Deletes a user
+     * Creates request options for deleteUser without sending the request
      */
-    async deleteUserRaw(requestParameters: DeleteUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteUserRequestOpts(requestParameters: DeleteUserRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -728,12 +815,21 @@ export class RootServerApi extends runtime.BaseAPI {
         let urlPath = `/api/v1/users/{userId}`;
         urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Deletes a user by id
+     * Deletes a user
+     */
+    async deleteUserRaw(requestParameters: DeleteUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.deleteUserRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -747,10 +843,9 @@ export class RootServerApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve a format
-     * Retrieves a format
+     * Creates request options for getFormat without sending the request
      */
-    async getFormatRaw(requestParameters: GetFormatRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Format>> {
+    async getFormatRequestOpts(requestParameters: GetFormatRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['formatId'] == null) {
             throw new runtime.RequiredError(
                 'formatId',
@@ -771,12 +866,21 @@ export class RootServerApi extends runtime.BaseAPI {
         let urlPath = `/api/v1/formats/{formatId}`;
         urlPath = urlPath.replace(`{${"formatId"}}`, encodeURIComponent(String(requestParameters['formatId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieve a format
+     * Retrieves a format
+     */
+    async getFormatRaw(requestParameters: GetFormatRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Format>> {
+        const requestOptions = await this.getFormatRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => FormatFromJSON(jsonValue));
     }
@@ -791,10 +895,9 @@ export class RootServerApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve formats
-     * Retrieves formats
+     * Creates request options for getFormats without sending the request
      */
-    async getFormatsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Format>>> {
+    async getFormatsRequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -807,12 +910,21 @@ export class RootServerApi extends runtime.BaseAPI {
 
         let urlPath = `/api/v1/formats`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieve formats
+     * Retrieves formats
+     */
+    async getFormatsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Format>>> {
+        const requestOptions = await this.getFormatsRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(FormatFromJSON));
     }
@@ -827,10 +939,9 @@ export class RootServerApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve the laravel log if it exists.
-     * Retrieves laravel log
+     * Creates request options for getLaravelLog without sending the request
      */
-    async getLaravelLogRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Blob>> {
+    async getLaravelLogRequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -843,12 +954,21 @@ export class RootServerApi extends runtime.BaseAPI {
 
         let urlPath = `/api/v1/logs/laravel`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieve the laravel log if it exists.
+     * Retrieves laravel log
+     */
+    async getLaravelLogRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Blob>> {
+        const requestOptions = await this.getLaravelLogRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.BlobApiResponse(response);
     }
@@ -863,10 +983,9 @@ export class RootServerApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve a meeting.
-     * Retrieves a meeting
+     * Creates request options for getMeeting without sending the request
      */
-    async getMeetingRaw(requestParameters: GetMeetingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Meeting>> {
+    async getMeetingRequestOpts(requestParameters: GetMeetingRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['meetingId'] == null) {
             throw new runtime.RequiredError(
                 'meetingId',
@@ -887,12 +1006,21 @@ export class RootServerApi extends runtime.BaseAPI {
         let urlPath = `/api/v1/meetings/{meetingId}`;
         urlPath = urlPath.replace(`{${"meetingId"}}`, encodeURIComponent(String(requestParameters['meetingId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieve a meeting.
+     * Retrieves a meeting
+     */
+    async getMeetingRaw(requestParameters: GetMeetingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Meeting>> {
+        const requestOptions = await this.getMeetingRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MeetingFromJSON(jsonValue));
     }
@@ -907,10 +1035,9 @@ export class RootServerApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve all changes made to a specific meeting.
-     * Retrieve changes for a meeting
+     * Creates request options for getMeetingChanges without sending the request
      */
-    async getMeetingChangesRaw(requestParameters: GetMeetingChangesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<MeetingChangeResource>>> {
+    async getMeetingChangesRequestOpts(requestParameters: GetMeetingChangesRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['meetingId'] == null) {
             throw new runtime.RequiredError(
                 'meetingId',
@@ -931,12 +1058,21 @@ export class RootServerApi extends runtime.BaseAPI {
         let urlPath = `/api/v1/meetings/{meetingId}/changes`;
         urlPath = urlPath.replace(`{${"meetingId"}}`, encodeURIComponent(String(requestParameters['meetingId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieve all changes made to a specific meeting.
+     * Retrieve changes for a meeting
+     */
+    async getMeetingChangesRaw(requestParameters: GetMeetingChangesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<MeetingChangeResource>>> {
+        const requestOptions = await this.getMeetingChangesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(MeetingChangeResourceFromJSON));
     }
@@ -951,10 +1087,9 @@ export class RootServerApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve meetings for authenticated user.
-     * Retrieves meetings
+     * Creates request options for getMeetings without sending the request
      */
-    async getMeetingsRaw(requestParameters: GetMeetingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Meeting>>> {
+    async getMeetingsRequestOpts(requestParameters: GetMeetingsRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         if (requestParameters['meetingIds'] != null) {
@@ -983,12 +1118,21 @@ export class RootServerApi extends runtime.BaseAPI {
 
         let urlPath = `/api/v1/meetings`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieve meetings for authenticated user.
+     * Retrieves meetings
+     */
+    async getMeetingsRaw(requestParameters: GetMeetingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Meeting>>> {
+        const requestOptions = await this.getMeetingsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(MeetingFromJSON));
     }
@@ -1003,10 +1147,9 @@ export class RootServerApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve a single root server id.
-     * Retrieves a root server
+     * Creates request options for getRootServer without sending the request
      */
-    async getRootServerRaw(requestParameters: GetRootServerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RootServer>> {
+    async getRootServerRequestOpts(requestParameters: GetRootServerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['rootServerId'] == null) {
             throw new runtime.RequiredError(
                 'rootServerId',
@@ -1022,12 +1165,21 @@ export class RootServerApi extends runtime.BaseAPI {
         let urlPath = `/api/v1/rootservers/{rootServerId}`;
         urlPath = urlPath.replace(`{${"rootServerId"}}`, encodeURIComponent(String(requestParameters['rootServerId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieve a single root server id.
+     * Retrieves a root server
+     */
+    async getRootServerRaw(requestParameters: GetRootServerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RootServer>> {
+        const requestOptions = await this.getRootServerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => RootServerFromJSON(jsonValue));
     }
@@ -1042,10 +1194,9 @@ export class RootServerApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve root servers.
-     * Retrieves root servers
+     * Creates request options for getRootServers without sending the request
      */
-    async getRootServersRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<RootServer>>> {
+    async getRootServersRequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1053,12 +1204,21 @@ export class RootServerApi extends runtime.BaseAPI {
 
         let urlPath = `/api/v1/rootservers`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieve root servers.
+     * Retrieves root servers
+     */
+    async getRootServersRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<RootServer>>> {
+        const requestOptions = await this.getRootServersRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(RootServerFromJSON));
     }
@@ -1073,10 +1233,9 @@ export class RootServerApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve service bodies for authenticated user.
-     * Retrieves service bodies
+     * Creates request options for getServiceBodies without sending the request
      */
-    async getServiceBodiesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ServiceBody>>> {
+    async getServiceBodiesRequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1089,12 +1248,21 @@ export class RootServerApi extends runtime.BaseAPI {
 
         let urlPath = `/api/v1/servicebodies`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieve service bodies for authenticated user.
+     * Retrieves service bodies
+     */
+    async getServiceBodiesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ServiceBody>>> {
+        const requestOptions = await this.getServiceBodiesRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(ServiceBodyFromJSON));
     }
@@ -1109,10 +1277,9 @@ export class RootServerApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve a single service body by id.
-     * Retrieves a service body
+     * Creates request options for getServiceBody without sending the request
      */
-    async getServiceBodyRaw(requestParameters: GetServiceBodyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ServiceBody>> {
+    async getServiceBodyRequestOpts(requestParameters: GetServiceBodyRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['serviceBodyId'] == null) {
             throw new runtime.RequiredError(
                 'serviceBodyId',
@@ -1133,12 +1300,21 @@ export class RootServerApi extends runtime.BaseAPI {
         let urlPath = `/api/v1/servicebodies/{serviceBodyId}`;
         urlPath = urlPath.replace(`{${"serviceBodyId"}}`, encodeURIComponent(String(requestParameters['serviceBodyId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieve a single service body by id.
+     * Retrieves a service body
+     */
+    async getServiceBodyRaw(requestParameters: GetServiceBodyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ServiceBody>> {
+        const requestOptions = await this.getServiceBodyRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ServiceBodyFromJSON(jsonValue));
     }
@@ -1153,10 +1329,9 @@ export class RootServerApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve all server settings. Only accessible to server administrators.
-     * Retrieves all settings
+     * Creates request options for getSettings without sending the request
      */
-    async getSettingsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsObject>> {
+    async getSettingsRequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1169,12 +1344,21 @@ export class RootServerApi extends runtime.BaseAPI {
 
         let urlPath = `/api/v1/settings`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieve all server settings. Only accessible to server administrators.
+     * Retrieves all settings
+     */
+    async getSettingsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SettingsObject>> {
+        const requestOptions = await this.getSettingsRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SettingsObjectFromJSON(jsonValue));
     }
@@ -1189,10 +1373,9 @@ export class RootServerApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve single user.
-     * Retrieves a single user
+     * Creates request options for getUser without sending the request
      */
-    async getUserRaw(requestParameters: GetUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<User>> {
+    async getUserRequestOpts(requestParameters: GetUserRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -1213,12 +1396,21 @@ export class RootServerApi extends runtime.BaseAPI {
         let urlPath = `/api/v1/users/{userId}`;
         urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieve single user.
+     * Retrieves a single user
+     */
+    async getUserRaw(requestParameters: GetUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<User>> {
+        const requestOptions = await this.getUserRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UserFromJSON(jsonValue));
     }
@@ -1233,10 +1425,9 @@ export class RootServerApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve users for authenticated user.
-     * Retrieves users
+     * Creates request options for getUsers without sending the request
      */
-    async getUsersRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<User>>> {
+    async getUsersRequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1249,12 +1440,21 @@ export class RootServerApi extends runtime.BaseAPI {
 
         let urlPath = `/api/v1/users`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieve users for authenticated user.
+     * Retrieves users
+     */
+    async getUsersRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<User>>> {
+        const requestOptions = await this.getUsersRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(UserFromJSON));
     }
@@ -1269,10 +1469,9 @@ export class RootServerApi extends runtime.BaseAPI {
     }
 
     /**
-     * Patches a user by id.
-     * Patches a user
+     * Creates request options for partialUpdateUser without sending the request
      */
-    async partialUpdateUserRaw(requestParameters: PartialUpdateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async partialUpdateUserRequestOpts(requestParameters: PartialUpdateUserRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -1302,13 +1501,22 @@ export class RootServerApi extends runtime.BaseAPI {
         let urlPath = `/api/v1/users/{userId}`;
         urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
             body: UserPartialUpdateToJSON(requestParameters['userPartialUpdate']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Patches a user by id.
+     * Patches a user
+     */
+    async partialUpdateUserRaw(requestParameters: PartialUpdateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.partialUpdateUserRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -1322,10 +1530,9 @@ export class RootServerApi extends runtime.BaseAPI {
     }
 
     /**
-     * Patches a single format by id.
-     * Patches a format
+     * Creates request options for patchFormat without sending the request
      */
-    async patchFormatRaw(requestParameters: PatchFormatRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async patchFormatRequestOpts(requestParameters: PatchFormatRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['formatId'] == null) {
             throw new runtime.RequiredError(
                 'formatId',
@@ -1355,13 +1562,22 @@ export class RootServerApi extends runtime.BaseAPI {
         let urlPath = `/api/v1/formats/{formatId}`;
         urlPath = urlPath.replace(`{${"formatId"}}`, encodeURIComponent(String(requestParameters['formatId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
             body: FormatPartialUpdateToJSON(requestParameters['formatPartialUpdate']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Patches a single format by id.
+     * Patches a format
+     */
+    async patchFormatRaw(requestParameters: PatchFormatRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.patchFormatRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -1375,10 +1591,9 @@ export class RootServerApi extends runtime.BaseAPI {
     }
 
     /**
-     * Patches a meeting by id
-     * Patches a meeting
+     * Creates request options for patchMeeting without sending the request
      */
-    async patchMeetingRaw(requestParameters: PatchMeetingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async patchMeetingRequestOpts(requestParameters: PatchMeetingRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['meetingId'] == null) {
             throw new runtime.RequiredError(
                 'meetingId',
@@ -1412,13 +1627,22 @@ export class RootServerApi extends runtime.BaseAPI {
         let urlPath = `/api/v1/meetings/{meetingId}`;
         urlPath = urlPath.replace(`{${"meetingId"}}`, encodeURIComponent(String(requestParameters['meetingId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
             body: MeetingPartialUpdateToJSON(requestParameters['meetingPartialUpdate']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Patches a meeting by id
+     * Patches a meeting
+     */
+    async patchMeetingRaw(requestParameters: PatchMeetingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.patchMeetingRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -1432,10 +1656,9 @@ export class RootServerApi extends runtime.BaseAPI {
     }
 
     /**
-     * Patches a single service body by id.
-     * Patches a service body
+     * Creates request options for patchServiceBody without sending the request
      */
-    async patchServiceBodyRaw(requestParameters: PatchServiceBodyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async patchServiceBodyRequestOpts(requestParameters: PatchServiceBodyRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['serviceBodyId'] == null) {
             throw new runtime.RequiredError(
                 'serviceBodyId',
@@ -1465,13 +1688,22 @@ export class RootServerApi extends runtime.BaseAPI {
         let urlPath = `/api/v1/servicebodies/{serviceBodyId}`;
         urlPath = urlPath.replace(`{${"serviceBodyId"}}`, encodeURIComponent(String(requestParameters['serviceBodyId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
             body: ServiceBodyPartialUpdateToJSON(requestParameters['serviceBodyPartialUpdate']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Patches a single service body by id.
+     * Patches a service body
+     */
+    async patchServiceBodyRaw(requestParameters: PatchServiceBodyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.patchServiceBodyRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -1485,10 +1717,9 @@ export class RootServerApi extends runtime.BaseAPI {
     }
 
     /**
-     * Updates a format.
-     * Updates a format
+     * Creates request options for updateFormat without sending the request
      */
-    async updateFormatRaw(requestParameters: UpdateFormatRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async updateFormatRequestOpts(requestParameters: UpdateFormatRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['formatId'] == null) {
             throw new runtime.RequiredError(
                 'formatId',
@@ -1518,13 +1749,22 @@ export class RootServerApi extends runtime.BaseAPI {
         let urlPath = `/api/v1/formats/{formatId}`;
         urlPath = urlPath.replace(`{${"formatId"}}`, encodeURIComponent(String(requestParameters['formatId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
             body: FormatUpdateToJSON(requestParameters['formatUpdate']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Updates a format.
+     * Updates a format
+     */
+    async updateFormatRaw(requestParameters: UpdateFormatRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.updateFormatRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -1538,10 +1778,9 @@ export class RootServerApi extends runtime.BaseAPI {
     }
 
     /**
-     * Updates a meeting.
-     * Updates a meeting
+     * Creates request options for updateMeeting without sending the request
      */
-    async updateMeetingRaw(requestParameters: UpdateMeetingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async updateMeetingRequestOpts(requestParameters: UpdateMeetingRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['meetingId'] == null) {
             throw new runtime.RequiredError(
                 'meetingId',
@@ -1571,13 +1810,22 @@ export class RootServerApi extends runtime.BaseAPI {
         let urlPath = `/api/v1/meetings/{meetingId}`;
         urlPath = urlPath.replace(`{${"meetingId"}}`, encodeURIComponent(String(requestParameters['meetingId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
             body: MeetingUpdateToJSON(requestParameters['meetingUpdate']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Updates a meeting.
+     * Updates a meeting
+     */
+    async updateMeetingRaw(requestParameters: UpdateMeetingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.updateMeetingRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -1591,10 +1839,9 @@ export class RootServerApi extends runtime.BaseAPI {
     }
 
     /**
-     * Updates a single service body.
-     * Updates a Service Body
+     * Creates request options for updateServiceBody without sending the request
      */
-    async updateServiceBodyRaw(requestParameters: UpdateServiceBodyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async updateServiceBodyRequestOpts(requestParameters: UpdateServiceBodyRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['serviceBodyId'] == null) {
             throw new runtime.RequiredError(
                 'serviceBodyId',
@@ -1624,13 +1871,22 @@ export class RootServerApi extends runtime.BaseAPI {
         let urlPath = `/api/v1/servicebodies/{serviceBodyId}`;
         urlPath = urlPath.replace(`{${"serviceBodyId"}}`, encodeURIComponent(String(requestParameters['serviceBodyId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
             body: ServiceBodyUpdateToJSON(requestParameters['serviceBodyUpdate']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Updates a single service body.
+     * Updates a Service Body
+     */
+    async updateServiceBodyRaw(requestParameters: UpdateServiceBodyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.updateServiceBodyRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -1644,10 +1900,9 @@ export class RootServerApi extends runtime.BaseAPI {
     }
 
     /**
-     * Updates one or more server settings. Only accessible to server administrators.
-     * Update settings
+     * Creates request options for updateSettings without sending the request
      */
-    async updateSettingsRaw(requestParameters: UpdateSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async updateSettingsRequestOpts(requestParameters: UpdateSettingsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['settingsUpdate'] == null) {
             throw new runtime.RequiredError(
                 'settingsUpdate',
@@ -1669,13 +1924,22 @@ export class RootServerApi extends runtime.BaseAPI {
 
         let urlPath = `/api/v1/settings`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
             body: SettingsUpdateToJSON(requestParameters['settingsUpdate']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Updates one or more server settings. Only accessible to server administrators.
+     * Update settings
+     */
+    async updateSettingsRaw(requestParameters: UpdateSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.updateSettingsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -1689,10 +1953,9 @@ export class RootServerApi extends runtime.BaseAPI {
     }
 
     /**
-     * Updates a user.
-     * Update single user
+     * Creates request options for updateUser without sending the request
      */
-    async updateUserRaw(requestParameters: UpdateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async updateUserRequestOpts(requestParameters: UpdateUserRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -1722,13 +1985,22 @@ export class RootServerApi extends runtime.BaseAPI {
         let urlPath = `/api/v1/users/{userId}`;
         urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
             body: UserUpdateToJSON(requestParameters['userUpdate']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Updates a user.
+     * Update single user
+     */
+    async updateUserRaw(requestParameters: UpdateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.updateUserRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
