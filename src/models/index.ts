@@ -26,6 +26,7 @@ export * from './ServerError';
 export * from './ServiceBody';
 export * from './ServiceBodyBase';
 export * from './ServiceBodyCreate';
+export * from './ServiceBodyEditor';
 export * from './ServiceBodyPartialUpdate';
 export * from './ServiceBodyUpdate';
 export * from './SettingsBase';

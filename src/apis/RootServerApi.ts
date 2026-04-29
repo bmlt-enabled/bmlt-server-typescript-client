@@ -12,99 +12,157 @@
  * Do not edit the class manually.
  */
 
-
 import * as runtime from '../runtime';
-import type {
-  AuthenticationError,
-  AuthorizationError,
-  ConflictError,
-  ErrorTest,
-  Format,
-  FormatCreate,
-  FormatPartialUpdate,
-  FormatUpdate,
-  Meeting,
-  MeetingChangeResource,
-  MeetingCreate,
-  MeetingPartialUpdate,
-  MeetingUpdate,
-  NotFoundError,
-  RootServer,
-  ServerError,
-  ServiceBody,
-  ServiceBodyCreate,
-  ServiceBodyPartialUpdate,
-  ServiceBodyUpdate,
-  SettingsObject,
-  SettingsUpdate,
-  Token,
-  TokenCredentials,
-  User,
-  UserCreate,
-  UserPartialUpdate,
-  UserUpdate,
-  ValidationError,
-} from '../models/index';
 import {
+    type AuthenticationError,
     AuthenticationErrorFromJSON,
     AuthenticationErrorToJSON,
+} from '../models/AuthenticationError';
+import {
+    type AuthorizationError,
     AuthorizationErrorFromJSON,
     AuthorizationErrorToJSON,
+} from '../models/AuthorizationError';
+import {
+    type ConflictError,
     ConflictErrorFromJSON,
     ConflictErrorToJSON,
+} from '../models/ConflictError';
+import {
+    type ErrorTest,
     ErrorTestFromJSON,
     ErrorTestToJSON,
+} from '../models/ErrorTest';
+import {
+    type Format,
     FormatFromJSON,
     FormatToJSON,
+} from '../models/Format';
+import {
+    type FormatCreate,
     FormatCreateFromJSON,
     FormatCreateToJSON,
+} from '../models/FormatCreate';
+import {
+    type FormatPartialUpdate,
     FormatPartialUpdateFromJSON,
     FormatPartialUpdateToJSON,
+} from '../models/FormatPartialUpdate';
+import {
+    type FormatUpdate,
     FormatUpdateFromJSON,
     FormatUpdateToJSON,
+} from '../models/FormatUpdate';
+import {
+    type Meeting,
     MeetingFromJSON,
     MeetingToJSON,
+} from '../models/Meeting';
+import {
+    type MeetingChangeResource,
     MeetingChangeResourceFromJSON,
     MeetingChangeResourceToJSON,
+} from '../models/MeetingChangeResource';
+import {
+    type MeetingCreate,
     MeetingCreateFromJSON,
     MeetingCreateToJSON,
+} from '../models/MeetingCreate';
+import {
+    type MeetingPartialUpdate,
     MeetingPartialUpdateFromJSON,
     MeetingPartialUpdateToJSON,
+} from '../models/MeetingPartialUpdate';
+import {
+    type MeetingUpdate,
     MeetingUpdateFromJSON,
     MeetingUpdateToJSON,
+} from '../models/MeetingUpdate';
+import {
+    type NotFoundError,
     NotFoundErrorFromJSON,
     NotFoundErrorToJSON,
+} from '../models/NotFoundError';
+import {
+    type RootServer,
     RootServerFromJSON,
     RootServerToJSON,
+} from '../models/RootServer';
+import {
+    type ServerError,
     ServerErrorFromJSON,
     ServerErrorToJSON,
+} from '../models/ServerError';
+import {
+    type ServiceBody,
     ServiceBodyFromJSON,
     ServiceBodyToJSON,
+} from '../models/ServiceBody';
+import {
+    type ServiceBodyCreate,
     ServiceBodyCreateFromJSON,
     ServiceBodyCreateToJSON,
+} from '../models/ServiceBodyCreate';
+import {
+    type ServiceBodyEditor,
+    ServiceBodyEditorFromJSON,
+    ServiceBodyEditorToJSON,
+} from '../models/ServiceBodyEditor';
+import {
+    type ServiceBodyPartialUpdate,
     ServiceBodyPartialUpdateFromJSON,
     ServiceBodyPartialUpdateToJSON,
+} from '../models/ServiceBodyPartialUpdate';
+import {
+    type ServiceBodyUpdate,
     ServiceBodyUpdateFromJSON,
     ServiceBodyUpdateToJSON,
+} from '../models/ServiceBodyUpdate';
+import {
+    type SettingsObject,
     SettingsObjectFromJSON,
     SettingsObjectToJSON,
+} from '../models/SettingsObject';
+import {
+    type SettingsUpdate,
     SettingsUpdateFromJSON,
     SettingsUpdateToJSON,
+} from '../models/SettingsUpdate';
+import {
+    type Token,
     TokenFromJSON,
     TokenToJSON,
+} from '../models/Token';
+import {
+    type TokenCredentials,
     TokenCredentialsFromJSON,
     TokenCredentialsToJSON,
+} from '../models/TokenCredentials';
+import {
+    type User,
     UserFromJSON,
     UserToJSON,
+} from '../models/User';
+import {
+    type UserCreate,
     UserCreateFromJSON,
     UserCreateToJSON,
+} from '../models/UserCreate';
+import {
+    type UserPartialUpdate,
     UserPartialUpdateFromJSON,
     UserPartialUpdateToJSON,
+} from '../models/UserPartialUpdate';
+import {
+    type UserUpdate,
     UserUpdateFromJSON,
     UserUpdateToJSON,
+} from '../models/UserUpdate';
+import {
+    type ValidationError,
     ValidationErrorFromJSON,
     ValidationErrorToJSON,
-} from '../models/index';
+} from '../models/ValidationError';
 
 export interface AuthTokenRequest {
     tokenCredentials: TokenCredentials;
@@ -171,6 +229,10 @@ export interface GetRootServerRequest {
 }
 
 export interface GetServiceBodyRequest {
+    serviceBodyId: number;
+}
+
+export interface GetServiceBodyEditorsRequest {
     serviceBodyId: number;
 }
 
@@ -656,7 +718,7 @@ export class RootServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/formats/{formatId}`;
-        urlPath = urlPath.replace(`{${"formatId"}}`, encodeURIComponent(String(requestParameters['formatId'])));
+        urlPath = urlPath.replace('{formatId}', encodeURIComponent(String(requestParameters['formatId'])));
 
         return {
             path: urlPath,
@@ -707,7 +769,7 @@ export class RootServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/meetings/{meetingId}`;
-        urlPath = urlPath.replace(`{${"meetingId"}}`, encodeURIComponent(String(requestParameters['meetingId'])));
+        urlPath = urlPath.replace('{meetingId}', encodeURIComponent(String(requestParameters['meetingId'])));
 
         return {
             path: urlPath,
@@ -762,7 +824,7 @@ export class RootServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/servicebodies/{serviceBodyId}`;
-        urlPath = urlPath.replace(`{${"serviceBodyId"}}`, encodeURIComponent(String(requestParameters['serviceBodyId'])));
+        urlPath = urlPath.replace('{serviceBodyId}', encodeURIComponent(String(requestParameters['serviceBodyId'])));
 
         return {
             path: urlPath,
@@ -813,7 +875,7 @@ export class RootServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/users/{userId}`;
-        urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
+        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
 
         return {
             path: urlPath,
@@ -864,7 +926,7 @@ export class RootServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/formats/{formatId}`;
-        urlPath = urlPath.replace(`{${"formatId"}}`, encodeURIComponent(String(requestParameters['formatId'])));
+        urlPath = urlPath.replace('{formatId}', encodeURIComponent(String(requestParameters['formatId'])));
 
         return {
             path: urlPath,
@@ -1004,7 +1066,7 @@ export class RootServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/meetings/{meetingId}`;
-        urlPath = urlPath.replace(`{${"meetingId"}}`, encodeURIComponent(String(requestParameters['meetingId'])));
+        urlPath = urlPath.replace('{meetingId}', encodeURIComponent(String(requestParameters['meetingId'])));
 
         return {
             path: urlPath,
@@ -1056,7 +1118,7 @@ export class RootServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/meetings/{meetingId}/changes`;
-        urlPath = urlPath.replace(`{${"meetingId"}}`, encodeURIComponent(String(requestParameters['meetingId'])));
+        urlPath = urlPath.replace('{meetingId}', encodeURIComponent(String(requestParameters['meetingId'])));
 
         return {
             path: urlPath,
@@ -1163,7 +1225,7 @@ export class RootServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/rootservers/{rootServerId}`;
-        urlPath = urlPath.replace(`{${"rootServerId"}}`, encodeURIComponent(String(requestParameters['rootServerId'])));
+        urlPath = urlPath.replace('{rootServerId}', encodeURIComponent(String(requestParameters['rootServerId'])));
 
         return {
             path: urlPath,
@@ -1298,7 +1360,7 @@ export class RootServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/servicebodies/{serviceBodyId}`;
-        urlPath = urlPath.replace(`{${"serviceBodyId"}}`, encodeURIComponent(String(requestParameters['serviceBodyId'])));
+        urlPath = urlPath.replace('{serviceBodyId}', encodeURIComponent(String(requestParameters['serviceBodyId'])));
 
         return {
             path: urlPath,
@@ -1325,6 +1387,58 @@ export class RootServerApi extends runtime.BaseAPI {
      */
     async getServiceBody(requestParameters: GetServiceBodyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ServiceBody> {
         const response = await this.getServiceBodyRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for getServiceBodyEditors without sending the request
+     */
+    async getServiceBodyEditorsRequestOpts(requestParameters: GetServiceBodyEditorsRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['serviceBodyId'] == null) {
+            throw new runtime.RequiredError(
+                'serviceBodyId',
+                'Required parameter "serviceBodyId" was null or undefined when calling getServiceBodyEditors().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("bmltToken", []);
+        }
+
+
+        let urlPath = `/api/v1/servicebodies/{serviceBodyId}/editors`;
+        urlPath = urlPath.replace('{serviceBodyId}', encodeURIComponent(String(requestParameters['serviceBodyId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * Retrieve the meeting list editors assigned to a service body. Each editor includes a readOnly flag that is true when the calling user does not otherwise have access to manage that user via the users API.
+     * Retrieves the editors assigned to a service body
+     */
+    async getServiceBodyEditorsRaw(requestParameters: GetServiceBodyEditorsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ServiceBodyEditor>>> {
+        const requestOptions = await this.getServiceBodyEditorsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(ServiceBodyEditorFromJSON));
+    }
+
+    /**
+     * Retrieve the meeting list editors assigned to a service body. Each editor includes a readOnly flag that is true when the calling user does not otherwise have access to manage that user via the users API.
+     * Retrieves the editors assigned to a service body
+     */
+    async getServiceBodyEditors(requestParameters: GetServiceBodyEditorsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ServiceBodyEditor>> {
+        const response = await this.getServiceBodyEditorsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -1394,7 +1508,7 @@ export class RootServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/users/{userId}`;
-        urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
+        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
 
         return {
             path: urlPath,
@@ -1499,7 +1613,7 @@ export class RootServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/users/{userId}`;
-        urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
+        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
 
         return {
             path: urlPath,
@@ -1560,7 +1674,7 @@ export class RootServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/formats/{formatId}`;
-        urlPath = urlPath.replace(`{${"formatId"}}`, encodeURIComponent(String(requestParameters['formatId'])));
+        urlPath = urlPath.replace('{formatId}', encodeURIComponent(String(requestParameters['formatId'])));
 
         return {
             path: urlPath,
@@ -1625,7 +1739,7 @@ export class RootServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/meetings/{meetingId}`;
-        urlPath = urlPath.replace(`{${"meetingId"}}`, encodeURIComponent(String(requestParameters['meetingId'])));
+        urlPath = urlPath.replace('{meetingId}', encodeURIComponent(String(requestParameters['meetingId'])));
 
         return {
             path: urlPath,
@@ -1686,7 +1800,7 @@ export class RootServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/servicebodies/{serviceBodyId}`;
-        urlPath = urlPath.replace(`{${"serviceBodyId"}}`, encodeURIComponent(String(requestParameters['serviceBodyId'])));
+        urlPath = urlPath.replace('{serviceBodyId}', encodeURIComponent(String(requestParameters['serviceBodyId'])));
 
         return {
             path: urlPath,
@@ -1747,7 +1861,7 @@ export class RootServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/formats/{formatId}`;
-        urlPath = urlPath.replace(`{${"formatId"}}`, encodeURIComponent(String(requestParameters['formatId'])));
+        urlPath = urlPath.replace('{formatId}', encodeURIComponent(String(requestParameters['formatId'])));
 
         return {
             path: urlPath,
@@ -1808,7 +1922,7 @@ export class RootServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/meetings/{meetingId}`;
-        urlPath = urlPath.replace(`{${"meetingId"}}`, encodeURIComponent(String(requestParameters['meetingId'])));
+        urlPath = urlPath.replace('{meetingId}', encodeURIComponent(String(requestParameters['meetingId'])));
 
         return {
             path: urlPath,
@@ -1869,7 +1983,7 @@ export class RootServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/servicebodies/{serviceBodyId}`;
-        urlPath = urlPath.replace(`{${"serviceBodyId"}}`, encodeURIComponent(String(requestParameters['serviceBodyId'])));
+        urlPath = urlPath.replace('{serviceBodyId}', encodeURIComponent(String(requestParameters['serviceBodyId'])));
 
         return {
             path: urlPath,
@@ -1983,7 +2097,7 @@ export class RootServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/users/{userId}`;
-        urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
+        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
 
         return {
             path: urlPath,
