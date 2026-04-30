@@ -26,6 +26,7 @@ All URIs are relative to *http://localhost:8000/main_server*
 | [**getRootServers**](RootServerApi.md#getrootservers) | **GET** /api/v1/rootservers | Retrieves root servers |
 | [**getServiceBodies**](RootServerApi.md#getservicebodies) | **GET** /api/v1/servicebodies | Retrieves service bodies |
 | [**getServiceBody**](RootServerApi.md#getservicebody) | **GET** /api/v1/servicebodies/{serviceBodyId} | Retrieves a service body |
+| [**getServiceBodyEditors**](RootServerApi.md#getservicebodyeditors) | **GET** /api/v1/servicebodies/{serviceBodyId}/editors | Retrieves the editors assigned to a service body |
 | [**getSettings**](RootServerApi.md#getsettings) | **GET** /api/v1/settings | Retrieves all settings |
 | [**getUser**](RootServerApi.md#getuser) | **GET** /api/v1/users/{userId} | Retrieves a single user |
 | [**getUsers**](RootServerApi.md#getusers) | **GET** /api/v1/users | Retrieves users |
@@ -1608,6 +1609,80 @@ example().catch(console.error);
 |-------------|-------------|------------------|
 | **200** | Returns when user is authenticated. |  -  |
 | **401** | Returns when user is not authenticated. |  -  |
+| **404** | Returns when no service body exists. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## getServiceBodyEditors
+
+> Array&lt;ServiceBodyEditor&gt; getServiceBodyEditors(serviceBodyId)
+
+Retrieves the editors assigned to a service body
+
+Retrieve the meeting list editors assigned to a service body. Each editor includes a readOnly flag that is true when the calling user does not otherwise have access to manage that user via the users API.
+
+### Example
+
+```ts
+import {
+  Configuration,
+  RootServerApi,
+} from 'bmlt-server-client';
+import type { GetServiceBodyEditorsRequest } from 'bmlt-server-client';
+
+async function example() {
+  console.log("🚀 Testing bmlt-server-client SDK...");
+  const config = new Configuration({ 
+    // To configure OAuth2 access token for authorization: bmltToken password
+    accessToken: "YOUR ACCESS TOKEN",
+  });
+  const api = new RootServerApi(config);
+
+  const body = {
+    // number | ID of service body
+    serviceBodyId: 1,
+  } satisfies GetServiceBodyEditorsRequest;
+
+  try {
+    const data = await api.getServiceBodyEditors(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **serviceBodyId** | `number` | ID of service body | [Defaults to `undefined`] |
+
+### Return type
+
+[**Array&lt;ServiceBodyEditor&gt;**](ServiceBodyEditor.md)
+
+### Authorization
+
+[bmltToken password](../README.md#bmltToken-password)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Returns when user is authenticated. |  -  |
+| **401** | Returns when user is not authenticated. |  -  |
+| **403** | Returns when user is unauthorized to perform action. |  -  |
 | **404** | Returns when no service body exists. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)

@@ -28,6 +28,7 @@ docs/ServerError.md
 docs/ServiceBody.md
 docs/ServiceBodyBase.md
 docs/ServiceBodyCreate.md
+docs/ServiceBodyEditor.md
 docs/ServiceBodyPartialUpdate.md
 docs/ServiceBodyUpdate.md
 docs/SettingsBase.md
@@ -71,6 +72,7 @@ src/models/ServerError.ts
 src/models/ServiceBody.ts
 src/models/ServiceBodyBase.ts
 src/models/ServiceBodyCreate.ts
+src/models/ServiceBodyEditor.ts
 src/models/ServiceBodyPartialUpdate.ts
 src/models/ServiceBodyUpdate.ts
 src/models/SettingsBase.ts
