@@ -14,6 +14,7 @@ Name | Type
 `assignedUserIds` | Array&lt;number&gt;
 `url` | string
 `helpline` | string
+`meetingUpdateUrl` | string
 `email` | string
 `worldId` | string
 
@@ -32,6 +33,7 @@ const example = {
   "assignedUserIds": null,
   "url": string,
   "helpline": string,
+  "meetingUpdateUrl": https://example.com/meeting-update,
   "email": string,
   "worldId": string,
 } satisfies ServiceBodyUpdate

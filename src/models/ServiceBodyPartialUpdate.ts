@@ -72,6 +72,12 @@ export interface ServiceBodyPartialUpdate {
      * @type {string}
      * @memberof ServiceBodyPartialUpdate
      */
+    meetingUpdateUrl?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ServiceBodyPartialUpdate
+     */
     email?: string;
     /**
      * 
@@ -106,6 +112,7 @@ export function ServiceBodyPartialUpdateFromJSONTyped(json: any, ignoreDiscrimin
         'assignedUserIds': json['assignedUserIds'] == null ? undefined : json['assignedUserIds'],
         'url': json['url'] == null ? undefined : json['url'],
         'helpline': json['helpline'] == null ? undefined : json['helpline'],
+        'meetingUpdateUrl': json['meetingUpdateUrl'] == null ? undefined : json['meetingUpdateUrl'],
         'email': json['email'] == null ? undefined : json['email'],
         'worldId': json['worldId'] == null ? undefined : json['worldId'],
     };
@@ -130,6 +137,7 @@ export function ServiceBodyPartialUpdateToJSONTyped(value?: ServiceBodyPartialUp
         'assignedUserIds': value['assignedUserIds'],
         'url': value['url'],
         'helpline': value['helpline'],
+        'meetingUpdateUrl': value['meetingUpdateUrl'],
         'email': value['email'],
         'worldId': value['worldId'],
     };
