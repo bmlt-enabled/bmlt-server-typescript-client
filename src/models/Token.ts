@@ -49,10 +49,10 @@ export interface Token {
  * Check if a given object implements the Token interface.
  */
 export function instanceOfToken(value: object): value is Token {
-    if (!('accessToken' in value) || value['accessToken'] === undefined) return false;
-    if (!('expiresAt' in value) || value['expiresAt'] === undefined) return false;
-    if (!('tokenType' in value) || value['tokenType'] === undefined) return false;
-    if (!('userId' in value) || value['userId'] === undefined) return false;
+    if ((!('accessToken' in value) && !('access_token' in value)) || (value['accessToken'] === undefined && value['access_token'] === undefined)) return false;
+    if ((!('expiresAt' in value) && !('expires_at' in value)) || (value['expiresAt'] === undefined && value['expires_at'] === undefined)) return false;
+    if ((!('tokenType' in value) && !('token_type' in value)) || (value['tokenType'] === undefined && value['token_type'] === undefined)) return false;
+    if ((!('userId' in value) && !('user_id' in value)) || (value['userId'] === undefined && value['user_id'] === undefined)) return false;
     return true;
 }
 

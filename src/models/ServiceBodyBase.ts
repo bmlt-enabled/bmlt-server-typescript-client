@@ -72,6 +72,12 @@ export interface ServiceBodyBase {
      * @type {string}
      * @memberof ServiceBodyBase
      */
+    meetingUpdateUrl?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ServiceBodyBase
+     */
     email?: string;
     /**
      * 
@@ -106,6 +112,7 @@ export function ServiceBodyBaseFromJSONTyped(json: any, ignoreDiscriminator: boo
         'assignedUserIds': json['assignedUserIds'] == null ? undefined : json['assignedUserIds'],
         'url': json['url'] == null ? undefined : json['url'],
         'helpline': json['helpline'] == null ? undefined : json['helpline'],
+        'meetingUpdateUrl': json['meetingUpdateUrl'] == null ? undefined : json['meetingUpdateUrl'],
         'email': json['email'] == null ? undefined : json['email'],
         'worldId': json['worldId'] == null ? undefined : json['worldId'],
     };
@@ -130,6 +137,7 @@ export function ServiceBodyBaseToJSONTyped(value?: ServiceBodyBase | null, ignor
         'assignedUserIds': value['assignedUserIds'],
         'url': value['url'],
         'helpline': value['helpline'],
+        'meetingUpdateUrl': value['meetingUpdateUrl'],
         'email': value['email'],
         'worldId': value['worldId'],
     };

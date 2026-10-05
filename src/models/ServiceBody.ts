@@ -72,6 +72,12 @@ export interface ServiceBody {
      * @type {string}
      * @memberof ServiceBody
      */
+    meetingUpdateUrl: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ServiceBody
+     */
     email: string;
     /**
      * 
@@ -99,6 +105,7 @@ export function instanceOfServiceBody(value: object): value is ServiceBody {
     if (!('assignedUserIds' in value) || value['assignedUserIds'] === undefined) return false;
     if (!('url' in value) || value['url'] === undefined) return false;
     if (!('helpline' in value) || value['helpline'] === undefined) return false;
+    if (!('meetingUpdateUrl' in value) || value['meetingUpdateUrl'] === undefined) return false;
     if (!('email' in value) || value['email'] === undefined) return false;
     if (!('worldId' in value) || value['worldId'] === undefined) return false;
     if (!('id' in value) || value['id'] === undefined) return false;
@@ -123,6 +130,7 @@ export function ServiceBodyFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'assignedUserIds': json['assignedUserIds'],
         'url': json['url'],
         'helpline': json['helpline'],
+        'meetingUpdateUrl': json['meetingUpdateUrl'],
         'email': json['email'],
         'worldId': json['worldId'],
         'id': json['id'],
@@ -148,6 +156,7 @@ export function ServiceBodyToJSONTyped(value?: ServiceBody | null, ignoreDiscrim
         'assignedUserIds': value['assignedUserIds'],
         'url': value['url'],
         'helpline': value['helpline'],
+        'meetingUpdateUrl': value['meetingUpdateUrl'],
         'email': value['email'],
         'worldId': value['worldId'],
         'id': value['id'],

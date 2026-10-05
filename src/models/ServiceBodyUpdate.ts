@@ -72,6 +72,12 @@ export interface ServiceBodyUpdate {
      * @type {string}
      * @memberof ServiceBodyUpdate
      */
+    meetingUpdateUrl?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ServiceBodyUpdate
+     */
     email?: string;
     /**
      * 
@@ -112,6 +118,7 @@ export function ServiceBodyUpdateFromJSONTyped(json: any, ignoreDiscriminator: b
         'assignedUserIds': json['assignedUserIds'],
         'url': json['url'] == null ? undefined : json['url'],
         'helpline': json['helpline'] == null ? undefined : json['helpline'],
+        'meetingUpdateUrl': json['meetingUpdateUrl'] == null ? undefined : json['meetingUpdateUrl'],
         'email': json['email'] == null ? undefined : json['email'],
         'worldId': json['worldId'] == null ? undefined : json['worldId'],
     };
@@ -136,6 +143,7 @@ export function ServiceBodyUpdateToJSONTyped(value?: ServiceBodyUpdate | null, i
         'assignedUserIds': value['assignedUserIds'],
         'url': value['url'],
         'helpline': value['helpline'],
+        'meetingUpdateUrl': value['meetingUpdateUrl'],
         'email': value['email'],
         'worldId': value['worldId'],
     };
