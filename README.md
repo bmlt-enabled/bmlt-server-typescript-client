@@ -61,6 +61,7 @@ All URIs are relative to *http://localhost:8000/main_server*
 *RootServerApi* | [**deleteMeeting**](docs/RootServerApi.md#deletemeeting) | **DELETE** /api/v1/meetings/{meetingId} | Deletes a meeting
 *RootServerApi* | [**deleteServiceBody**](docs/RootServerApi.md#deleteservicebody) | **DELETE** /api/v1/servicebodies/{serviceBodyId} | Deletes a service body
 *RootServerApi* | [**deleteUser**](docs/RootServerApi.md#deleteuser) | **DELETE** /api/v1/users/{userId} | Deletes a user
+*RootServerApi* | [**geocode**](docs/RootServerApi.md#geocodeoperation) | **POST** /api/v1/geocode | Geocode an address
 *RootServerApi* | [**getFormat**](docs/RootServerApi.md#getformat) | **GET** /api/v1/formats/{formatId} | Retrieves a format
 *RootServerApi* | [**getFormats**](docs/RootServerApi.md#getformats) | **GET** /api/v1/formats | Retrieves formats
 *RootServerApi* | [**getLaravelLog**](docs/RootServerApi.md#getlaravellog) | **GET** /api/v1/logs/laravel | Retrieves laravel log
@@ -98,6 +99,8 @@ All URIs are relative to *http://localhost:8000/main_server*
 - [FormatPartialUpdate](docs/FormatPartialUpdate.md)
 - [FormatTranslation](docs/FormatTranslation.md)
 - [FormatUpdate](docs/FormatUpdate.md)
+- [GeocodeRequest](docs/GeocodeRequest.md)
+- [GeocodeResult](docs/GeocodeResult.md)
 - [Meeting](docs/Meeting.md)
 - [MeetingBase](docs/MeetingBase.md)
 - [MeetingChangeResource](docs/MeetingChangeResource.md)

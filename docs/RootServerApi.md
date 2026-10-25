@@ -16,6 +16,7 @@ All URIs are relative to *http://localhost:8000/main_server*
 | [**deleteMeeting**](RootServerApi.md#deletemeeting) | **DELETE** /api/v1/meetings/{meetingId} | Deletes a meeting |
 | [**deleteServiceBody**](RootServerApi.md#deleteservicebody) | **DELETE** /api/v1/servicebodies/{serviceBodyId} | Deletes a service body |
 | [**deleteUser**](RootServerApi.md#deleteuser) | **DELETE** /api/v1/users/{userId} | Deletes a user |
+| [**geocode**](RootServerApi.md#geocodeoperation) | **POST** /api/v1/geocode | Geocode an address |
 | [**getFormat**](RootServerApi.md#getformat) | **GET** /api/v1/formats/{formatId} | Retrieves a format |
 | [**getFormats**](RootServerApi.md#getformats) | **GET** /api/v1/formats | Retrieves formats |
 | [**getLaravelLog**](RootServerApi.md#getlaravellog) | **GET** /api/v1/logs/laravel | Retrieves laravel log |
@@ -913,6 +914,81 @@ example().catch(console.error);
 | **403** | Returns when unauthorized |  -  |
 | **404** | Returns when no user exists. |  -  |
 | **409** | Returns when user is still referenced by service bodies. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## geocode
+
+> GeocodeResult geocode(geocodeRequest)
+
+Geocode an address
+
+Geocode an address to coordinates via the BMLT Geo API. Requires a BMLT Geo API key to be configured in settings.
+
+### Example
+
+```ts
+import {
+  Configuration,
+  RootServerApi,
+} from 'bmlt-server-client';
+import type { GeocodeOperationRequest } from 'bmlt-server-client';
+
+async function example() {
+  console.log("🚀 Testing bmlt-server-client SDK...");
+  const config = new Configuration({ 
+    // To configure OAuth2 access token for authorization: bmltToken password
+    accessToken: "YOUR ACCESS TOKEN",
+  });
+  const api = new RootServerApi(config);
+
+  const body = {
+    // GeocodeRequest | The address to geocode
+    geocodeRequest: ...,
+  } satisfies GeocodeOperationRequest;
+
+  try {
+    const data = await api.geocode(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **geocodeRequest** | [GeocodeRequest](GeocodeRequest.md) | The address to geocode | |
+
+### Return type
+
+[**GeocodeResult**](GeocodeResult.md)
+
+### Authorization
+
+[bmltToken password](../README.md#bmltToken-password)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Returns the geocoded coordinates. |  -  |
+| **401** | Returns when user is not authenticated. |  -  |
+| **403** | Returns when user is unauthorized to perform action. |  -  |
+| **422** | Returns when the address is missing or could not be geocoded. |  -  |
+| **503** | Returns when the geocoding service is temporarily unavailable. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 

@@ -27,6 +27,18 @@ export interface SettingsUpdate {
     googleApiKey?: string;
     /**
      * 
+     * @type {string}
+     * @memberof SettingsUpdate
+     */
+    geocodingProvider?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SettingsUpdate
+     */
+    geoApiKey?: string;
+    /**
+     * 
      * @type {number}
      * @memberof SettingsUpdate
      */
@@ -171,6 +183,8 @@ export function SettingsUpdateFromJSONTyped(json: any, ignoreDiscriminator: bool
     return {
         
         'googleApiKey': json['googleApiKey'] == null ? undefined : json['googleApiKey'],
+        'geocodingProvider': json['geocodingProvider'] == null ? undefined : json['geocodingProvider'],
+        'geoApiKey': json['geoApiKey'] == null ? undefined : json['geoApiKey'],
         'changeDepthForMeetings': json['changeDepthForMeetings'] == null ? undefined : json['changeDepthForMeetings'],
         'defaultSortKey': json['defaultSortKey'] == null ? undefined : json['defaultSortKey'],
         'language': json['language'] == null ? undefined : json['language'],
@@ -207,6 +221,8 @@ export function SettingsUpdateToJSONTyped(value?: SettingsUpdate | null, ignoreD
     return {
         
         'googleApiKey': value['googleApiKey'],
+        'geocodingProvider': value['geocodingProvider'],
+        'geoApiKey': value['geoApiKey'],
         'changeDepthForMeetings': value['changeDepthForMeetings'],
         'defaultSortKey': value['defaultSortKey'],
         'language': value['language'],
