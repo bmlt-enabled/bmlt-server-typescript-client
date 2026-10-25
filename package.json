@@ -1,6 +1,6 @@
 {
   "name": "bmlt-server-client",
-  "version": "2.0.6",
+  "version": "2.0.7-beta.1",
   "description": "OpenAPI client for bmlt-server-client",
   "author": "OpenAPI-Generator",
   "repository": {
