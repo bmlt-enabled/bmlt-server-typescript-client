@@ -27,6 +27,18 @@ export interface SettingsObject {
     googleApiKey?: string;
     /**
      * 
+     * @type {string}
+     * @memberof SettingsObject
+     */
+    geocodingProvider?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SettingsObject
+     */
+    geoApiKey?: string;
+    /**
+     * 
      * @type {number}
      * @memberof SettingsObject
      */
@@ -171,6 +183,8 @@ export function SettingsObjectFromJSONTyped(json: any, ignoreDiscriminator: bool
     return {
         
         'googleApiKey': json['googleApiKey'] == null ? undefined : json['googleApiKey'],
+        'geocodingProvider': json['geocodingProvider'] == null ? undefined : json['geocodingProvider'],
+        'geoApiKey': json['geoApiKey'] == null ? undefined : json['geoApiKey'],
         'changeDepthForMeetings': json['changeDepthForMeetings'] == null ? undefined : json['changeDepthForMeetings'],
         'defaultSortKey': json['defaultSortKey'] == null ? undefined : json['defaultSortKey'],
         'language': json['language'] == null ? undefined : json['language'],
@@ -207,6 +221,8 @@ export function SettingsObjectToJSONTyped(value?: SettingsObject | null, ignoreD
     return {
         
         'googleApiKey': value['googleApiKey'],
+        'geocodingProvider': value['geocodingProvider'],
+        'geoApiKey': value['geoApiKey'],
         'changeDepthForMeetings': value['changeDepthForMeetings'],
         'defaultSortKey': value['defaultSortKey'],
         'language': value['language'],

@@ -11,6 +11,8 @@ docs/FormatCreate.md
 docs/FormatPartialUpdate.md
 docs/FormatTranslation.md
 docs/FormatUpdate.md
+docs/GeocodeRequest.md
+docs/GeocodeResult.md
 docs/Meeting.md
 docs/MeetingBase.md
 docs/MeetingChangeResource.md
@@ -56,6 +58,8 @@ src/models/FormatCreate.ts
 src/models/FormatPartialUpdate.ts
 src/models/FormatTranslation.ts
 src/models/FormatUpdate.ts
+src/models/GeocodeRequest.ts
+src/models/GeocodeResult.ts
 src/models/Meeting.ts
 src/models/MeetingBase.ts
 src/models/MeetingChangeResource.ts

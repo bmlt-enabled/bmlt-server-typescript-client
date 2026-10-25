@@ -27,6 +27,18 @@ export interface SettingsBase {
     googleApiKey?: string;
     /**
      * 
+     * @type {string}
+     * @memberof SettingsBase
+     */
+    geocodingProvider?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SettingsBase
+     */
+    geoApiKey?: string;
+    /**
+     * 
      * @type {number}
      * @memberof SettingsBase
      */
@@ -171,6 +183,8 @@ export function SettingsBaseFromJSONTyped(json: any, ignoreDiscriminator: boolea
     return {
         
         'googleApiKey': json['googleApiKey'] == null ? undefined : json['googleApiKey'],
+        'geocodingProvider': json['geocodingProvider'] == null ? undefined : json['geocodingProvider'],
+        'geoApiKey': json['geoApiKey'] == null ? undefined : json['geoApiKey'],
         'changeDepthForMeetings': json['changeDepthForMeetings'] == null ? undefined : json['changeDepthForMeetings'],
         'defaultSortKey': json['defaultSortKey'] == null ? undefined : json['defaultSortKey'],
         'language': json['language'] == null ? undefined : json['language'],
@@ -207,6 +221,8 @@ export function SettingsBaseToJSONTyped(value?: SettingsBase | null, ignoreDiscr
     return {
         
         'googleApiKey': value['googleApiKey'],
+        'geocodingProvider': value['geocodingProvider'],
+        'geoApiKey': value['geoApiKey'],
         'changeDepthForMeetings': value['changeDepthForMeetings'],
         'defaultSortKey': value['defaultSortKey'],
         'language': value['language'],
