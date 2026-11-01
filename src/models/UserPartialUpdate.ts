@@ -21,44 +21,30 @@ import { mapValues } from '../runtime';
 export interface UserPartialUpdate {
     /**
      * 
-     * @type {string}
-     * @memberof UserPartialUpdate
      */
     username?: string;
     /**
      * 
-     * @type {string}
-     * @memberof UserPartialUpdate
      */
     type?: string;
     /**
      * 
-     * @type {string}
-     * @memberof UserPartialUpdate
      */
     displayName?: string;
     /**
      * 
-     * @type {string}
-     * @memberof UserPartialUpdate
      */
     description?: string;
     /**
      * 
-     * @type {string}
-     * @memberof UserPartialUpdate
      */
     email?: string;
     /**
      * 
-     * @type {number}
-     * @memberof UserPartialUpdate
      */
     ownerId?: number;
     /**
      * 
-     * @type {string}
-     * @memberof UserPartialUpdate
      */
     password?: string;
 }

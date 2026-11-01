@@ -29,26 +29,18 @@ import {
 export interface Format {
     /**
      * 
-     * @type {string}
-     * @memberof Format
      */
     worldId: string;
     /**
      * 
-     * @type {string}
-     * @memberof Format
      */
     type: string;
     /**
      * 
-     * @type {Array<FormatTranslation>}
-     * @memberof Format
      */
     translations: Array<FormatTranslation>;
     /**
      * 
-     * @type {number}
-     * @memberof Format
      */
     id: number;
 }

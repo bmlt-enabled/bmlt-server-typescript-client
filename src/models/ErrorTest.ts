@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface ErrorTest {
     /**
      * 
-     * @type {string}
-     * @memberof ErrorTest
      */
     arbitraryString?: string;
     /**
      * 
-     * @type {number}
-     * @memberof ErrorTest
      */
     arbitraryInt?: number;
     /**
      * 
-     * @type {boolean}
-     * @memberof ErrorTest
      */
     forceServerError?: boolean;
 }

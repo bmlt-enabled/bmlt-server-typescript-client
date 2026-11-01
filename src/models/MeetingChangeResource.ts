@@ -21,26 +21,18 @@ import { mapValues } from '../runtime';
 export interface MeetingChangeResource {
     /**
      * Human-readable date and time.
-     * @type {string}
-     * @memberof MeetingChangeResource
      */
     dateString?: string;
     /**
      * Name of the user who made the change.
-     * @type {string}
-     * @memberof MeetingChangeResource
      */
     userName?: string;
     /**
      * Name of the service body related to the meeting.
-     * @type {string}
-     * @memberof MeetingChangeResource
      */
     serviceBodyName?: string;
     /**
      * List of details about the changes.
-     * @type {Array<string>}
-     * @memberof MeetingChangeResource
      */
     details?: Array<string>;
 }

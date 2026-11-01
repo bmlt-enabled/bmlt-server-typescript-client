@@ -21,68 +21,46 @@ import { mapValues } from '../runtime';
 export interface ServiceBodyPartialUpdate {
     /**
      * 
-     * @type {number}
-     * @memberof ServiceBodyPartialUpdate
      */
     parentId?: number | null;
     /**
      * 
-     * @type {string}
-     * @memberof ServiceBodyPartialUpdate
      */
     name?: string;
     /**
      * 
-     * @type {string}
-     * @memberof ServiceBodyPartialUpdate
      */
     description?: string;
     /**
      * 
-     * @type {string}
-     * @memberof ServiceBodyPartialUpdate
      */
     type?: string;
     /**
      * 
-     * @type {number}
-     * @memberof ServiceBodyPartialUpdate
      */
     adminUserId?: number;
     /**
      * 
-     * @type {Array<number>}
-     * @memberof ServiceBodyPartialUpdate
      */
     assignedUserIds?: Array<number>;
     /**
      * 
-     * @type {string}
-     * @memberof ServiceBodyPartialUpdate
      */
     url?: string;
     /**
      * 
-     * @type {string}
-     * @memberof ServiceBodyPartialUpdate
      */
     helpline?: string;
     /**
      * 
-     * @type {string}
-     * @memberof ServiceBodyPartialUpdate
      */
     meetingUpdateUrl?: string | null;
     /**
      * 
-     * @type {string}
-     * @memberof ServiceBodyPartialUpdate
      */
     email?: string;
     /**
      * 
-     * @type {string}
-     * @memberof ServiceBodyPartialUpdate
      */
     worldId?: string;
 }
@@ -104,7 +82,7 @@ export function ServiceBodyPartialUpdateFromJSONTyped(json: any, ignoreDiscrimin
     }
     return {
         
-        'parentId': json['parentId'] == null ? undefined : json['parentId'],
+        'parentId': json['parentId'] === undefined ? undefined : json['parentId'] === null ? null : json['parentId'],
         'name': json['name'] == null ? undefined : json['name'],
         'description': json['description'] == null ? undefined : json['description'],
         'type': json['type'] == null ? undefined : json['type'],
@@ -112,7 +90,7 @@ export function ServiceBodyPartialUpdateFromJSONTyped(json: any, ignoreDiscrimin
         'assignedUserIds': json['assignedUserIds'] == null ? undefined : json['assignedUserIds'],
         'url': json['url'] == null ? undefined : json['url'],
         'helpline': json['helpline'] == null ? undefined : json['helpline'],
-        'meetingUpdateUrl': json['meetingUpdateUrl'] == null ? undefined : json['meetingUpdateUrl'],
+        'meetingUpdateUrl': json['meetingUpdateUrl'] === undefined ? undefined : json['meetingUpdateUrl'] === null ? null : json['meetingUpdateUrl'],
         'email': json['email'] == null ? undefined : json['email'],
         'worldId': json['worldId'] == null ? undefined : json['worldId'],
     };

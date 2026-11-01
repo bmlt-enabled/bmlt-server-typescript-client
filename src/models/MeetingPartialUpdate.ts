@@ -21,230 +21,154 @@ import { mapValues } from '../runtime';
 export interface MeetingPartialUpdate {
     /**
      * 
-     * @type {number}
-     * @memberof MeetingPartialUpdate
      */
     serviceBodyId?: number;
     /**
      * 
-     * @type {Array<number>}
-     * @memberof MeetingPartialUpdate
      */
     formatIds?: Array<number>;
     /**
      * 
-     * @type {number}
-     * @memberof MeetingPartialUpdate
      */
     venueType?: number;
     /**
      * 
-     * @type {boolean}
-     * @memberof MeetingPartialUpdate
      */
     temporarilyVirtual?: boolean;
     /**
      * 
-     * @type {number}
-     * @memberof MeetingPartialUpdate
      */
     day?: number;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingPartialUpdate
      */
     startTime?: string;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingPartialUpdate
      */
     duration?: string;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingPartialUpdate
      */
     timeZone?: string;
     /**
      * 
-     * @type {number}
-     * @memberof MeetingPartialUpdate
      */
     latitude?: number;
     /**
      * 
-     * @type {number}
-     * @memberof MeetingPartialUpdate
      */
     longitude?: number;
     /**
      * 
-     * @type {boolean}
-     * @memberof MeetingPartialUpdate
      */
     published?: boolean;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingPartialUpdate
      */
     email?: string;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingPartialUpdate
      */
     worldId?: string;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingPartialUpdate
      */
     name?: string;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingPartialUpdate
      */
     locationText?: string;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingPartialUpdate
      */
     locationInfo?: string;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingPartialUpdate
      */
     locationStreet?: string;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingPartialUpdate
      */
     locationNeighborhood?: string;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingPartialUpdate
      */
     locationCitySubsection?: string;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingPartialUpdate
      */
     locationMunicipality?: string;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingPartialUpdate
      */
     locationSubProvince?: string;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingPartialUpdate
      */
     locationProvince?: string;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingPartialUpdate
      */
     locationPostalCode1?: string;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingPartialUpdate
      */
     locationNation?: string;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingPartialUpdate
      */
     phoneMeetingNumber?: string;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingPartialUpdate
      */
     virtualMeetingLink?: string;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingPartialUpdate
      */
     virtualMeetingAdditionalInfo?: string;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingPartialUpdate
      */
     contactName1?: string;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingPartialUpdate
      */
     contactName2?: string;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingPartialUpdate
      */
     contactPhone1?: string;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingPartialUpdate
      */
     contactPhone2?: string;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingPartialUpdate
      */
     contactEmail1?: string;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingPartialUpdate
      */
     contactEmail2?: string;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingPartialUpdate
      */
     busLines?: string;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingPartialUpdate
      */
     trainLines?: string;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingPartialUpdate
      */
     comments?: string;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingPartialUpdate
      */
     adminNotes?: string;
     /**
      * 
-     * @type {{ [key: string]: string; }}
-     * @memberof MeetingPartialUpdate
      */
     customFields?: { [key: string]: string; };
 }

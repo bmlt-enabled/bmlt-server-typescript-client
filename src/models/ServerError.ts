@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface ServerError {
     /**
      * 
-     * @type {string}
-     * @memberof ServerError
      */
     message: string;
 }

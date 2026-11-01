@@ -29,20 +29,14 @@ import {
 export interface FormatCreate {
     /**
      * 
-     * @type {string}
-     * @memberof FormatCreate
      */
     worldId?: string;
     /**
      * 
-     * @type {string}
-     * @memberof FormatCreate
      */
     type?: string;
     /**
      * 
-     * @type {Array<FormatTranslation>}
-     * @memberof FormatCreate
      */
     translations: Array<FormatTranslation>;
 }

@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface ServiceBodyEditor {
     /**
      * 
-     * @type {number}
-     * @memberof ServiceBodyEditor
      */
     userId: number;
     /**
      * 
-     * @type {string}
-     * @memberof ServiceBodyEditor
      */
     displayName: string;
     /**
      * 
-     * @type {boolean}
-     * @memberof ServiceBodyEditor
      */
     readOnly: boolean;
 }

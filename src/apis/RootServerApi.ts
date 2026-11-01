@@ -129,6 +129,16 @@ import {
     SettingsUpdateToJSON,
 } from '../models/SettingsUpdate';
 import {
+    type TimeZoneRequest,
+    TimeZoneRequestFromJSON,
+    TimeZoneRequestToJSON,
+} from '../models/TimeZoneRequest';
+import {
+    type TimeZoneResult,
+    TimeZoneResultFromJSON,
+    TimeZoneResultToJSON,
+} from '../models/TimeZoneResult';
+import {
     type Token,
     TokenFromJSON,
     TokenToJSON,
@@ -165,123 +175,250 @@ import {
 } from '../models/ValidationError';
 
 export interface AuthTokenRequest {
+    /**
+     * 
+     */
     tokenCredentials: TokenCredentials;
 }
 
 export interface CreateErrorTestRequest {
+    /**
+     * 
+     */
     errorTest: ErrorTest;
 }
 
 export interface CreateFormatRequest {
+    /**
+     * 
+     */
     formatCreate: FormatCreate;
 }
 
 export interface CreateMeetingRequest {
+    /**
+     * 
+     */
     meetingCreate: MeetingCreate;
 }
 
 export interface CreateServiceBodyRequest {
+    /**
+     * 
+     */
     serviceBodyCreate: ServiceBodyCreate;
 }
 
 export interface CreateUserRequest {
+    /**
+     * 
+     */
     userCreate: UserCreate;
 }
 
 export interface DeleteFormatRequest {
+    /**
+     * ID of format
+     */
     formatId: number;
 }
 
 export interface DeleteMeetingRequest {
+    /**
+     * ID of meeting
+     */
     meetingId: number;
 }
 
 export interface DeleteServiceBodyRequest {
+    /**
+     * ID of service body
+     */
     serviceBodyId: number;
+    /**
+     * Force deletion of service body and all associated meetings
+     */
     force?: DeleteServiceBodyForceEnum;
 }
 
 export interface DeleteUserRequest {
+    /**
+     * ID of user
+     */
     userId: number;
 }
 
 export interface GetFormatRequest {
+    /**
+     * ID of format
+     */
     formatId: number;
 }
 
 export interface GetMeetingRequest {
+    /**
+     * ID of meeting
+     */
     meetingId: number;
 }
 
 export interface GetMeetingChangesRequest {
+    /**
+     * ID of the meeting
+     */
     meetingId: number;
 }
 
 export interface GetMeetingsRequest {
+    /**
+     * comma delimited meeting ids
+     */
     meetingIds?: string;
+    /**
+     * comma delimited day ids between 0-6
+     */
     days?: string;
+    /**
+     * comma delimited service body ids
+     */
     serviceBodyIds?: string;
+    /**
+     * string
+     */
     searchString?: string;
 }
 
 export interface GetRootServerRequest {
+    /**
+     * ID of root server
+     */
     rootServerId: number;
 }
 
 export interface GetServiceBodyRequest {
+    /**
+     * ID of service body
+     */
     serviceBodyId: number;
 }
 
 export interface GetServiceBodyEditorsRequest {
+    /**
+     * ID of service body
+     */
     serviceBodyId: number;
 }
 
 export interface GetUserRequest {
+    /**
+     * ID of user
+     */
     userId: number;
 }
 
 export interface PartialUpdateUserRequest {
+    /**
+     * ID of user
+     */
     userId: number;
+    /**
+     * 
+     */
     userPartialUpdate: UserPartialUpdate;
 }
 
 export interface PatchFormatRequest {
+    /**
+     * ID of format
+     */
     formatId: number;
+    /**
+     * 
+     */
     formatPartialUpdate: FormatPartialUpdate;
 }
 
 export interface PatchMeetingRequest {
+    /**
+     * ID of meeting
+     */
     meetingId: number;
+    /**
+     * 
+     */
     meetingPartialUpdate: MeetingPartialUpdate;
+    /**
+     * specify true to skip venue type location validation
+     */
     skipVenueTypeLocationValidation?: boolean;
 }
 
 export interface PatchServiceBodyRequest {
+    /**
+     * ID of service body
+     */
     serviceBodyId: number;
+    /**
+     * 
+     */
     serviceBodyPartialUpdate: ServiceBodyPartialUpdate;
 }
 
+export interface TimezoneRequest {
+    /**
+     * 
+     */
+    timeZoneRequest: TimeZoneRequest;
+}
+
 export interface UpdateFormatRequest {
+    /**
+     * ID of format
+     */
     formatId: number;
+    /**
+     * 
+     */
     formatUpdate: FormatUpdate;
 }
 
 export interface UpdateMeetingRequest {
+    /**
+     * ID of meeting
+     */
     meetingId: number;
+    /**
+     * 
+     */
     meetingUpdate: MeetingUpdate;
 }
 
 export interface UpdateServiceBodyRequest {
+    /**
+     * ID of service body
+     */
     serviceBodyId: number;
+    /**
+     * 
+     */
     serviceBodyUpdate: ServiceBodyUpdate;
 }
 
 export interface UpdateSettingsRequest {
+    /**
+     * 
+     */
     settingsUpdate: SettingsUpdate;
 }
 
 export interface UpdateUserRequest {
+    /**
+     * ID of user
+     */
     userId: number;
+    /**
+     * 
+     */
     userUpdate: UserUpdate;
 }
 
@@ -1028,7 +1165,7 @@ export class RootServerApi extends runtime.BaseAPI {
      * Retrieve the laravel log if it exists.
      * Retrieves laravel log
      */
-    async getLaravelLogRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Blob>> {
+    async getLaravelLogRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<runtime.HttpFile>> {
         const requestOptions = await this.getLaravelLogRequestOpts();
         const response = await this.request(requestOptions, initOverrides);
 
@@ -1039,7 +1176,7 @@ export class RootServerApi extends runtime.BaseAPI {
      * Retrieve the laravel log if it exists.
      * Retrieves laravel log
      */
-    async getLaravelLog(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Blob> {
+    async getLaravelLog(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.HttpFile> {
         const response = await this.getLaravelLogRaw(initOverrides);
         return await response.value();
     }
@@ -1831,6 +1968,60 @@ export class RootServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for timezone without sending the request
+     */
+    async timezoneRequestOpts(requestParameters: TimezoneRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['timeZoneRequest'] == null) {
+            throw new runtime.RequiredError(
+                'timeZoneRequest',
+                'Required parameter "timeZoneRequest" was null or undefined when calling timezone().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("bmltToken", []);
+        }
+
+
+        let urlPath = `/api/v1/timezone`;
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: TimeZoneRequestToJSON(requestParameters['timeZoneRequest']),
+        };
+    }
+
+    /**
+     * Look up the IANA time zone for a set of coordinates using the bundled offline time zone boundary data.
+     * Look up a time zone by coordinates
+     */
+    async timezoneRaw(requestParameters: TimezoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TimeZoneResult>> {
+        const requestOptions = await this.timezoneRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => TimeZoneResultFromJSON(jsonValue));
+    }
+
+    /**
+     * Look up the IANA time zone for a set of coordinates using the bundled offline time zone boundary data.
+     * Look up a time zone by coordinates
+     */
+    async timezone(requestParameters: TimezoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TimeZoneResult> {
+        const response = await this.timezoneRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates request options for updateFormat without sending the request
      */
     async updateFormatRequestOpts(requestParameters: UpdateFormatRequest): Promise<runtime.RequestOpts> {
@@ -2134,6 +2325,6 @@ export class RootServerApi extends runtime.BaseAPI {
  */
 export const DeleteServiceBodyForceEnum = {
     True: 'true',
-    False: 'false'
+    False: 'false',
 } as const;
 export type DeleteServiceBodyForceEnum = typeof DeleteServiceBodyForceEnum[keyof typeof DeleteServiceBodyForceEnum];

@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface ValidationError {
     /**
      * 
-     * @type {string}
-     * @memberof ValidationError
      */
     message: string;
     /**
      * 
-     * @type {{ [key: string]: Array<string>; }}
-     * @memberof ValidationError
      */
     errors: { [key: string]: Array<string>; };
 }

@@ -21,32 +21,22 @@ import { mapValues } from '../runtime';
 export interface RootServerBaseStatisticsMeetings {
     /**
      * 
-     * @type {number}
-     * @memberof RootServerBaseStatisticsMeetings
      */
     numTotal: number;
     /**
      * 
-     * @type {number}
-     * @memberof RootServerBaseStatisticsMeetings
      */
     numInPerson: number;
     /**
      * 
-     * @type {number}
-     * @memberof RootServerBaseStatisticsMeetings
      */
     numVirtual: number;
     /**
      * 
-     * @type {number}
-     * @memberof RootServerBaseStatisticsMeetings
      */
     numHybrid: number;
     /**
      * 
-     * @type {number}
-     * @memberof RootServerBaseStatisticsMeetings
      */
     numUnknown: number;
 }

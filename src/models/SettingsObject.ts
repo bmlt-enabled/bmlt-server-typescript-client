@@ -21,134 +21,90 @@ import { mapValues } from '../runtime';
 export interface SettingsObject {
     /**
      * 
-     * @type {string}
-     * @memberof SettingsObject
      */
     googleApiKey?: string;
     /**
      * 
-     * @type {number}
-     * @memberof SettingsObject
      */
     changeDepthForMeetings?: number;
     /**
      * 
-     * @type {string}
-     * @memberof SettingsObject
      */
     defaultSortKey?: string | null;
     /**
      * 
-     * @type {string}
-     * @memberof SettingsObject
      */
     language?: string;
     /**
      * 
-     * @type {string}
-     * @memberof SettingsObject
      */
     defaultDurationTime?: string;
     /**
      * 
-     * @type {string}
-     * @memberof SettingsObject
      */
     regionBias?: string;
     /**
      * 
-     * @type {string}
-     * @memberof SettingsObject
      */
     distanceUnits?: string;
     /**
      * 
-     * @type {Array<string>}
-     * @memberof SettingsObject
      */
     meetingStatesAndProvinces?: Array<string>;
     /**
      * 
-     * @type {Array<string>}
-     * @memberof SettingsObject
      */
     meetingCountiesAndSubProvinces?: Array<string>;
     /**
      * 
-     * @type {number}
-     * @memberof SettingsObject
      */
     searchSpecMapCenterLongitude?: number;
     /**
      * 
-     * @type {number}
-     * @memberof SettingsObject
      */
     searchSpecMapCenterLatitude?: number;
     /**
      * 
-     * @type {number}
-     * @memberof SettingsObject
      */
     searchSpecMapCenterZoom?: number;
     /**
      * 
-     * @type {number}
-     * @memberof SettingsObject
      */
     numberOfMeetingsForAuto?: number;
     /**
      * 
-     * @type {boolean}
-     * @memberof SettingsObject
      */
     autoGeocodingEnabled?: boolean;
     /**
      * 
-     * @type {boolean}
-     * @memberof SettingsObject
      */
     countyAutoGeocodingEnabled?: boolean;
     /**
      * 
-     * @type {boolean}
-     * @memberof SettingsObject
      */
     zipAutoGeocodingEnabled?: boolean;
     /**
      * 
-     * @type {boolean}
-     * @memberof SettingsObject
      */
     defaultClosedStatus?: boolean;
     /**
      * 
-     * @type {boolean}
-     * @memberof SettingsObject
      */
     enableLanguageSelector?: boolean;
     /**
      * 
-     * @type {boolean}
-     * @memberof SettingsObject
      */
     includeServiceBodyEmailInSemantic?: boolean;
     /**
      * 
-     * @type {string}
-     * @memberof SettingsObject
      */
     bmltTitle?: string;
     /**
      * 
-     * @type {string}
-     * @memberof SettingsObject
      */
     bmltNotice?: string;
     /**
      * 
-     * @type {object}
-     * @memberof SettingsObject
      */
     formatLangNames?: object;
 }
@@ -172,7 +128,7 @@ export function SettingsObjectFromJSONTyped(json: any, ignoreDiscriminator: bool
         
         'googleApiKey': json['googleApiKey'] == null ? undefined : json['googleApiKey'],
         'changeDepthForMeetings': json['changeDepthForMeetings'] == null ? undefined : json['changeDepthForMeetings'],
-        'defaultSortKey': json['defaultSortKey'] == null ? undefined : json['defaultSortKey'],
+        'defaultSortKey': json['defaultSortKey'] === undefined ? undefined : json['defaultSortKey'] === null ? null : json['defaultSortKey'],
         'language': json['language'] == null ? undefined : json['language'],
         'defaultDurationTime': json['defaultDurationTime'] == null ? undefined : json['defaultDurationTime'],
         'regionBias': json['regionBias'] == null ? undefined : json['regionBias'],

@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface TokenCredentials {
     /**
      * 
-     * @type {string}
-     * @memberof TokenCredentials
      */
     username: string;
     /**
      * 
-     * @type {string}
-     * @memberof TokenCredentials
      */
     password: string;
 }

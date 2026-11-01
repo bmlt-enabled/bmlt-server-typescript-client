@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { RootServerBaseStatistics } from './RootServerBaseStatistics';
 import {
     RootServerBaseStatisticsFromJSON,
@@ -29,38 +29,26 @@ import {
 export interface RootServerBase {
     /**
      * 
-     * @type {number}
-     * @memberof RootServerBase
      */
     sourceId?: number;
     /**
      * 
-     * @type {string}
-     * @memberof RootServerBase
      */
     name?: string;
     /**
      * 
-     * @type {string}
-     * @memberof RootServerBase
      */
     url?: string;
     /**
      * 
-     * @type {RootServerBaseStatistics}
-     * @memberof RootServerBase
      */
     statistics?: RootServerBaseStatistics;
     /**
      * 
-     * @type {string}
-     * @memberof RootServerBase
      */
     serverInfo?: string;
     /**
      * 
-     * @type {Date}
-     * @memberof RootServerBase
      */
     lastSuccessfulImport?: Date;
 }
@@ -87,7 +75,7 @@ export function RootServerBaseFromJSONTyped(json: any, ignoreDiscriminator: bool
         'url': json['url'] == null ? undefined : json['url'],
         'statistics': json['statistics'] == null ? undefined : RootServerBaseStatisticsFromJSON(json['statistics']),
         'serverInfo': json['serverInfo'] == null ? undefined : json['serverInfo'],
-        'lastSuccessfulImport': json['lastSuccessfulImport'] == null ? undefined : (new Date(json['lastSuccessfulImport'])),
+        'lastSuccessfulImport': json['lastSuccessfulImport'] == null ? undefined : (parseDateTime(json['lastSuccessfulImport'])),
     };
 }
 
@@ -107,7 +95,7 @@ export function RootServerBaseToJSONTyped(value?: RootServerBase | null, ignoreD
         'url': value['url'],
         'statistics': RootServerBaseStatisticsToJSON(value['statistics']),
         'serverInfo': value['serverInfo'],
-        'lastSuccessfulImport': value['lastSuccessfulImport'] == null ? value['lastSuccessfulImport'] : value['lastSuccessfulImport'].toISOString(),
+        'lastSuccessfulImport': value['lastSuccessfulImport'] == null ? value['lastSuccessfulImport'] : serializeDateTime(value['lastSuccessfulImport']),
     };
 }
 

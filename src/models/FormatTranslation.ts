@@ -21,26 +21,18 @@ import { mapValues } from '../runtime';
 export interface FormatTranslation {
     /**
      * 
-     * @type {string}
-     * @memberof FormatTranslation
      */
     key: string;
     /**
      * 
-     * @type {string}
-     * @memberof FormatTranslation
      */
     name: string;
     /**
      * 
-     * @type {string}
-     * @memberof FormatTranslation
      */
     description: string;
     /**
      * 
-     * @type {string}
-     * @memberof FormatTranslation
      */
     language: string;
 }

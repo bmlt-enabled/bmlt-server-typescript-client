@@ -36,14 +36,10 @@ import {
 export interface RootServerBaseStatistics {
     /**
      * 
-     * @type {RootServerBaseStatisticsServiceBodies}
-     * @memberof RootServerBaseStatistics
      */
     serviceBodies: RootServerBaseStatisticsServiceBodies;
     /**
      * 
-     * @type {RootServerBaseStatisticsMeetings}
-     * @memberof RootServerBaseStatistics
      */
     meetings: RootServerBaseStatisticsMeetings;
 }
