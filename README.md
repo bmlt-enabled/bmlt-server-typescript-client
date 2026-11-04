@@ -79,7 +79,7 @@ All URIs are relative to *http://localhost:8000/main_server*
 *RootServerApi* | [**patchFormat**](docs/RootServerApi.md#patchformat) | **PATCH** /api/v1/formats/{formatId} | Patches a format
 *RootServerApi* | [**patchMeeting**](docs/RootServerApi.md#patchmeeting) | **PATCH** /api/v1/meetings/{meetingId} | Patches a meeting
 *RootServerApi* | [**patchServiceBody**](docs/RootServerApi.md#patchservicebody) | **PATCH** /api/v1/servicebodies/{serviceBodyId} | Patches a service body
-*RootServerApi* | [**timezone**](docs/RootServerApi.md#timezone) | **POST** /api/v1/timezone | Look up a time zone by coordinates
+*RootServerApi* | [**timezone**](docs/RootServerApi.md#timezone) | **POST** /api/v1/geo/timezone | Look up a time zone by coordinates
 *RootServerApi* | [**updateFormat**](docs/RootServerApi.md#updateformat) | **PUT** /api/v1/formats/{formatId} | Updates a format
 *RootServerApi* | [**updateMeeting**](docs/RootServerApi.md#updatemeeting) | **PUT** /api/v1/meetings/{meetingId} | Updates a meeting
 *RootServerApi* | [**updateServiceBody**](docs/RootServerApi.md#updateservicebody) | **PUT** /api/v1/servicebodies/{serviceBodyId} | Updates a Service Body
@@ -122,7 +122,7 @@ All URIs are relative to *http://localhost:8000/main_server*
 - [SettingsObject](docs/SettingsObject.md)
 - [SettingsUpdate](docs/SettingsUpdate.md)
 - [TimeZoneRequest](docs/TimeZoneRequest.md)
-- [TimeZoneResult](docs/TimeZoneResult.md)
+- [TimeZoneResponse](docs/TimeZoneResponse.md)
 - [Token](docs/Token.md)
 - [TokenCredentials](docs/TokenCredentials.md)
 - [User](docs/User.md)

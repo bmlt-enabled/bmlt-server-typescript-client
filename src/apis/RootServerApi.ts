@@ -134,10 +134,10 @@ import {
     TimeZoneRequestToJSON,
 } from '../models/TimeZoneRequest';
 import {
-    type TimeZoneResult,
-    TimeZoneResultFromJSON,
-    TimeZoneResultToJSON,
-} from '../models/TimeZoneResult';
+    type TimeZoneResponse,
+    TimeZoneResponseFromJSON,
+    TimeZoneResponseToJSON,
+} from '../models/TimeZoneResponse';
 import {
     type Token,
     TokenFromJSON,
@@ -1990,7 +1990,7 @@ export class RootServerApi extends runtime.BaseAPI {
         }
 
 
-        let urlPath = `/api/v1/timezone`;
+        let urlPath = `/api/v1/geo/timezone`;
 
         return {
             path: urlPath,
@@ -2005,18 +2005,18 @@ export class RootServerApi extends runtime.BaseAPI {
      * Look up the IANA time zone for a set of coordinates using the bundled offline time zone boundary data.
      * Look up a time zone by coordinates
      */
-    async timezoneRaw(requestParameters: TimezoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TimeZoneResult>> {
+    async timezoneRaw(requestParameters: TimezoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TimeZoneResponse>> {
         const requestOptions = await this.timezoneRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => TimeZoneResultFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => TimeZoneResponseFromJSON(jsonValue));
     }
 
     /**
      * Look up the IANA time zone for a set of coordinates using the bundled offline time zone boundary data.
      * Look up a time zone by coordinates
      */
-    async timezone(requestParameters: TimezoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TimeZoneResult> {
+    async timezone(requestParameters: TimezoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TimeZoneResponse> {
         const response = await this.timezoneRaw(requestParameters, initOverrides);
         return await response.value();
     }

@@ -33,7 +33,7 @@ export * from './SettingsBase';
 export * from './SettingsObject';
 export * from './SettingsUpdate';
 export * from './TimeZoneRequest';
-export * from './TimeZoneResult';
+export * from './TimeZoneResponse';
 export * from './Token';
 export * from './TokenCredentials';
 export * from './User';

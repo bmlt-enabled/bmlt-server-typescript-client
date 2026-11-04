@@ -34,7 +34,7 @@ All URIs are relative to *http://localhost:8000/main_server*
 | [**patchFormat**](RootServerApi.md#patchformat) | **PATCH** /api/v1/formats/{formatId} | Patches a format |
 | [**patchMeeting**](RootServerApi.md#patchmeeting) | **PATCH** /api/v1/meetings/{meetingId} | Patches a meeting |
 | [**patchServiceBody**](RootServerApi.md#patchservicebody) | **PATCH** /api/v1/servicebodies/{serviceBodyId} | Patches a service body |
-| [**timezone**](RootServerApi.md#timezone) | **POST** /api/v1/timezone | Look up a time zone by coordinates |
+| [**timezone**](RootServerApi.md#timezone) | **POST** /api/v1/geo/timezone | Look up a time zone by coordinates |
 | [**updateFormat**](RootServerApi.md#updateformat) | **PUT** /api/v1/formats/{formatId} | Updates a format |
 | [**updateMeeting**](RootServerApi.md#updatemeeting) | **PUT** /api/v1/meetings/{meetingId} | Updates a meeting |
 | [**updateServiceBody**](RootServerApi.md#updateservicebody) | **PUT** /api/v1/servicebodies/{serviceBodyId} | Updates a Service Body |
@@ -2208,7 +2208,7 @@ example().catch(console.error);
 
 ## timezone
 
-> TimeZoneResult timezone(timeZoneRequest)
+> TimeZoneResponse timezone(timeZoneRequest)
 
 Look up a time zone by coordinates
 
@@ -2257,7 +2257,7 @@ example().catch(console.error);
 
 ### Return type
 
-[**TimeZoneResult**](TimeZoneResult.md)
+[**TimeZoneResponse**](TimeZoneResponse.md)
 
 ### Authorization
 
