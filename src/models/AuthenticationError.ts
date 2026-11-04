@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface AuthenticationError {
     /**
      * 
-     * @type {string}
-     * @memberof AuthenticationError
      */
     message: string;
 }

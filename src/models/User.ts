@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -21,50 +21,34 @@ import { mapValues } from '../runtime';
 export interface User {
     /**
      * 
-     * @type {string}
-     * @memberof User
      */
     username: string;
     /**
      * 
-     * @type {string}
-     * @memberof User
      */
     type: string;
     /**
      * 
-     * @type {string}
-     * @memberof User
      */
     displayName: string;
     /**
      * 
-     * @type {string}
-     * @memberof User
      */
     description: string;
     /**
      * 
-     * @type {string}
-     * @memberof User
      */
     email: string;
     /**
      * 
-     * @type {number}
-     * @memberof User
      */
     ownerId: number;
     /**
      * 
-     * @type {number}
-     * @memberof User
      */
     id: number;
     /**
      * 
-     * @type {Date}
-     * @memberof User
      */
     lastLoginAt?: Date | null;
 }
@@ -100,7 +84,7 @@ export function UserFromJSONTyped(json: any, ignoreDiscriminator: boolean): User
         'email': json['email'],
         'ownerId': json['ownerId'],
         'id': json['id'],
-        'lastLoginAt': json['lastLoginAt'] == null ? undefined : (new Date(json['lastLoginAt'])),
+        'lastLoginAt': json['lastLoginAt'] === undefined ? undefined : json['lastLoginAt'] === null ? null : (parseDateTime(json['lastLoginAt'])),
     };
 }
 
@@ -122,7 +106,7 @@ export function UserToJSONTyped(value?: User | null, ignoreDiscriminator: boolea
         'email': value['email'],
         'ownerId': value['ownerId'],
         'id': value['id'],
-        'lastLoginAt': value['lastLoginAt'] == null ? value['lastLoginAt'] : value['lastLoginAt'].toISOString(),
+        'lastLoginAt': value['lastLoginAt'] == null ? value['lastLoginAt'] : serializeDateTime(value['lastLoginAt']),
     };
 }
 

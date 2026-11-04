@@ -34,6 +34,7 @@ All URIs are relative to *http://localhost:8000/main_server*
 | [**patchFormat**](RootServerApi.md#patchformat) | **PATCH** /api/v1/formats/{formatId} | Patches a format |
 | [**patchMeeting**](RootServerApi.md#patchmeeting) | **PATCH** /api/v1/meetings/{meetingId} | Patches a meeting |
 | [**patchServiceBody**](RootServerApi.md#patchservicebody) | **PATCH** /api/v1/servicebodies/{serviceBodyId} | Patches a service body |
+| [**timezone**](RootServerApi.md#timezone) | **POST** /api/v1/geo/timezone | Look up a time zone by coordinates |
 | [**updateFormat**](RootServerApi.md#updateformat) | **PUT** /api/v1/formats/{formatId} | Updates a format |
 | [**updateMeeting**](RootServerApi.md#updatemeeting) | **PUT** /api/v1/meetings/{meetingId} | Updates a meeting |
 | [**updateServiceBody**](RootServerApi.md#updateservicebody) | **PUT** /api/v1/servicebodies/{serviceBodyId} | Updates a Service Body |
@@ -2200,6 +2201,80 @@ example().catch(console.error);
 | **401** | Returns when user is not authenticated. |  -  |
 | **403** | Returns when user is unauthorized to perform action. |  -  |
 | **404** | Returns when no service body exists. |  -  |
+| **422** | Validation error. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## timezone
+
+> TimeZoneResponse timezone(timeZoneRequest)
+
+Look up a time zone by coordinates
+
+Look up the IANA time zone for a set of coordinates using the bundled offline time zone boundary data.
+
+### Example
+
+```ts
+import {
+  Configuration,
+  RootServerApi,
+} from 'bmlt-server-client';
+import type { TimezoneRequest } from 'bmlt-server-client';
+
+async function example() {
+  console.log("🚀 Testing bmlt-server-client SDK...");
+  const config = new Configuration({ 
+    // To configure OAuth2 access token for authorization: bmltToken password
+    accessToken: "YOUR ACCESS TOKEN",
+  });
+  const api = new RootServerApi(config);
+
+  const body = {
+    // TimeZoneRequest | Pass in the coordinates to look up.
+    timeZoneRequest: ...,
+  } satisfies TimezoneRequest;
+
+  try {
+    const data = await api.timezone(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **timeZoneRequest** | [TimeZoneRequest](TimeZoneRequest.md) | Pass in the coordinates to look up. | |
+
+### Return type
+
+[**TimeZoneResponse**](TimeZoneResponse.md)
+
+### Authorization
+
+[bmltToken password](../README.md#bmltToken-password)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Returns the time zone for the coordinates. |  -  |
+| **401** | Returns when user is not authenticated. |  -  |
+| **403** | Returns when the user is not allowed. |  -  |
 | **422** | Validation error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)

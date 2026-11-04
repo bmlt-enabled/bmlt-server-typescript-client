@@ -21,26 +21,18 @@ import { mapValues } from '../runtime';
 export interface Token {
     /**
      * 
-     * @type {string}
-     * @memberof Token
      */
     accessToken: string;
     /**
      * 
-     * @type {number}
-     * @memberof Token
      */
     expiresAt: number;
     /**
      * 
-     * @type {string}
-     * @memberof Token
      */
     tokenType: string;
     /**
      * 
-     * @type {number}
-     * @memberof Token
      */
     userId: number;
 }
@@ -49,10 +41,10 @@ export interface Token {
  * Check if a given object implements the Token interface.
  */
 export function instanceOfToken(value: object): value is Token {
-    if ((!('accessToken' in value) && !('access_token' in value)) || (value['accessToken'] === undefined && value['access_token'] === undefined)) return false;
-    if ((!('expiresAt' in value) && !('expires_at' in value)) || (value['expiresAt'] === undefined && value['expires_at'] === undefined)) return false;
-    if ((!('tokenType' in value) && !('token_type' in value)) || (value['tokenType'] === undefined && value['token_type'] === undefined)) return false;
-    if ((!('userId' in value) && !('user_id' in value)) || (value['userId'] === undefined && value['user_id'] === undefined)) return false;
+    if ((!('accessToken' in (value as Record<string, any>)) && !('access_token' in (value as Record<string, any>))) || ((value as Record<string, any>)['accessToken'] === undefined && (value as Record<string, any>)['access_token'] === undefined)) return false;
+    if ((!('expiresAt' in (value as Record<string, any>)) && !('expires_at' in (value as Record<string, any>))) || ((value as Record<string, any>)['expiresAt'] === undefined && (value as Record<string, any>)['expires_at'] === undefined)) return false;
+    if ((!('tokenType' in (value as Record<string, any>)) && !('token_type' in (value as Record<string, any>))) || ((value as Record<string, any>)['tokenType'] === undefined && (value as Record<string, any>)['token_type'] === undefined)) return false;
+    if ((!('userId' in (value as Record<string, any>)) && !('user_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['userId'] === undefined && (value as Record<string, any>)['user_id'] === undefined)) return false;
     return true;
 }
 

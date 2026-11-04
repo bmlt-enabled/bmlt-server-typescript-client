@@ -21,68 +21,46 @@ import { mapValues } from '../runtime';
 export interface ServiceBodyUpdate {
     /**
      * 
-     * @type {number}
-     * @memberof ServiceBodyUpdate
      */
     parentId: number | null;
     /**
      * 
-     * @type {string}
-     * @memberof ServiceBodyUpdate
      */
     name: string;
     /**
      * 
-     * @type {string}
-     * @memberof ServiceBodyUpdate
      */
     description: string;
     /**
      * 
-     * @type {string}
-     * @memberof ServiceBodyUpdate
      */
     type: string;
     /**
      * 
-     * @type {number}
-     * @memberof ServiceBodyUpdate
      */
     adminUserId: number;
     /**
      * 
-     * @type {Array<number>}
-     * @memberof ServiceBodyUpdate
      */
     assignedUserIds: Array<number>;
     /**
      * 
-     * @type {string}
-     * @memberof ServiceBodyUpdate
      */
     url?: string;
     /**
      * 
-     * @type {string}
-     * @memberof ServiceBodyUpdate
      */
     helpline?: string;
     /**
      * 
-     * @type {string}
-     * @memberof ServiceBodyUpdate
      */
     meetingUpdateUrl?: string | null;
     /**
      * 
-     * @type {string}
-     * @memberof ServiceBodyUpdate
      */
     email?: string;
     /**
      * 
-     * @type {string}
-     * @memberof ServiceBodyUpdate
      */
     worldId?: string;
 }
@@ -118,7 +96,7 @@ export function ServiceBodyUpdateFromJSONTyped(json: any, ignoreDiscriminator: b
         'assignedUserIds': json['assignedUserIds'],
         'url': json['url'] == null ? undefined : json['url'],
         'helpline': json['helpline'] == null ? undefined : json['helpline'],
-        'meetingUpdateUrl': json['meetingUpdateUrl'] == null ? undefined : json['meetingUpdateUrl'],
+        'meetingUpdateUrl': json['meetingUpdateUrl'] === undefined ? undefined : json['meetingUpdateUrl'] === null ? null : json['meetingUpdateUrl'],
         'email': json['email'] == null ? undefined : json['email'],
         'worldId': json['worldId'] == null ? undefined : json['worldId'],
     };

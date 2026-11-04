@@ -34,6 +34,8 @@ docs/ServiceBodyUpdate.md
 docs/SettingsBase.md
 docs/SettingsObject.md
 docs/SettingsUpdate.md
+docs/TimeZoneRequest.md
+docs/TimeZoneResponse.md
 docs/Token.md
 docs/TokenCredentials.md
 docs/User.md
@@ -78,6 +80,8 @@ src/models/ServiceBodyUpdate.ts
 src/models/SettingsBase.ts
 src/models/SettingsObject.ts
 src/models/SettingsUpdate.ts
+src/models/TimeZoneRequest.ts
+src/models/TimeZoneResponse.ts
 src/models/Token.ts
 src/models/TokenCredentials.ts
 src/models/User.ts

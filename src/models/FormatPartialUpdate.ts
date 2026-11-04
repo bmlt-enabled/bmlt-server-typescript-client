@@ -29,20 +29,14 @@ import {
 export interface FormatPartialUpdate {
     /**
      * 
-     * @type {string}
-     * @memberof FormatPartialUpdate
      */
     worldId?: string;
     /**
      * 
-     * @type {string}
-     * @memberof FormatPartialUpdate
      */
     type?: string;
     /**
      * 
-     * @type {Array<FormatTranslation>}
-     * @memberof FormatPartialUpdate
      */
     translations?: Array<FormatTranslation>;
 }

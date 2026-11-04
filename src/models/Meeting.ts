@@ -21,236 +21,158 @@ import { mapValues } from '../runtime';
 export interface Meeting {
     /**
      * 
-     * @type {number}
-     * @memberof Meeting
      */
     serviceBodyId: number;
     /**
      * 
-     * @type {Array<number>}
-     * @memberof Meeting
      */
     formatIds: Array<number>;
     /**
      * 
-     * @type {number}
-     * @memberof Meeting
      */
     venueType: number;
     /**
      * 
-     * @type {boolean}
-     * @memberof Meeting
      */
     temporarilyVirtual: boolean;
     /**
      * 
-     * @type {number}
-     * @memberof Meeting
      */
     day: number;
     /**
      * 
-     * @type {string}
-     * @memberof Meeting
      */
     startTime: string;
     /**
      * 
-     * @type {string}
-     * @memberof Meeting
      */
     duration: string;
     /**
      * 
-     * @type {string}
-     * @memberof Meeting
      */
     timeZone: string;
     /**
      * 
-     * @type {number}
-     * @memberof Meeting
      */
     latitude: number;
     /**
      * 
-     * @type {number}
-     * @memberof Meeting
      */
     longitude: number;
     /**
      * 
-     * @type {boolean}
-     * @memberof Meeting
      */
     published: boolean;
     /**
      * 
-     * @type {string}
-     * @memberof Meeting
      */
     email: string;
     /**
      * 
-     * @type {string}
-     * @memberof Meeting
      */
     worldId: string;
     /**
      * 
-     * @type {string}
-     * @memberof Meeting
      */
     name: string;
     /**
      * 
-     * @type {string}
-     * @memberof Meeting
      */
     locationText?: string;
     /**
      * 
-     * @type {string}
-     * @memberof Meeting
      */
     locationInfo?: string;
     /**
      * 
-     * @type {string}
-     * @memberof Meeting
      */
     locationStreet?: string;
     /**
      * 
-     * @type {string}
-     * @memberof Meeting
      */
     locationNeighborhood?: string;
     /**
      * 
-     * @type {string}
-     * @memberof Meeting
      */
     locationCitySubsection?: string;
     /**
      * 
-     * @type {string}
-     * @memberof Meeting
      */
     locationMunicipality?: string;
     /**
      * 
-     * @type {string}
-     * @memberof Meeting
      */
     locationSubProvince?: string;
     /**
      * 
-     * @type {string}
-     * @memberof Meeting
      */
     locationProvince?: string;
     /**
      * 
-     * @type {string}
-     * @memberof Meeting
      */
     locationPostalCode1?: string;
     /**
      * 
-     * @type {string}
-     * @memberof Meeting
      */
     locationNation?: string;
     /**
      * 
-     * @type {string}
-     * @memberof Meeting
      */
     phoneMeetingNumber?: string;
     /**
      * 
-     * @type {string}
-     * @memberof Meeting
      */
     virtualMeetingLink?: string;
     /**
      * 
-     * @type {string}
-     * @memberof Meeting
      */
     virtualMeetingAdditionalInfo?: string;
     /**
      * 
-     * @type {string}
-     * @memberof Meeting
      */
     contactName1?: string;
     /**
      * 
-     * @type {string}
-     * @memberof Meeting
      */
     contactName2?: string;
     /**
      * 
-     * @type {string}
-     * @memberof Meeting
      */
     contactPhone1?: string;
     /**
      * 
-     * @type {string}
-     * @memberof Meeting
      */
     contactPhone2?: string;
     /**
      * 
-     * @type {string}
-     * @memberof Meeting
      */
     contactEmail1?: string;
     /**
      * 
-     * @type {string}
-     * @memberof Meeting
      */
     contactEmail2?: string;
     /**
      * 
-     * @type {string}
-     * @memberof Meeting
      */
     busLines?: string;
     /**
      * 
-     * @type {string}
-     * @memberof Meeting
      */
     trainLines?: string;
     /**
      * 
-     * @type {string}
-     * @memberof Meeting
      */
     comments?: string;
     /**
      * 
-     * @type {string}
-     * @memberof Meeting
      */
     adminNotes?: string;
     /**
      * 
-     * @type {{ [key: string]: string; }}
-     * @memberof Meeting
      */
     customFields?: { [key: string]: string; };
     /**
      * 
-     * @type {number}
-     * @memberof Meeting
      */
     id: number;
 }

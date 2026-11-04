@@ -21,74 +21,50 @@ import { mapValues } from '../runtime';
 export interface ServiceBody {
     /**
      * 
-     * @type {number}
-     * @memberof ServiceBody
      */
     parentId: number | null;
     /**
      * 
-     * @type {string}
-     * @memberof ServiceBody
      */
     name: string;
     /**
      * 
-     * @type {string}
-     * @memberof ServiceBody
      */
     description: string;
     /**
      * 
-     * @type {string}
-     * @memberof ServiceBody
      */
     type: string;
     /**
      * 
-     * @type {number}
-     * @memberof ServiceBody
      */
     adminUserId: number;
     /**
      * 
-     * @type {Array<number>}
-     * @memberof ServiceBody
      */
     assignedUserIds: Array<number>;
     /**
      * 
-     * @type {string}
-     * @memberof ServiceBody
      */
     url: string;
     /**
      * 
-     * @type {string}
-     * @memberof ServiceBody
      */
     helpline: string;
     /**
      * 
-     * @type {string}
-     * @memberof ServiceBody
      */
     meetingUpdateUrl: string | null;
     /**
      * 
-     * @type {string}
-     * @memberof ServiceBody
      */
     email: string;
     /**
      * 
-     * @type {string}
-     * @memberof ServiceBody
      */
     worldId: string;
     /**
      * 
-     * @type {number}
-     * @memberof ServiceBody
      */
     id: number;
 }

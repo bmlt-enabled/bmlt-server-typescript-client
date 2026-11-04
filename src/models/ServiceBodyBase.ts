@@ -21,68 +21,46 @@ import { mapValues } from '../runtime';
 export interface ServiceBodyBase {
     /**
      * 
-     * @type {number}
-     * @memberof ServiceBodyBase
      */
     parentId?: number | null;
     /**
      * 
-     * @type {string}
-     * @memberof ServiceBodyBase
      */
     name?: string;
     /**
      * 
-     * @type {string}
-     * @memberof ServiceBodyBase
      */
     description?: string;
     /**
      * 
-     * @type {string}
-     * @memberof ServiceBodyBase
      */
     type?: string;
     /**
      * 
-     * @type {number}
-     * @memberof ServiceBodyBase
      */
     adminUserId?: number;
     /**
      * 
-     * @type {Array<number>}
-     * @memberof ServiceBodyBase
      */
     assignedUserIds?: Array<number>;
     /**
      * 
-     * @type {string}
-     * @memberof ServiceBodyBase
      */
     url?: string;
     /**
      * 
-     * @type {string}
-     * @memberof ServiceBodyBase
      */
     helpline?: string;
     /**
      * 
-     * @type {string}
-     * @memberof ServiceBodyBase
      */
     meetingUpdateUrl?: string | null;
     /**
      * 
-     * @type {string}
-     * @memberof ServiceBodyBase
      */
     email?: string;
     /**
      * 
-     * @type {string}
-     * @memberof ServiceBodyBase
      */
     worldId?: string;
 }
@@ -104,7 +82,7 @@ export function ServiceBodyBaseFromJSONTyped(json: any, ignoreDiscriminator: boo
     }
     return {
         
-        'parentId': json['parentId'] == null ? undefined : json['parentId'],
+        'parentId': json['parentId'] === undefined ? undefined : json['parentId'] === null ? null : json['parentId'],
         'name': json['name'] == null ? undefined : json['name'],
         'description': json['description'] == null ? undefined : json['description'],
         'type': json['type'] == null ? undefined : json['type'],
@@ -112,7 +90,7 @@ export function ServiceBodyBaseFromJSONTyped(json: any, ignoreDiscriminator: boo
         'assignedUserIds': json['assignedUserIds'] == null ? undefined : json['assignedUserIds'],
         'url': json['url'] == null ? undefined : json['url'],
         'helpline': json['helpline'] == null ? undefined : json['helpline'],
-        'meetingUpdateUrl': json['meetingUpdateUrl'] == null ? undefined : json['meetingUpdateUrl'],
+        'meetingUpdateUrl': json['meetingUpdateUrl'] === undefined ? undefined : json['meetingUpdateUrl'] === null ? null : json['meetingUpdateUrl'],
         'email': json['email'] == null ? undefined : json['email'],
         'worldId': json['worldId'] == null ? undefined : json['worldId'],
     };

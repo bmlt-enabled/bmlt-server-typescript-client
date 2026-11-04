@@ -21,230 +21,154 @@ import { mapValues } from '../runtime';
 export interface MeetingBase {
     /**
      * 
-     * @type {number}
-     * @memberof MeetingBase
      */
     serviceBodyId?: number;
     /**
      * 
-     * @type {Array<number>}
-     * @memberof MeetingBase
      */
     formatIds?: Array<number>;
     /**
      * 
-     * @type {number}
-     * @memberof MeetingBase
      */
     venueType?: number;
     /**
      * 
-     * @type {boolean}
-     * @memberof MeetingBase
      */
     temporarilyVirtual?: boolean;
     /**
      * 
-     * @type {number}
-     * @memberof MeetingBase
      */
     day?: number;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingBase
      */
     startTime?: string;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingBase
      */
     duration?: string;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingBase
      */
     timeZone?: string;
     /**
      * 
-     * @type {number}
-     * @memberof MeetingBase
      */
     latitude?: number;
     /**
      * 
-     * @type {number}
-     * @memberof MeetingBase
      */
     longitude?: number;
     /**
      * 
-     * @type {boolean}
-     * @memberof MeetingBase
      */
     published?: boolean;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingBase
      */
     email?: string;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingBase
      */
     worldId?: string;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingBase
      */
     name?: string;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingBase
      */
     locationText?: string;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingBase
      */
     locationInfo?: string;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingBase
      */
     locationStreet?: string;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingBase
      */
     locationNeighborhood?: string;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingBase
      */
     locationCitySubsection?: string;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingBase
      */
     locationMunicipality?: string;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingBase
      */
     locationSubProvince?: string;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingBase
      */
     locationProvince?: string;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingBase
      */
     locationPostalCode1?: string;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingBase
      */
     locationNation?: string;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingBase
      */
     phoneMeetingNumber?: string;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingBase
      */
     virtualMeetingLink?: string;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingBase
      */
     virtualMeetingAdditionalInfo?: string;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingBase
      */
     contactName1?: string;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingBase
      */
     contactName2?: string;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingBase
      */
     contactPhone1?: string;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingBase
      */
     contactPhone2?: string;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingBase
      */
     contactEmail1?: string;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingBase
      */
     contactEmail2?: string;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingBase
      */
     busLines?: string;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingBase
      */
     trainLines?: string;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingBase
      */
     comments?: string;
     /**
      * 
-     * @type {string}
-     * @memberof MeetingBase
      */
     adminNotes?: string;
     /**
      * 
-     * @type {{ [key: string]: string; }}
-     * @memberof MeetingBase
      */
     customFields?: { [key: string]: string; };
 }

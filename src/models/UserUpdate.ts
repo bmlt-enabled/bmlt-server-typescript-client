@@ -21,44 +21,30 @@ import { mapValues } from '../runtime';
 export interface UserUpdate {
     /**
      * 
-     * @type {string}
-     * @memberof UserUpdate
      */
     username: string;
     /**
      * 
-     * @type {string}
-     * @memberof UserUpdate
      */
     type: string;
     /**
      * 
-     * @type {string}
-     * @memberof UserUpdate
      */
     displayName: string;
     /**
      * 
-     * @type {string}
-     * @memberof UserUpdate
      */
     description?: string;
     /**
      * 
-     * @type {string}
-     * @memberof UserUpdate
      */
     email?: string;
     /**
      * 
-     * @type {number}
-     * @memberof UserUpdate
      */
     ownerId?: number;
     /**
      * 
-     * @type {string}
-     * @memberof UserUpdate
      */
     password?: string;
 }

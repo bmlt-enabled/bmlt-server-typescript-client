@@ -21,26 +21,18 @@ import { mapValues } from '../runtime';
 export interface RootServerBaseStatisticsServiceBodies {
     /**
      * 
-     * @type {number}
-     * @memberof RootServerBaseStatisticsServiceBodies
      */
     numZones: number;
     /**
      * 
-     * @type {number}
-     * @memberof RootServerBaseStatisticsServiceBodies
      */
     numRegions: number;
     /**
      * 
-     * @type {number}
-     * @memberof RootServerBaseStatisticsServiceBodies
      */
     numAreas: number;
     /**
      * 
-     * @type {number}
-     * @memberof RootServerBaseStatisticsServiceBodies
      */
     numGroups: number;
 }
