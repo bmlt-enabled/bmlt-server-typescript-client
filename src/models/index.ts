@@ -10,6 +10,8 @@ export * from './FormatCreate';
 export * from './FormatPartialUpdate';
 export * from './FormatTranslation';
 export * from './FormatUpdate';
+export * from './GeocodeRequest';
+export * from './GeocodeResponse';
 export * from './Meeting';
 export * from './MeetingBase';
 export * from './MeetingChangeResource';

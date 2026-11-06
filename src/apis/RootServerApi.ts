@@ -54,6 +54,16 @@ import {
     FormatUpdateToJSON,
 } from '../models/FormatUpdate';
 import {
+    type GeocodeRequest,
+    GeocodeRequestFromJSON,
+    GeocodeRequestToJSON,
+} from '../models/GeocodeRequest';
+import {
+    type GeocodeResponse,
+    GeocodeResponseFromJSON,
+    GeocodeResponseToJSON,
+} from '../models/GeocodeResponse';
+import {
     type Meeting,
     MeetingFromJSON,
     MeetingToJSON,
@@ -246,6 +256,13 @@ export interface DeleteUserRequest {
      * ID of user
      */
     userId: number;
+}
+
+export interface GeocodeOperationRequest {
+    /**
+     * 
+     */
+    geocodeRequest: GeocodeRequest;
 }
 
 export interface GetFormatRequest {
@@ -1039,6 +1056,60 @@ export class RootServerApi extends runtime.BaseAPI {
      */
     async deleteUser(requestParameters: DeleteUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteUserRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for geocode without sending the request
+     */
+    async geocodeRequestOpts(requestParameters: GeocodeOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['geocodeRequest'] == null) {
+            throw new runtime.RequiredError(
+                'geocodeRequest',
+                'Required parameter "geocodeRequest" was null or undefined when calling geocode().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("bmltToken", []);
+        }
+
+
+        let urlPath = `/api/v1/geo/geocode`;
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: GeocodeRequestToJSON(requestParameters['geocodeRequest']),
+        };
+    }
+
+    /**
+     * Geocode an address to coordinates via the BMLT Geo API. Requires a BMLT Geo API key to be configured in settings.
+     * Geocode an address
+     */
+    async geocodeRaw(requestParameters: GeocodeOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GeocodeResponse>> {
+        const requestOptions = await this.geocodeRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GeocodeResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Geocode an address to coordinates via the BMLT Geo API. Requires a BMLT Geo API key to be configured in settings.
+     * Geocode an address
+     */
+    async geocode(requestParameters: GeocodeOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GeocodeResponse> {
+        const response = await this.geocodeRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
