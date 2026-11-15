@@ -4,7 +4,7 @@ openapi.json:
 
 generate: openapi.json
 	rm -rf src/resources/npm/api-client
-	docker run --rm -v "$(shell pwd):/local" -w /local openapitools/openapi-generator-cli:v7.26.0 generate \
+	docker run --rm -v "$(shell pwd):/local" -w /local openapitools/openapi-generator-cli:v7.27.0 generate \
 	    -i openapi.json \
 	    -g typescript-fetch \
 	    -p npmName=bmlt-server-client \

@@ -186,42 +186,42 @@ import {
 
 export interface AuthTokenRequest {
     /**
-     * 
+     * User credentials
      */
     tokenCredentials: TokenCredentials;
 }
 
 export interface CreateErrorTestRequest {
     /**
-     * 
+     * Pass in error test object.
      */
     errorTest: ErrorTest;
 }
 
 export interface CreateFormatRequest {
     /**
-     * 
+     * Pass in format object
      */
     formatCreate: FormatCreate;
 }
 
 export interface CreateMeetingRequest {
     /**
-     * 
+     * Pass in meeting object
      */
     meetingCreate: MeetingCreate;
 }
 
 export interface CreateServiceBodyRequest {
     /**
-     * 
+     * Pass in service body object
      */
     serviceBodyCreate: ServiceBodyCreate;
 }
 
 export interface CreateUserRequest {
     /**
-     * 
+     * Pass in user object
      */
     userCreate: UserCreate;
 }
@@ -260,7 +260,7 @@ export interface DeleteUserRequest {
 
 export interface GeocodeOperationRequest {
     /**
-     * 
+     * The address to geocode
      */
     geocodeRequest: GeocodeRequest;
 }
@@ -339,7 +339,7 @@ export interface PartialUpdateUserRequest {
      */
     userId: number;
     /**
-     * 
+     * Pass in fields you want to update.
      */
     userPartialUpdate: UserPartialUpdate;
 }
@@ -350,7 +350,7 @@ export interface PatchFormatRequest {
      */
     formatId: number;
     /**
-     * 
+     * Pass in fields you want to update.
      */
     formatPartialUpdate: FormatPartialUpdate;
 }
@@ -361,7 +361,7 @@ export interface PatchMeetingRequest {
      */
     meetingId: number;
     /**
-     * 
+     * Pass in fields you want to update.
      */
     meetingPartialUpdate: MeetingPartialUpdate;
     /**
@@ -376,14 +376,14 @@ export interface PatchServiceBodyRequest {
      */
     serviceBodyId: number;
     /**
-     * 
+     * Pass in fields you want to update.
      */
     serviceBodyPartialUpdate: ServiceBodyPartialUpdate;
 }
 
 export interface TimezoneRequest {
     /**
-     * 
+     * Pass in the coordinates to look up.
      */
     timeZoneRequest: TimeZoneRequest;
 }
@@ -394,7 +394,7 @@ export interface UpdateFormatRequest {
      */
     formatId: number;
     /**
-     * 
+     * Pass in format object
      */
     formatUpdate: FormatUpdate;
 }
@@ -405,7 +405,7 @@ export interface UpdateMeetingRequest {
      */
     meetingId: number;
     /**
-     * 
+     * Pass in meeting object
      */
     meetingUpdate: MeetingUpdate;
 }
@@ -416,14 +416,14 @@ export interface UpdateServiceBodyRequest {
      */
     serviceBodyId: number;
     /**
-     * 
+     * Pass in service body object
      */
     serviceBodyUpdate: ServiceBodyUpdate;
 }
 
 export interface UpdateSettingsRequest {
     /**
-     * 
+     * Pass in settings object with values to update
      */
     settingsUpdate: SettingsUpdate;
 }
@@ -434,7 +434,7 @@ export interface UpdateUserRequest {
      */
     userId: number;
     /**
-     * 
+     * Pass in user object
      */
     userUpdate: UserUpdate;
 }
