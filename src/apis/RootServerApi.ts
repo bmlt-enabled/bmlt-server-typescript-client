@@ -54,6 +54,16 @@ import {
     FormatUpdateToJSON,
 } from '../models/FormatUpdate';
 import {
+    type GeocodeRequest,
+    GeocodeRequestFromJSON,
+    GeocodeRequestToJSON,
+} from '../models/GeocodeRequest';
+import {
+    type GeocodeResponse,
+    GeocodeResponseFromJSON,
+    GeocodeResponseToJSON,
+} from '../models/GeocodeResponse';
+import {
     type Meeting,
     MeetingFromJSON,
     MeetingToJSON,
@@ -176,42 +186,42 @@ import {
 
 export interface AuthTokenRequest {
     /**
-     * 
+     * User credentials
      */
     tokenCredentials: TokenCredentials;
 }
 
 export interface CreateErrorTestRequest {
     /**
-     * 
+     * Pass in error test object.
      */
     errorTest: ErrorTest;
 }
 
 export interface CreateFormatRequest {
     /**
-     * 
+     * Pass in format object
      */
     formatCreate: FormatCreate;
 }
 
 export interface CreateMeetingRequest {
     /**
-     * 
+     * Pass in meeting object
      */
     meetingCreate: MeetingCreate;
 }
 
 export interface CreateServiceBodyRequest {
     /**
-     * 
+     * Pass in service body object
      */
     serviceBodyCreate: ServiceBodyCreate;
 }
 
 export interface CreateUserRequest {
     /**
-     * 
+     * Pass in user object
      */
     userCreate: UserCreate;
 }
@@ -246,6 +256,13 @@ export interface DeleteUserRequest {
      * ID of user
      */
     userId: number;
+}
+
+export interface GeocodeOperationRequest {
+    /**
+     * The address to geocode
+     */
+    geocodeRequest: GeocodeRequest;
 }
 
 export interface GetFormatRequest {
@@ -322,7 +339,7 @@ export interface PartialUpdateUserRequest {
      */
     userId: number;
     /**
-     * 
+     * Pass in fields you want to update.
      */
     userPartialUpdate: UserPartialUpdate;
 }
@@ -333,7 +350,7 @@ export interface PatchFormatRequest {
      */
     formatId: number;
     /**
-     * 
+     * Pass in fields you want to update.
      */
     formatPartialUpdate: FormatPartialUpdate;
 }
@@ -344,7 +361,7 @@ export interface PatchMeetingRequest {
      */
     meetingId: number;
     /**
-     * 
+     * Pass in fields you want to update.
      */
     meetingPartialUpdate: MeetingPartialUpdate;
     /**
@@ -359,14 +376,14 @@ export interface PatchServiceBodyRequest {
      */
     serviceBodyId: number;
     /**
-     * 
+     * Pass in fields you want to update.
      */
     serviceBodyPartialUpdate: ServiceBodyPartialUpdate;
 }
 
 export interface TimezoneRequest {
     /**
-     * 
+     * Pass in the coordinates to look up.
      */
     timeZoneRequest: TimeZoneRequest;
 }
@@ -377,7 +394,7 @@ export interface UpdateFormatRequest {
      */
     formatId: number;
     /**
-     * 
+     * Pass in format object
      */
     formatUpdate: FormatUpdate;
 }
@@ -388,7 +405,7 @@ export interface UpdateMeetingRequest {
      */
     meetingId: number;
     /**
-     * 
+     * Pass in meeting object
      */
     meetingUpdate: MeetingUpdate;
 }
@@ -399,14 +416,14 @@ export interface UpdateServiceBodyRequest {
      */
     serviceBodyId: number;
     /**
-     * 
+     * Pass in service body object
      */
     serviceBodyUpdate: ServiceBodyUpdate;
 }
 
 export interface UpdateSettingsRequest {
     /**
-     * 
+     * Pass in settings object with values to update
      */
     settingsUpdate: SettingsUpdate;
 }
@@ -417,7 +434,7 @@ export interface UpdateUserRequest {
      */
     userId: number;
     /**
-     * 
+     * Pass in user object
      */
     userUpdate: UserUpdate;
 }
@@ -1039,6 +1056,60 @@ export class RootServerApi extends runtime.BaseAPI {
      */
     async deleteUser(requestParameters: DeleteUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteUserRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for geocode without sending the request
+     */
+    async geocodeRequestOpts(requestParameters: GeocodeOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['geocodeRequest'] == null) {
+            throw new runtime.RequiredError(
+                'geocodeRequest',
+                'Required parameter "geocodeRequest" was null or undefined when calling geocode().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("bmltToken", []);
+        }
+
+
+        let urlPath = `/api/v1/geo/geocode`;
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: GeocodeRequestToJSON(requestParameters['geocodeRequest']),
+        };
+    }
+
+    /**
+     * Geocode an address to coordinates via the BMLT Geo API. Requires a BMLT Geo API key to be configured in settings.
+     * Geocode an address
+     */
+    async geocodeRaw(requestParameters: GeocodeOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GeocodeResponse>> {
+        const requestOptions = await this.geocodeRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GeocodeResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Geocode an address to coordinates via the BMLT Geo API. Requires a BMLT Geo API key to be configured in settings.
+     * Geocode an address
+     */
+    async geocode(requestParameters: GeocodeOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GeocodeResponse> {
+        const response = await this.geocodeRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**

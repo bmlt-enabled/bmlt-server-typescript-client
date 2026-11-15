@@ -8,6 +8,8 @@ Partial update object - include only the settings you want to update
 Name | Type
 ------------ | -------------
 `googleApiKey` | string
+`geocodingProvider` | string
+`geoApiKey` | string
 `changeDepthForMeetings` | number
 `defaultSortKey` | string
 `language` | string
@@ -38,6 +40,8 @@ import type { SettingsUpdate } from 'bmlt-server-client'
 // TODO: Update the object below with actual values
 const example = {
   "googleApiKey": null,
+  "geocodingProvider": null,
+  "geoApiKey": null,
   "changeDepthForMeetings": null,
   "defaultSortKey": null,
   "language": null,

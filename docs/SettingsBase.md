@@ -7,6 +7,8 @@
 Name | Type
 ------------ | -------------
 `googleApiKey` | string
+`geocodingProvider` | string
+`geoApiKey` | string
 `changeDepthForMeetings` | number
 `defaultSortKey` | string
 `language` | string
@@ -37,6 +39,8 @@ import type { SettingsBase } from 'bmlt-server-client'
 // TODO: Update the object below with actual values
 const example = {
   "googleApiKey": null,
+  "geocodingProvider": null,
+  "geoApiKey": null,
   "changeDepthForMeetings": null,
   "defaultSortKey": null,
   "language": null,
